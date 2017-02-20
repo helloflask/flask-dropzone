@@ -8,6 +8,7 @@ from flask_dropzone import Dropzone
 app = Flask(__name__)
 dropzone = Dropzone(app)
 app.config['UPLOADED_PATH'] = os.getcwd() + '/upload'
+app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image'
 
 @app.route('/')
 def index():
