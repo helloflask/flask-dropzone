@@ -51,7 +51,7 @@ The supported list of config options is shown below:
 | `DROPZONE_MAX_FILE_SIZE` | 2             | unit: MB   |
 | `DROPZONE_INPUT_NAME`    | `file`        | `<input type="file" name="file">` |
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | False | see detail below |
-| `DROPZONE_ALLOWED_FILE_TYPE` | allowed_file_type['default'] | see detail below |
+| `DROPZONE_ALLOWED_FILE_TYPE` | `allowed_file_type['default']` | see detail below |
 | `DROPZONE_MAX_FILES` | 'null' | the max files user can upload once |
 | `DROPZONE_DEFAULT_MESSAGE` | "Drop files here to upload" | message displayed on drop area |
 | `DROPZONE_INVALID_FILE_TYPE` |  "You can't upload files of this type." | error message |
@@ -76,7 +76,7 @@ If you want to set the allowed file type by yourself, you need to set
 `DROPZONE_ALLOWED_FILE_CUSTOM` to `True`, then add mime type or file extensions to
 `DROPZONE_ALLOWED_FILE_TYPE`, such as:
 
-    app.config[`DROPZONE_ALLOWED_FILE_TYPE` ] = 'image/*, .pdf, .txt'
+    app.config[`DROPZONE_ALLOWED_FILE_TYPE`] = 'image/*, .pdf, .txt'
 
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
 

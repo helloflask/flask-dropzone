@@ -1,2 +1,2 @@
 Flask==0.11.1
-Flask-Dropzone==1.0
+Flask-Dropzone==1.2

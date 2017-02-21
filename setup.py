@@ -12,9 +12,9 @@ with open('README.md') as file:
 
 setup(
     name='Flask-Dropzone',
-    version='1.1',
+    version='1.2',
     url='https://github.com/greyli/flask-dropzone',
-    download_url='https://github.com/greyli/flask-dropzone/tarball/1.1',
+    download_url='https://github.com/greyli/flask-dropzone/tarball/1.2',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',

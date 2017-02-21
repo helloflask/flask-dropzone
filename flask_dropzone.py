@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from distutils.version import StrictVersion
 from jinja2 import Markup
 from flask import current_app
 
