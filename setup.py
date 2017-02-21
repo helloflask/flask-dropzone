@@ -10,9 +10,9 @@ from setuptools import setup
 
 setup(
     name='Flask-Dropzone',
-    version='1.0',
+    version='1.1',
     url='https://github.com/greyli/flask-dropzone',
-    download_url='https://github.com/greyli/flask-dropzone/tarball/1.0',
+    download_url='https://github.com/greyli/flask-dropzone/tarball/1.1',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',
