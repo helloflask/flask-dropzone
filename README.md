@@ -82,6 +82,14 @@ Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on t
 
 ChangeLog
 =========
+1.3
+---
+* Documentation fix.
+
+1.2
+---
+* Upload address fix.
+* Delete useless code.
 
 1.1
 ----
