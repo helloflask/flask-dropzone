@@ -65,12 +65,6 @@ Dropzone.options.myDropzone = {
   dictResponseError: "%s",
   dictMaxFilesExceeded: "%s",
   // renameFilename: cleanFilename,
-  accept: function(file, done) {
-    if (file.name == "justinbieber.jpg") {
-      done("Naha, you don't.");
-    }
-    else { done(); }
-  }
 };
         </script>
         ''' % (css, js, param, size, allowed_type, max_files,

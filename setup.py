@@ -7,6 +7,8 @@ Upload file in Flask with Dropzone.js.
 """
 from setuptools import setup
 
+with open('README.md') as file:
+    long_description = file.read()
 
 setup(
     name='Flask-Dropzone',
@@ -17,7 +19,7 @@ setup(
     author='Grey Li',
     author_email='withlihui@gmail.com',
     description='Upload file in Flask with Dropzone.js.',
-    long_description=__doc__,
+    long_description=long_description,
     py_modules=['flask_dropzone'],
     zip_safe=False,
     include_package_data=True,
