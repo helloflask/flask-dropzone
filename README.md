@@ -2,6 +2,8 @@ Flask-Dropzone
 ================
 Upload file in Flask with [Dropzone.js](http://www.dropzonejs.com/).
 
+[中文文档](http://greyli.com/flask-dropzone-add-file-upload-capabilities-for-your-project/)
+
 Installation
 ------------
     pip install flask-dropzone
@@ -81,8 +83,7 @@ If you want to set the allowed file type by yourself, you need to set
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
 
 Beautify Dropzone
-==================
-
+-----------------
 Just add a border and background:
 
     .dropzone {
@@ -91,22 +92,18 @@ Just add a border and background:
     }
 
 ChangeLog
-=========
+---------
 1.3
----
 * Documentation fix.
 
 1.2
----
 * Upload address fix.
 * Delete useless code.
 
 1.1
-----
 * Add more configuration options.
 * Support local resource serve.
 * Add basic documentation.
 
 1.0
-----
 * Init release.
