@@ -48,7 +48,7 @@ The supported list of config options is shown below:
 | Name                     | Default Value | Info |
 | ------------------------ | ------------- | ---- |
 | `DROPZONE_SERVE_LOCAL`   | False         | default to use CDN |
-| `DROPZONE_MAX_FILE_SIZE` | 2             | unit: MB   |
+| `DROPZONE_MAX_FILE_SIZE` | 3             | unit: MB   |
 | `DROPZONE_INPUT_NAME`    | `file`        | `<input type="file" name="file">` |
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | False | see detail below |
 | `DROPZONE_ALLOWED_FILE_TYPE` | `allowed_file_type['default']` | see detail below |
@@ -79,6 +79,16 @@ If you want to set the allowed file type by yourself, you need to set
     app.config[`DROPZONE_ALLOWED_FILE_TYPE`] = 'image/*, .pdf, .txt'
 
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
+
+Beautify Dropzone
+==================
+
+Just add a border and background:
+
+    .dropzone {
+        border: 2px dashed #0087F7;
+        background: #ddd;
+    }
 
 ChangeLog
 =========
