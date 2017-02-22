@@ -29,7 +29,7 @@ This extension also supports the [Flask application factory pattern](http://flas
             
             return app
 
-Step 2: In your `<head>` section of your base template add the following code:
+Step 2: In your `<head>` section of your template add the following code:
     
     {{ dropzone.include_dropzone() }}
 
