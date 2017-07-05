@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from jinja2 import Markup
-from flask import current_app
+from flask import current_app, url_for
 
 
 #: defined normal file type
@@ -17,7 +17,7 @@ allowed_file_type = {
 class _dropzone(object):
 
     @staticmethod
-    def include_dropzone(version='4.3.0'):
+    def load(version='4.3.0'):
         js = ''
         css = ''
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
@@ -69,6 +69,14 @@ Dropzone.options.myDropzone = {
         ''' % (css, js, param, size, allowed_type, max_files,
                default_message, invalid_file_type, file_too_big,
                server_error, browser_unsupported, max_files_exceeded))
+
+    @staticmethod
+    def create():
+        action = current_app.config['DROPZONE_ACTION_VIEW']
+        return Markup('''
+        <form action="%s" method="post" class="dropzone" id="myDropzone" enctype="multipart/form-data">
+        </form>
+        ''' % url_for(action))
 
 
 class Dropzone(object):
