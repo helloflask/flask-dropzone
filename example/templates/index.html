@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    {{ dropzone.include_dropzone() }}
+    {{ dropzone.load() }}
 </head>
 <body>
 
-    <form action="{{ url_for('upload_file') }}" class="dropzone" id="myDropzone" method="POST" enctype="multipart/form-data">
-    </form>
+    <!--<form action="{{ url_for('upload_file') }}" class="dropzone" id="myDropzone" method="POST" enctype="multipart/form-data">-->
+    <!--</form>-->
+
+    {{ dropzone.create() }}
 
 </body>
 </html>
