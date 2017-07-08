@@ -1,0 +1,34 @@
+Flask-Dropzone Changelog
+=========================
+
+The following changes are not backwards compatible or major new features
+(bugfixes or new upstream releases are not explicitly listed):
+
+1.4
+---
+* New major upstream release (backwards incompatible!).
+* Method `include_dropzone()` rename to `load()`.
+* Add a `create()` method to create dropzone form.
+* Add a `style()` method to add style to upload area.
+* Use `action_view` argument (in `create()`) to set action url.
+* Dropzonejs version increase to 5.1.1.
+* PEP8 and bug fix.
+
+1.3
+---
+* Documentation fix.
+
+1.2
+---
+* Upload address fix.
+* Delete useless code.
+
+1.1
+---
+* Add more configuration options.
+* Support local resource serve.
+* Add basic documentation.
+
+1.0
+---
+* Init release.

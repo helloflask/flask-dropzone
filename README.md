@@ -97,20 +97,3 @@ Todo
 * Test
 * Auto redirect when the upload was completed (see detail on this [SO answer](https://stackoverflow.com/a/42264730/5511849)).
 
-ChangeLog
----------
-
-1.3
-* Documentation fix.
-
-1.2
-* Upload address fix.
-* Delete useless code.
-
-1.1
-* Add more configuration options.
-* Support local resource serve.
-* Add basic documentation.
-
-1.0
-* Init release.

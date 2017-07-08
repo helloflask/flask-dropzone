@@ -7,7 +7,7 @@ Upload file in Flask with Dropzone.js.
 """
 from setuptools import setup
 
-with open('docs/index.rst') as f:
+with open('README.rst') as f:
     long_description = f.read()
 
 setup(

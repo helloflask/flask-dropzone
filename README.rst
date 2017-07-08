@@ -18,14 +18,21 @@ Step 1: Initialize the extension::
 
 Step 2: In your `<head>` section of your base template add the following code::
 
-    {{ dropzone.include_dropzone() }}
+    {{ dropzone.load() }}
 
-Step 3: Creating a form element with the class `dropzone` and id `myDropzone` in the place where you want to upload file::
+You can assign the version of Dropzone.js through `version` argument, the default value is `5.1.1`.
+Step 3: Creating a Drop Zone with `create()`:
 
-    <form action="{{ url_for('upload_file') }}" class="dropzone" id="myDropzone" method="POST" enctype="multipart/form-data">
-    </form>
+    {{ dropzone.create(action_view='upload_view') }}
 
-Also to edit the action to your upload address.
+Also to edit the action view to yours.
+
+Beautify Dropzone
+-----------------
+
+Style it according to your preferences through `style()` method:
+
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
 
 More Detail
 -----------
