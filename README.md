@@ -33,14 +33,22 @@ This extension also supports the [Flask application factory pattern](http://flas
 
 Step 2: In your `<head>` section of your template add the following code:
     
-    {{ dropzone.include_dropzone() }}
+    {{ dropzone.load() }}
 
-Step 3: Creating a form element with the class `dropzone` and id `myDropzone` in the place where you want to upload file:
+You can assign the version of Dropzone.js through `version` argument, the default value is `5.1.1`.
+Step 3: Creating a Drop Zone with `create()`:
  
-    <form action="{{ url_for('upload_file') }}" class="dropzone" id="myDropzone" method="POST" enctype="multipart/form-data">
-    </form>
+    {{ dropzone.create(action_view='upload_view') }}
 
-Also to edit the action to your upload address.
+Also to edit the action view to yours.
+
+Beautify Dropzone
+-----------------
+
+Style it according to your preferences through `style()` method:
+
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+
 
 Configuration 
 -------------
@@ -53,7 +61,7 @@ The supported list of config options is shown below:
 | `DROPZONE_MAX_FILE_SIZE` | 3             | unit: MB   |
 | `DROPZONE_INPUT_NAME`    | `file`        | `<input type="file" name="file">` |
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | False | see detail below |
-| `DROPZONE_ALLOWED_FILE_TYPE` | `allowed_file_type['default']` | see detail below |
+| `DROPZONE_ALLOWED_FILE_TYPE` | `'default'` | see detail below |
 | `DROPZONE_MAX_FILES` | 'null' | the max files user can upload once |
 | `DROPZONE_DEFAULT_MESSAGE` | "Drop files here to upload" | message displayed on drop area |
 | `DROPZONE_INVALID_FILE_TYPE` |  "You can't upload files of this type." | error message |
@@ -82,17 +90,16 @@ If you want to set the allowed file type by yourself, you need to set
 
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
 
-Beautify Dropzone
------------------
-Just add a border and background:
+Todo
+-----
 
-    .dropzone {
-        border: 2px dashed #0087F7;
-        background: #ddd;
-    }
+* A Proper Documentation
+* Test
+* Auto redirect when the upload was completed (see detail on this [SO answer](https://stackoverflow.com/a/42264730/5511849)).
 
 ChangeLog
 ---------
+
 1.3
 * Documentation fix.
 

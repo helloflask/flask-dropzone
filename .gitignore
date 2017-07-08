@@ -68,5 +68,5 @@ __pycache__
 # Installer logs
 pip-log.txt
 
-# doc
-docs
+# dev
+.idea

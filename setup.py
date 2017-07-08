@@ -7,14 +7,14 @@ Upload file in Flask with Dropzone.js.
 """
 from setuptools import setup
 
-with open('README.txt') as f:
+with open('docs/index.rst') as f:
     long_description = f.read()
 
 setup(
     name='Flask-Dropzone',
-    version='1.3',
+    version='1.4',
     url='https://github.com/greyli/flask-dropzone',
-    download_url='https://github.com/greyli/flask-dropzone/tarball/1.3',
+    download_url='https://github.com/greyli/flask-dropzone/tarball/1.4',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',

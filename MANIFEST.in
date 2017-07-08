@@ -1,0 +1,3 @@
+graft example
+graft static
+include README.md
