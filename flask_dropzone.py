@@ -26,6 +26,16 @@ class _Dropzone(object):
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
         size = current_app.config['DROPZONE_MAX_FILE_SIZE']
         param = current_app.config['DROPZONE_INPUT_NAME']
+        redirect_view = current_app.config['DROPZONE_REDIRECT_VIEW']
+
+        if redirect_view is not None:
+            redirect_js = '''
+    this.on("queuecomplete", function(file) { 
+    // Called when all files in the queue finish uploading.
+    window.location = "%s";
+    });''' % url_for(redirect_view)
+        else:
+            redirect_js = ''
 
         if not current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']:
             allowed_type = allowed_file_type[
@@ -49,15 +59,17 @@ class _Dropzone(object):
                  '</script>\n' % (version, js_filename)
             css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
-        return Markup('''%s%s<script>
+        return Markup('''
+  %s%s<script>
 // var cleanFilename = function (name) {
 //    return name.toLowerCase().replace(/[^\w]/gi, '');
 // };
 Dropzone.options.myDropzone = {
+  init: function() {%s},
   paramName: "%s", // The name that will be used to transfer the file
   maxFilesize: %d, // MB
   acceptedFiles: "%s",
-  maxFiles: %s,
+  maxFiles: %d,
   dictDefaultMessage: "%s", // message display on drop area
   dictFallbackMessage: "%s",
   dictInvalidFileType: "%s",
@@ -67,7 +79,7 @@ Dropzone.options.myDropzone = {
   // renameFilename: cleanFilename,
 };
         </script>
-        ''' % (css, js, param, size, allowed_type, max_files,
+        ''' % (css, js, redirect_js, param, size, allowed_type, max_files,
                default_message, browser_unsupported, invalid_file_type, file_too_big,
                server_error, max_files_exceeded))
 
@@ -77,10 +89,8 @@ Dropzone.options.myDropzone = {
 
         :param action_view: The view which handle the post data.
         """
-        return Markup('''
-        <form action="%s" method="post" class="dropzone" id="myDropzone" enctype="multipart/form-data">
-        </form>
-        ''' % url_for(action_view))
+        return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone" 
+        enctype="multipart/form-data"></form>''' % url_for(action_view))
 
     @staticmethod
     def style(css):
@@ -113,6 +123,7 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_ALLOWED_FILE_CUSTOM', False)
         app.config.setdefault('DROPZONE_ALLOWED_FILE_TYPE', 'default')
         app.config.setdefault('DROPZONE_MAX_FILES', 'null')
+        app.config.setdefault('DROPZONE_REDIRECT_VIEW', None)
 
         # messages
         app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here to upload")
