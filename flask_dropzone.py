@@ -84,13 +84,13 @@ Dropzone.options.myDropzone = {
                server_error, max_files_exceeded))
 
     @staticmethod
-    def create(action_view=''):
+    def create(action_view='', **kwargs):
         """Create a Dropzone form with given action.
 
         :param action_view: The view which handle the post data.
         """
         return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone" 
-        enctype="multipart/form-data"></form>''' % url_for(action_view))
+        enctype="multipart/form-data"></form>''' % url_for(action_view, **kwargs))
 
     @staticmethod
     def style(css):
