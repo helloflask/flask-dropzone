@@ -69,7 +69,7 @@ Dropzone.options.myDropzone = {
   paramName: "%s", // The name that will be used to transfer the file
   maxFilesize: %d, // MB
   acceptedFiles: "%s",
-  maxFiles: %d,
+  maxFiles: %s,
   dictDefaultMessage: "%s", // message display on drop area
   dictFallbackMessage: "%s",
   dictInvalidFileType: "%s",
