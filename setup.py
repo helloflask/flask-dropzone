@@ -12,7 +12,7 @@ with open('README.rst') as f:
 
 setup(
     name='Flask-Dropzone',
-    version='1.4',
+    version='1.4.1',
     url='https://github.com/greyli/flask-dropzone',
     download_url='https://github.com/greyli/flask-dropzone/tarball/1.4',
     license='MIT',

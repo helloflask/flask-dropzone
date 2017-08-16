@@ -66,9 +66,11 @@ The supported list of config options is shown below:
 | `DROPZONE_DEFAULT_MESSAGE` | "Drop files here to upload" | message displayed on drop area |
 | `DROPZONE_INVALID_FILE_TYPE` |  "You can't upload files of this type." | error message |
 | `DROPZONE_FILE_TOO_BIG` | "File is too big {{filesize}}. Max filesize: {{maxFilesize}}MiB." | error message |
-| `DROPZONE_SERVER_ERROR` | "Server error: {{statusCode}}" |  error message |
+| `DROPZONE_SERVER_ERROR` | "Server error: {{statusCode}}" | error message |
 | `DROPZONE_BROWSER_UNSUPPORTED` | "Your browser does not support drag'n'drop file uploads." | error message | 
-| `DROPZONE_MAX_FILE_EXCEED` | "Your can't upload any more files." |  error message |
+| `DROPZONE_MAX_FILE_EXCEED` | "Your can't upload any more files." | error message |
+| `DROPZONE_UPLOAD_MULTIPLE` | 'false' | whether to send multiple files in one request. |
+| `DROPZONE_PARALLEL_UPLOADS` | 2 | how many uploads will handled in per request when `DROPZONE_UPLOAD_MULTIPLE` set to True. |
 
 
 You can use these file type: 
@@ -89,6 +91,45 @@ If you want to set the allowed file type by yourself, you need to set
     app.config[`DROPZONE_ALLOWED_FILE_TYPE`] = 'image/*, .pdf, .txt'
 
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
+
+
+Save uploads with Flask
+-----------------------
+    import os
+
+    from flask import Flask, request
+    from flask_dropzone import Dropzone
+
+    app = Flask(__name__)
+
+    dropzone = Dropzone(app)
+
+    @app.route('/uploads', methods=['GET', 'POST'])
+    def upload():
+
+        if request.method == 'POST':
+            f = request.files['input_name']
+            f.save(os.path.join(the_path_to_save, f.filename))
+
+        return 'upload template'
+
+If you set `DROPZONE_UPLOAD_MULTIPLE` as True, then you need to save multiple uploads in per request:
+
+    ...
+    app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
+
+    @app.route('/upload', methods=['GET', 'POST'])
+    def upload():
+
+        if request.method == 'POST':
+            for f in request.files.getlist('input_name'):
+                f.save(os.path.join(the_path_to_save, f.filename))
+
+        return 'upload template'
+
+
+See example for more detail.
+
 
 Todo
 -----

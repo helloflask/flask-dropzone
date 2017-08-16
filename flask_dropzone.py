@@ -23,6 +23,12 @@ class _Dropzone(object):
         js_filename = 'dropzone.min.js'
         css_filename = 'dropzone.min.css'
 
+        upload_multiple = current_app.config['DROPZONE_UPLOAD_MULTIPLE']
+        parallel_uploads = current_app.config['DROPZONE_PARALLEL_UPLOADS']
+
+        if upload_multiple in [True, 'true', 'True', 1]:
+            upload_multiple = 'true'
+
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
         size = current_app.config['DROPZONE_MAX_FILE_SIZE']
         param = current_app.config['DROPZONE_INPUT_NAME']
@@ -50,6 +56,7 @@ class _Dropzone(object):
         server_error = current_app.config['DROPZONE_SERVER_ERROR']
         browser_unsupported = current_app.config['DROPZONE_BROWSER_UNSUPPORTED']
         max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
+
         if serve_local:
             js = '<script src="%s"></script>\n' % url_for('static', filename=js_filename)
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' %\
@@ -66,6 +73,8 @@ class _Dropzone(object):
 // };
 Dropzone.options.myDropzone = {
   init: function() {%s},
+  uploadMultiple: %s,
+  parallelUploads: %d,
   paramName: "%s", // The name that will be used to transfer the file
   maxFilesize: %d, // MB
   acceptedFiles: "%s",
@@ -79,7 +88,7 @@ Dropzone.options.myDropzone = {
   // renameFilename: cleanFilename,
 };
         </script>
-        ''' % (css, js, redirect_js, param, size, allowed_type, max_files,
+        ''' % (css, js, redirect_js, upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                default_message, browser_unsupported, invalid_file_type, file_too_big,
                server_error, max_files_exceeded))
 
@@ -123,7 +132,19 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_ALLOWED_FILE_CUSTOM', False)
         app.config.setdefault('DROPZONE_ALLOWED_FILE_TYPE', 'default')
         app.config.setdefault('DROPZONE_MAX_FILES', 'null')
+        
+        # The view to redierct when upload was completed.
         app.config.setdefault('DROPZONE_REDIRECT_VIEW', None)
+        
+        # Whether to send multiple files in one request.
+        # In default, each file will send with a request.
+        # Then you can use ``request.files.getlist('paramName')`` to 
+        # get a list of uploads.
+        app.config.setdefault('DROPZONE_UPLOAD_MULTIPLE', 'false')
+        
+        # When ``DROPZONE_UPLOAD_MULTIPLE`` set to True, this will
+        # defined how many uploads will handled in per request.
+        app.config.setdefault('DROPZONE_PARALLEL_UPLOADS', 2)
 
         # messages
         app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here to upload")

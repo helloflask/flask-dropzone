@@ -4,6 +4,12 @@ Flask-Dropzone Changelog
 The following changes are not backwards compatible or major new features
 (bugfixes or new upstream releases are not explicitly listed):
 
+1.4.1
+------
+
+* New configuration options: `DROPZONE_UPLOAD_MULTIPLE`, `DROPZONE_PARALLEL_UPLOADS`.
+* Fix local static files bug.
+
 1.4
 ---
 * New major upstream release (backwards incompatible!).
