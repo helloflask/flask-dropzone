@@ -96,7 +96,7 @@ If you want to set the allowed file type by yourself, you need to set
 `DROPZONE_ALLOWED_FILE_CUSTOM` to `True`, then add mime type or file extensions to
 `DROPZONE_ALLOWED_FILE_TYPE`, such as:
 ```python
-app.config[`DROPZONE_ALLOWED_FILE_TYPE`] = 'image/*, .pdf, .txt'
+app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*, .pdf, .txt'
 ```
 
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
