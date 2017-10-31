@@ -7,8 +7,10 @@ The following changes are not backwards compatible or major new features
 1.4.1
 ------
 
-* New configuration options: `DROPZONE_UPLOAD_MULTIPLE`, `DROPZONE_PARALLEL_UPLOADS`.
+* New configuration options: `DROPZONE_UPLOAD_MULTIPLE`,
+ `DROPZONE_PARALLEL_UPLOADS`, `DROPZONE_REDIRECT_VIEW`.
 * Fix local static files bug.
+* Add supprot for automatic redirection when upload was conmplete.
 
 1.4
 ---

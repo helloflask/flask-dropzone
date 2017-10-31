@@ -71,3 +71,4 @@ pip-log.txt
 # dev
 .idea
 docs
+example/upload/*

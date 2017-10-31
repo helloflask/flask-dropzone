@@ -71,7 +71,7 @@ The supported list of config options is shown below:
 | `DROPZONE_MAX_FILE_EXCEED` | "Your can't upload any more files." | error message |
 | `DROPZONE_UPLOAD_MULTIPLE` | 'false' | whether to send multiple files in one request. |
 | `DROPZONE_PARALLEL_UPLOADS` | 2 | how many uploads will handled in per request when `DROPZONE_UPLOAD_MULTIPLE` set to True. |
-
+| `DROPZONE_REDIRECT_VIEW` | None | the view to redierct when upload was completed. |
 
 You can use these file type: 
     
@@ -136,5 +136,3 @@ Todo
 
 * A Proper Documentation
 * Test
-* Auto redirect when the upload was completed (see detail on this [SO answer](https://stackoverflow.com/a/42264730/5511849)).
-
