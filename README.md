@@ -14,11 +14,15 @@ Quick Start
 
 Step 1: Initialize the extension:
 
+.. code:: python
+
     from flask_dropzone import Dropzone
     
     dropzone = Dropzone(app)
 
 This extension also supports the [Flask application factory pattern](http://flask.pocoo.org/docs/latest/patterns/appfactories/) by allowing you to create a Dropzone object and then separately initialize it for an app:
+
+.. code:: python
 
         dropzone = Dropzone()
 
@@ -32,11 +36,15 @@ This extension also supports the [Flask application factory pattern](http://flas
             return app
 
 Step 2: In your `<head>` section of your template add the following code:
+
+.. code:: python
     
     {{ dropzone.load() }}
 
 You can assign the version of Dropzone.js through `version` argument, the default value is `5.1.1`.
 Step 3: Creating a Drop Zone with `create()`:
+
+.. code:: python
  
     {{ dropzone.create(action_view='upload_view') }}
 
@@ -46,6 +54,8 @@ Beautify Dropzone
 -----------------
 
 Style it according to your preferences through `style()` method:
+
+.. code:: python
 
     {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
 
@@ -75,6 +85,8 @@ The supported list of config options is shown below:
 
 You can use these file type: 
     
+.. code:: python
+
     allowed_file_type = {
             'default': 'image/*, audio/*, video/*, text/*, application/*',
             'image': 'image/*',
@@ -88,6 +100,8 @@ If you want to set the allowed file type by yourself, you need to set
 `DROPZONE_ALLOWED_FILE_CUSTOM` to `True`, then add mime type or file extensions to
 `DROPZONE_ALLOWED_FILE_TYPE`, such as:
 
+.. code:: python
+
     app.config[`DROPZONE_ALLOWED_FILE_TYPE`] = 'image/*, .pdf, .txt'
 
 Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on these options.
@@ -95,6 +109,9 @@ Consult the [dropzone.js documentation](http://dropzonejs.com/) for details on t
 
 Save uploads with Flask
 -----------------------
+
+.. code:: python
+
     import os
 
     from flask import Flask, request
@@ -114,6 +131,8 @@ Save uploads with Flask
         return 'upload template'
 
 If you set `DROPZONE_UPLOAD_MULTIPLE` as True, then you need to save multiple uploads in per request:
+
+.. code:: python
 
     ...
     app.config['DROPZONE_UPLOAD_MULTIPLE'] = True

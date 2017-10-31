@@ -1,3 +1,2 @@
-graft example
 graft static
 include *.txt
