@@ -58,9 +58,9 @@ class _Dropzone(object):
         max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
 
         if serve_local:
-            js = '<script src="%s"></script>\n' % url_for('static', filename=js_filename)
+            js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' %\
-                  url_for('static', filename=css_filename)
+                  url_for('dropzone.static', filename=css_filename)
         else:
             js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
                  '</script>\n' % (version, js_filename)
@@ -98,6 +98,7 @@ Dropzone.options.myDropzone = {
 
         :param action_view: The view which handle the post data.
         """
+        # TODO: merge arguments to action_url.
         return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone" 
         enctype="multipart/form-data"></form>''' % url_for(action_view, **kwargs))
 
@@ -117,7 +118,9 @@ class Dropzone(object):
 
     def init_app(self, app):
 
-        blueprint = Blueprint('dropzone', __name__)
+        blueprint = Blueprint('dropzone', __name__,
+                              static_folder='static',
+                              static_url_path=app.static_url_path + '/dropzone')
         app.register_blueprint(blueprint)
 
         if not hasattr(app, 'extensions'):
