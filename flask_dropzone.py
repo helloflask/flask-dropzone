@@ -134,16 +134,19 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_MAX_FILES', 'null')
         
         # The view to redierct when upload was completed.
+        # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_REDIRECT_VIEW', None)
         
         # Whether to send multiple files in one request.
         # In default, each file will send with a request.
         # Then you can use ``request.files.getlist('paramName')`` to 
         # get a list of uploads.
-        app.config.setdefault('DROPZONE_UPLOAD_MULTIPLE', 'false')
+        # .. versionadded:: 1.4.1
+        app.config.setdefault('DROPZONE_UPLOAD_MULTIPLE', False)
         
         # When ``DROPZONE_UPLOAD_MULTIPLE`` set to True, this will
         # defined how many uploads will handled in per request.
+        # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_PARALLEL_UPLOADS', 2)
 
         # messages

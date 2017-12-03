@@ -71,4 +71,5 @@ pip-log.txt
 # dev
 .idea
 docs
-example/upload/*
+examples/simple/uploads/*
+examples/parallel-uploads/uploads/*

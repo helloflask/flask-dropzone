@@ -77,7 +77,7 @@ The supported list of config options is shown below:
 | `DROPZONE_SERVER_ERROR` | "Server error: {{statusCode}}" | error message |
 | `DROPZONE_BROWSER_UNSUPPORTED` | "Your browser does not support drag'n'drop file uploads." | error message | 
 | `DROPZONE_MAX_FILE_EXCEED` | "Your can't upload any more files." | error message |
-| `DROPZONE_UPLOAD_MULTIPLE` | 'false' | whether to send multiple files in one request. |
+| `DROPZONE_UPLOAD_MULTIPLE` | `False` | whether to send multiple files in one request. |
 | `DROPZONE_PARALLEL_UPLOADS` | 2 | how many uploads will handled in per request when `DROPZONE_UPLOAD_MULTIPLE` set to True. |
 | `DROPZONE_REDIRECT_VIEW` | None | the view to redierct when upload was completed. |
 
@@ -119,29 +119,45 @@ dropzone = Dropzone(app)
 def upload():
 
     if request.method == 'POST':
-        f = request.files['input_name']
+        f = request.files.get('input_name')
         f.save(os.path.join(the_path_to_save, f.filename))
 
     return 'upload template'
 ```
 
-If you set `DROPZONE_UPLOAD_MULTIPLE` as True, then you need to save multiple uploads in per request:
+See `examples/simple` for more detail.
 
+Parallel Uploads
+----------------
+
+If you set `DROPZONE_UPLOAD_MULTIPLE` as True, then you need to save multiple uploads in 
+single request. 
+
+However, you can't get a list of file with `request.files.getlist('input_name')`. When you 
+enable parallel upload, Dropzone.js will append a index number after each files, for example:
+`input_name[2]`, `input_name[1]`, `input_name[0]`. So, you have to save files like this:
+```python
+    for key, f in request.files.iteritems():
+        if key.startswith('input_name'):
+            f.save(os.path.join(the_path_to_save, f.filename)) 
+```
+Here is the full example:
 ```python
 ...
-app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
+app.config['DROPZONE_UPLOAD_MULTIPLE'] = True  # enable parallel upload
+app.config['DROPZONE_PARALLEL_UPLOADS'] = 3  # handle 3 file per request
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-
     if request.method == 'POST':
-        for f in request.files.getlist('input_name'):
-            f.save(os.path.join(the_path_to_save, f.filename))
+        for key, f in request.files.iteritems():
+            if key.startswith('input_name'):
+                f.save(os.path.join(the_path_to_save, f.filename))
 
     return 'upload template'
 ```
 
-See example for more detail.
+See `examples/parallel-upload` for more detail.
 
 
 Todo
