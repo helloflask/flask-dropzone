@@ -72,4 +72,5 @@ pip-log.txt
 .idea
 docs
 examples/simple/uploads/*
-examples/parallel-uploads/uploads/*
+examples/parallel-upload/uploads/*
+examples/complete-reidrect/uploads/*

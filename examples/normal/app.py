@@ -8,7 +8,7 @@ app = Flask(__name__)
 dropzone = Dropzone(app)
 
 app.config.update(
-    UPLOADED_PATH=os.getcwd() + '/upload',
+    UPLOADED_PATH=os.getcwd() + '/uploads',
     DROPZONE_ALLOWED_FILE_TYPE='image',
     DROPZONE_MAX_FILE_SIZE=3,
     DROPZONE_INPUT_NAME='photo',

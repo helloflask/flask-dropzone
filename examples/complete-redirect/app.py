@@ -13,19 +13,22 @@ app.config.update(
     DROPZONE_MAX_FILE_SIZE=3,
     DROPZONE_INPUT_NAME='photo',
     DROPZONE_MAX_FILES=30,
-    
-    DROPZONE_PARALLEL_UPLOADS=3,
-    DROPZONE_UPLOAD_MULTIPLE=True,
+
+    DROPZONE_REDIRECT_VIEW='completed'
 )
 
 
 @app.route('/', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-        for key, f in request.files.iteritems():
-            if key.startswith('photo'):
-                f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+        f = request.files.get('photo')
+        f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
     return render_template('index.html')
+
+
+@app.route('/completed')
+def completed():
+    return '<h1>The Redirected Page</h1><p>Upload completed.</p>'
 
 
 if __name__ == '__main__':
