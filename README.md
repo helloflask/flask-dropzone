@@ -47,7 +47,7 @@ Step 3: Creating a Drop Zone with `create()`:
 {{ dropzone.create(action_view='your_upload_view') }}
 ```
 
-Also remember to edit the action view to your view endpoint(usually the name of view function) that handles
+Also remember to edit the action view to your view endpoint (usually the name of view function) that handles
 the uploads.
 
 Beautify Dropzone
