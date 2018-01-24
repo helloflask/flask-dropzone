@@ -44,10 +44,11 @@ You can assign the version of Dropzone.js through `version` argument, the defaul
 Step 3: Creating a Drop Zone with `create()`:
 
 ```jinja 
-{{ dropzone.create(action_view='upload_view') }}
+{{ dropzone.create(action_view='your_upload_view') }}
 ```
 
-Also to edit the action view to yours.
+Also remember to edit the action view to your view endpoint(usually the name of view function) that handles
+the uploads.
 
 Beautify Dropzone
 -----------------
