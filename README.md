@@ -66,7 +66,7 @@ The supported list of config options is shown below:
 
 | Name                     | Default Value | Info |
 | ------------------------ | ------------- | ---- |
-| `DROPZONE_SERVE_LOCAL`   | False         | default to use CDN |
+| `DROPZONE_SERVE_LOCAL`   | False         | default to retrieve `dropzone.js` from CDN |
 | `DROPZONE_MAX_FILE_SIZE` | 3             | unit: MB   |
 | `DROPZONE_INPUT_NAME`    | `file`        | `<input type="file" name="file">` |
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | False | see detail below |
