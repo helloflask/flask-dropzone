@@ -120,7 +120,7 @@ dropzone = Dropzone(app)
 def upload():
 
     if request.method == 'POST':
-        f = request.files.get('input_name')
+        f = request.files.get('file')
         f.save(os.path.join(the_path_to_save, f.filename))
 
     return 'upload template'
@@ -134,12 +134,12 @@ Parallel Uploads
 If you set `DROPZONE_UPLOAD_MULTIPLE` as True, then you need to save multiple uploads in 
 single request. 
 
-However, you can't get a list of file with `request.files.getlist('input_name')`. When you 
+However, you can't get a list of file with `request.files.getlist('file')`. When you 
 enable parallel upload, Dropzone.js will append a index number after each files, for example:
-`input_name[2]`, `input_name[1]`, `input_name[0]`. So, you have to save files like this:
+`file[2]`, `file[1]`, `file[0]`. So, you have to save files like this:
 ```python
     for key, f in request.files.iteritems():
-        if key.startswith('input_name'):
+        if key.startswith('file'):
             f.save(os.path.join(the_path_to_save, f.filename)) 
 ```
 Here is the full example:
@@ -152,7 +152,7 @@ app.config['DROPZONE_PARALLEL_UPLOADS'] = 3  # handle 3 file per request
 def upload():
     if request.method == 'POST':
         for key, f in request.files.iteritems():
-            if key.startswith('input_name'):
+            if key.startswith('file'):
                 f.save(os.path.join(the_path_to_save, f.filename))
 
     return 'upload template'
