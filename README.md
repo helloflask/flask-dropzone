@@ -160,6 +160,10 @@ def upload():
 
 See `examples/parallel-upload` for more detail.
 
+Use with CSRF protection
+-----
+See https://flask-wtf.readthedocs.io/en/latest/csrf.html
+
 
 Todo
 -----
