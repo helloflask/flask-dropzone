@@ -151,7 +151,7 @@ app.config['DROPZONE_PARALLEL_UPLOADS'] = 3  # handle 3 file per request
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        for key, f in request.files.iteritems():
+        for key, f in request.files.iteritems():  # use request.files.items() in Python3
             if key.startswith('file'):
                 f.save(os.path.join(the_path_to_save, f.filename))
 
