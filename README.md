@@ -66,9 +66,9 @@ The supported list of config options is shown below:
 
 | Name                     | Default Value | Info |
 | ------------------------ | ------------- | ---- |
-| `DROPZONE_SERVE_LOCAL`   | False         | default to retrieve `dropzone.js` from CDN |
-| `DROPZONE_MAX_FILE_SIZE` | 3             | unit: MB   |
-| `DROPZONE_INPUT_NAME`    | `file`        | `<input type="file" name="file">` |
+| `DROPZONE_SERVE_LOCAL`   | `False`       | default to retrieve `dropzone.js` from CDN |
+| `DROPZONE_MAX_FILE_SIZE` | 3             | max allowed file size. unit: MB   |
+| `DROPZONE_INPUT_NAME`    | `file`        | the `name` attr in <input>: `<input type="file" name="file">` |
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | False | see detail below |
 | `DROPZONE_ALLOWED_FILE_TYPE` | `'default'` | see detail below |
 | `DROPZONE_MAX_FILES` | 'null' | the max files user can upload once |
@@ -80,7 +80,8 @@ The supported list of config options is shown below:
 | `DROPZONE_MAX_FILE_EXCEED` | "Your can't upload any more files." | error message |
 | `DROPZONE_UPLOAD_MULTIPLE` | `False` | whether to send multiple files in one request. |
 | `DROPZONE_PARALLEL_UPLOADS` | 2 | how many uploads will handled in per request when `DROPZONE_UPLOAD_MULTIPLE` set to True. |
-| `DROPZONE_REDIRECT_VIEW` | None | the view to redierct when upload was completed. |
+| `DROPZONE_REDIRECT_VIEW` | `None` | the view to redierct when upload was completed. |
+| `DROPZONE_ENABLE_CSRF` | `False` | enable CSRF protect, see detail below |
 
 You can use these file type: 
 ```python

@@ -64,9 +64,9 @@ class _Dropzone(object):
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' %\
                   url_for('dropzone.static', filename=css_filename)
         else:
-            js = '<script src="https//cdn.bootcss.com/dropzone/%s/min/%s">' \
+            js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
                  '</script>\n' % (version, js_filename)
-            css = '<link rel="stylesheet" href="https//cdn.bootcss.com/dropzone/%s/min/%s"' \
+            css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
         return Markup('''
   %s%s<script>

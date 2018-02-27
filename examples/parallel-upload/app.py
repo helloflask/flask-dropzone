@@ -14,7 +14,6 @@ app.config.update(
     # Flask-Dropzone config:
     DROPZONE_ALLOWED_FILE_TYPE='image',
     DROPZONE_MAX_FILE_SIZE=3,
-    DROPZONE_INPUT_NAME='photo',
     DROPZONE_MAX_FILES=30,
     DROPZONE_PARALLEL_UPLOADS=3,  # set parallel amount
     DROPZONE_UPLOAD_MULTIPLE=True,  # enable upload multiple
@@ -27,7 +26,7 @@ dropzone = Dropzone(app)
 def upload():
     if request.method == 'POST':
         for key, f in request.files.iteritems():
-            if key.startswith('photo'):
+            if key.startswith('file'):
                 f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
     return render_template('index.html')
 

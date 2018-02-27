@@ -71,6 +71,7 @@ pip-log.txt
 # dev
 .idea
 docs
-examples/simple/uploads/*
+examples/basic/uploads/*
+examples/csrf/uploads/*
 examples/parallel-upload/uploads/*
 examples/complete-reidrect/uploads/*
