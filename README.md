@@ -7,7 +7,7 @@ Upload file in Flask with [Dropzone.js](http://www.dropzonejs.com/).
 Installation
 ------------
 ```
-pip install flask-dropzone
+$ pip install flask-dropzone
 ```
 
 Quick Start
@@ -27,8 +27,7 @@ dropzone = Dropzone()
 
 def create_app(config):
     app = Flask(__name__)
-    app.config.from_object(config)
-    
+    ...
     dropzone.init_app(app)
     ...
     return app
@@ -40,7 +39,8 @@ Step 2: In your `<head>` section of your template add the following code:
 {{ dropzone.load() }}
 ```
 
-You can assign the version of Dropzone.js through `version` argument, the default value is `5.1.1`.
+You can assign the version of Dropzone.js through `version` argument, the default value is `5.2.0`.
+
 Step 3: Creating a Drop Zone with `create()`:
 
 ```jinja 
@@ -69,7 +69,7 @@ The supported list of config options is shown below:
 | `DROPZONE_SERVE_LOCAL`   | `False`       | default to retrieve `dropzone.js` from CDN |
 | `DROPZONE_MAX_FILE_SIZE` | 3             | max allowed file size. unit: MB   |
 | `DROPZONE_INPUT_NAME`    | `file`        | the `name` attr in <input>: `<input type="file" name="file">` |
-| `DROPZONE_ALLOWED_FILE_CUSTOM` | False | see detail below |
+| `DROPZONE_ALLOWED_FILE_CUSTOM` | `False` | see detail below |
 | `DROPZONE_ALLOWED_FILE_TYPE` | `'default'` | see detail below |
 | `DROPZONE_MAX_FILES` | 'null' | the max files user can upload once |
 | `DROPZONE_DEFAULT_MESSAGE` | "Drop files here to upload" | message displayed on drop area |
