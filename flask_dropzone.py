@@ -95,13 +95,19 @@ Dropzone.options.myDropzone = {
                server_error, max_files_exceeded))
 
     @staticmethod
-    def create(action_view='', **kwargs):
+    def create(action='', csrf=False, action_view='', **kwargs):
         """Create a Dropzone form with given action.
 
-        :param action_view: The view which handle the post data.
+        :param action: The action attribute in <form>.
+        :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
+        :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
-        # TODO: merge arguments to action_url.
-        if current_app.config['DROPZONE_ENABLE_CSRF']:
+        if action:
+            action_url = action
+        else:
+            action_url = url_for(action_view, **kwargs)
+        
+        if csrf or current_app.config['DROPZONE_ENABLE_CSRF']:
             # try:
             #     from flask_wtf.csrf import generate_csrf
             # except ImportError:
@@ -109,12 +115,11 @@ Dropzone.options.myDropzone = {
             
             # if 'csrf' not in current_app.extensions:
             #     raise RuntimeError('CSRFProtect is not initialized.')
-
             csrf_field = render_template_string('<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>')
         else:
             csrf_field = ''
         return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone" 
-        enctype="multipart/form-data">%s</form>''' % (url_for(action_view, **kwargs), csrf_field))
+        enctype="multipart/form-data">%s</form>''' % (action_url, csrf_field))
 
     @staticmethod
     def style(css):
