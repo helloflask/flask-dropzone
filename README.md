@@ -126,7 +126,7 @@ def upload():
     return 'upload template'
 ```
 
-See `examples/simple` for more detail.
+See `examples/basic` for more detail.
 
 Parallel Uploads
 ----------------
@@ -160,9 +160,54 @@ def upload():
 
 See `examples/parallel-upload` for more detail.
 
+CSRF Protect
+------------
+
+The CSRF Protect feature was provided by Flask-WTF's `CSRFProtect` extension, so you have to 
+install Flask-WTF first:
+```
+$ pip install flask-wtf
+``` 
+
+Then initialize the CSRFProtect:
+```python
+from flask_wtf.csrf import CSRFProtect
+
+app = Flask(__name__)
+
+# the secret key used to generate CSRF token
+app.config['SECRET_KEY'] = 'dev key' 
+...
+# enable CSRF protection
+app.config['DROPZONE_ENABLE_CSRF'] = True  
+
+csrf = CSRFProtect(app)
+```
+Make sure to set the secret key and set `DROPZONE_ENABLE_CSRF` to True. Now all the upload request 
+will be protected!
+
+We prefer to handle the CSRF error manually, because the error response's body will be displayed
+as tooltip below the file thumbnail.
+```python
+from flask_wtf.csrf import CSRFProtect, CSRFError
+...
+
+# handle CSRF error
+@app.errorhandler(CSRFError)
+def csrf_error(e):
+    return e.description, 400
+```
+
+Here I use the `e.description` as error message, it's provided by CSRFProtect, one of `The CSRF token is missing` 
+and `The CSRF token is invaild`. 
+
+Try the demo application in `examples/csrf` and see 
+[CSRFProtect's documentation](http://flask-wtf.readthedocs.io/en/latest/csrf.html) for more details.
+
 
 Todo
 -----
 
 * A Proper Documentation
 * Test
+* i18n

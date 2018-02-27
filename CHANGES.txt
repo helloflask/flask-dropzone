@@ -4,13 +4,23 @@ Flask-Dropzone Changelog
 The following changes are not backwards compatible or major new features
 (bugfixes or new upstream releases are not explicitly listed):
 
+
+1.4.2
+------
+released date: 2018/2/17
+
+* Add support to integrate with CSRFProtect (enabled via `DROPZONE_ENABLE_CSRF`).
+* Fix `False` in JavaScript.
+* Bump built-in resource's version to 5.2.0.
+
+
 1.4.1
 ------
 
 * New configuration options: `DROPZONE_UPLOAD_MULTIPLE`,
  `DROPZONE_PARALLEL_UPLOADS`, `DROPZONE_REDIRECT_VIEW`.
 * Fix local static files bug.
-* Add supprot for automatic redirection when upload was conmplete.
+* Add support for automatic redirection when upload was conmplete.
 
 1.4
 ---

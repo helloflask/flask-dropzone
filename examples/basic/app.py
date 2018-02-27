@@ -4,16 +4,20 @@ import os
 from flask import Flask, render_template, request
 from flask_dropzone import Dropzone
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__)
-dropzone = Dropzone(app)
 
 app.config.update(
-    UPLOADED_PATH=os.getcwd() + '/uploads',
+    UPLOADED_PATH=os.path.join(basedir, 'uploads'),
+    # Flask-Dropzone config:
     DROPZONE_ALLOWED_FILE_TYPE='image',
     DROPZONE_MAX_FILE_SIZE=3,
     DROPZONE_INPUT_NAME='photo',
     DROPZONE_MAX_FILES=30,
 )
+
+dropzone = Dropzone(app)
 
 
 @app.route('/', methods=['POST', 'GET'])

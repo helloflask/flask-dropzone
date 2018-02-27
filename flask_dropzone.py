@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, current_app, url_for, Markup
+from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
 #: defined normal file type
 allowed_file_type = {
@@ -15,7 +15,7 @@ allowed_file_type = {
 class _Dropzone(object):
 
     @staticmethod
-    def load(version='5.1.1'):
+    def load(version='5.2.0'):
         """Load Dropzone resources with given version and init dropzone configuration.
 
         :param version: The version of Dropzone.js.
@@ -28,6 +28,8 @@ class _Dropzone(object):
 
         if upload_multiple in [True, 'true', 'True', 1]:
             upload_multiple = 'true'
+        else:
+            upload_multiple  = 'false'
 
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
         size = current_app.config['DROPZONE_MAX_FILE_SIZE']
@@ -62,9 +64,9 @@ class _Dropzone(object):
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' %\
                   url_for('dropzone.static', filename=css_filename)
         else:
-            js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
+            js = '<script src="https//cdn.bootcss.com/dropzone/%s/min/%s">' \
                  '</script>\n' % (version, js_filename)
-            css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
+            css = '<link rel="stylesheet" href="https//cdn.bootcss.com/dropzone/%s/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
         return Markup('''
   %s%s<script>
@@ -99,8 +101,20 @@ Dropzone.options.myDropzone = {
         :param action_view: The view which handle the post data.
         """
         # TODO: merge arguments to action_url.
+        if current_app.config['DROPZONE_ENABLE_CSRF']:
+            # try:
+            #     from flask_wtf.csrf import generate_csrf
+            # except ImportError:
+            #     raise RuntimeError('Flask-WTF is not installed.')
+            
+            # if 'csrf' not in current_app.extensions:
+            #     raise RuntimeError('CSRFProtect is not initialized.')
+
+            csrf_field = render_template_string('<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>')
+        else:
+            csrf_field = ''
         return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone" 
-        enctype="multipart/form-data"></form>''' % url_for(action_view, **kwargs))
+        enctype="multipart/form-data">%s</form>''' % (url_for(action_view, **kwargs), csrf_field))
 
     @staticmethod
     def style(css):
@@ -151,6 +165,11 @@ class Dropzone(object):
         # defined how many uploads will handled in per request.
         # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_PARALLEL_UPLOADS', 2)
+
+        # When set to ``True``, it will add a csrf_token hidden field in upload form.
+        # You have to install Flask-WTF to make it work properly, see details in docs.
+        # .. versionadded:: 1.4.2
+        app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
 
         # messages
         app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here to upload")
