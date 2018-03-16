@@ -4,6 +4,11 @@ Flask-Dropzone Changelog
 The following changes are not backwards compatible or major new features
 (bugfixes or new upstream releases are not explicitly listed):
 
+1.4.3
+------
+released date: --
+
+* Add support to use custom resources with `js_url` and `css_url` param in `load()`.
 
 1.4.2
 ------
@@ -15,7 +20,6 @@ released date: 2018/2/17
 * Bump built-in resource's version to 5.2.0
 * Add `action` argument in `dropzone.create()`. For example, 
 `dropzone.create(action=url_for('upload'))`.
-
 
 1.4.1
 ------

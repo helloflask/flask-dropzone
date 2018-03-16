@@ -15,9 +15,14 @@ allowed_file_type = {
 class _Dropzone(object):
 
     @staticmethod
-    def load(version='5.2.0'):
+    def load(js_url='', css_url='', version='5.2.0'):
         """Load Dropzone resources with given version and init dropzone configuration.
 
+        .. versionchanged:: 1.4.3
+        Added `js_url` and `css_url` parameters to pass custom resource URL.
+
+        :param js_url: The JavaScript url for Dropzone.js.
+        :param css_url: The CSS url for Dropzone.js.
         :param version: The version of Dropzone.js.
         """
         js_filename = 'dropzone.min.js'
@@ -68,6 +73,12 @@ class _Dropzone(object):
                  '</script>\n' % (version, js_filename)
             css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
+        
+        if js_url:
+            js = '<script src="%s"></script>\n' % js_url
+        if css_url:
+            css = '<link rel="stylesheet" href="%s" type="text/css">\n' % css_url
+
         return Markup('''
   %s%s<script>
 // var cleanFilename = function (name) {
@@ -98,6 +109,9 @@ Dropzone.options.myDropzone = {
     def create(action='', csrf=False, action_view='', **kwargs):
         """Create a Dropzone form with given action.
 
+        .. versionchanged:: 1.4.2
+        Added `csrf` parameter to enable CSRF protect.
+
         :param action: The action attribute in <form>.
         :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
@@ -108,13 +122,9 @@ Dropzone.options.myDropzone = {
             action_url = url_for(action_view, **kwargs)
         
         if csrf or current_app.config['DROPZONE_ENABLE_CSRF']:
-            # try:
-            #     from flask_wtf.csrf import generate_csrf
-            # except ImportError:
-            #     raise RuntimeError('Flask-WTF is not installed.')
-            
-            # if 'csrf' not in current_app.extensions:
-            #     raise RuntimeError('CSRFProtect is not initialized.')
+            if 'csrf' not in current_app.extensions:
+                 raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
+                    see docs for more details.")
             csrf_field = render_template_string('<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>')
         else:
             csrf_field = ''
