@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
+import uuid
+
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
 #: defined normal file type
@@ -10,6 +13,13 @@ allowed_file_type = {
         'text': 'text/*',
         'app': 'application/*'
     }
+
+
+#: generate a random filename, replacement for werkzeug.secure_filename
+def random_filename(old_filename):
+    ext = os.path.splitext(old_filename)[1]
+    new_filename = uuid.uuid4().hex + ext
+    return new_filename
 
 
 class _Dropzone(object):
@@ -187,7 +197,7 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
 
         # messages
-        app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here to upload")
+        app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here or click to upload.")
         app.config.setdefault('DROPZONE_INVALID_FILE_TYPE', "You can't upload files of this type.")
         app.config.setdefault('DROPZONE_FILE_TOO_BIG',
                               "File is too big {{filesize}}. Max filesize: {{maxFilesize}}MiB.")
