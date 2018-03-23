@@ -153,7 +153,7 @@ class Dropzone(object):
         app.register_blueprint(blueprint)
 
         if not hasattr(app, 'extensions'):
-            app.extesions = {}
+            app.extensions = {}
         app.extensions['dropzone'] = _Dropzone
         app.context_processor(self.context_processor)
 
