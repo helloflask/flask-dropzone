@@ -13,12 +13,17 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Use `dropzone.config()` method to config Dropzone, the `dropzone.load()` method
 now only used to load JavaScript and CSS resource. Besides, we recommend user to
 manage the resouces manually.
+* Add i18n support.
+* Add test.
 
 1.4.3
 ------
 released date: --
 
 * Add support to use custom resources with `js_url` and `css_url` param in `load()`.
+* Fix built-in static bug ([#11]).
+
+[#11]:https://github.com/greyli/flask-dropzone/issues/11
 
 1.4.2
 ------
