@@ -6,13 +6,13 @@ from flask import Blueprint, current_app, url_for, Markup, render_template_strin
 
 #: defined normal file type
 allowed_file_type = {
-        'default': 'image/*, audio/*, video/*, text/*, application/*',
-        'image': 'image/*',
-        'audio': 'audio/*',
-        'video': 'video/*',
-        'text': 'text/*',
-        'app': 'application/*'
-    }
+    'default': 'image/*, audio/*, video/*, text/*, application/*',
+    'image': 'image/*',
+    'audio': 'audio/*',
+    'video': 'video/*',
+    'text': 'text/*',
+    'app': 'application/*'
+}
 
 
 #: generate a random filename, replacement for werkzeug.secure_filename
@@ -44,7 +44,7 @@ class _Dropzone(object):
         if upload_multiple in [True, 'true', 'True', 1]:
             upload_multiple = 'true'
         else:
-            upload_multiple  = 'false'
+            upload_multiple = 'false'
 
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
         size = current_app.config['DROPZONE_MAX_FILE_SIZE']
@@ -76,14 +76,14 @@ class _Dropzone(object):
 
         if serve_local:
             js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
-            css = '<link rel="stylesheet" href="%s" type="text/css">\n' %\
+            css = '<link rel="stylesheet" href="%s" type="text/css">\n' % \
                   url_for('dropzone.static', filename=css_filename)
         else:
             js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
                  '</script>\n' % (version, js_filename)
             css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
-        
+
         if js_url:
             js = '<script src="%s"></script>\n' % js_url
         if css_url:
@@ -130,10 +130,10 @@ Dropzone.options.myDropzone = {
             action_url = action
         else:
             action_url = url_for(action_view, **kwargs)
-        
+
         if csrf or current_app.config['DROPZONE_ENABLE_CSRF']:
             if 'csrf' not in current_app.extensions:
-                 raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
+                raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
                     see docs for more details.")
             csrf_field = render_template_string('<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>')
         else:
@@ -147,7 +147,7 @@ Dropzone.options.myDropzone = {
 
         :param css: style sheet code.
         """
-        return Markup('<style>\n.dropzone{%s}\n</style>'% css)
+        return Markup('<style>\n.dropzone{%s}\n</style>' % css)
 
 
 class Dropzone(object):
@@ -174,18 +174,18 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_ALLOWED_FILE_CUSTOM', False)
         app.config.setdefault('DROPZONE_ALLOWED_FILE_TYPE', 'default')
         app.config.setdefault('DROPZONE_MAX_FILES', 'null')
-        
+
         # The view to redierct when upload was completed.
         # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_REDIRECT_VIEW', None)
-        
+
         # Whether to send multiple files in one request.
         # In default, each file will send with a request.
         # Then you can use ``request.files.getlist('paramName')`` to 
         # get a list of uploads.
         # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_UPLOAD_MULTIPLE', False)
-        
+
         # When ``DROPZONE_UPLOAD_MULTIPLE`` set to True, this will
         # defined how many uploads will handled in per request.
         # .. versionadded:: 1.4.1

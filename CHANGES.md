@@ -4,6 +4,16 @@ Flask-Dropzone Changelog
 The following changes are not backwards compatible or major new features
 (bugfixes or new upstream releases are not explicitly listed):
 
+1.5.0
+-----
+released date: --
+
+WARNING: **New major upstream release (backwards incompatible!).**
+
+* Use `dropzone.config()` method to config Dropzone, the `dropzone.load()` method
+now only used to load JavaScript and CSS resource. Besides, we recommend user to
+manage the resouces manually.
+
 1.4.3
 ------
 released date: --
@@ -31,7 +41,9 @@ released date: 2018/2/17
 
 1.4
 ---
-* New major upstream release (backwards incompatible!).
+
+WARNING: **New major upstream release (backwards incompatible!).**
+
 * Method `include_dropzone()` rename to `load()`.
 * Add a `create()` method to create dropzone form.
 * Add a `style()` method to add style to upload area.
