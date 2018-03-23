@@ -14,15 +14,15 @@ with open('README.rst') as f:
 
 setup(
     name='Flask-Dropzone',
-    version='1.4.2',
+    version='1.4.3',
     url='https://github.com/greyli/flask-dropzone',
-    download_url='https://github.com/greyli/flask-dropzone/tarball/1.4.2',
+    download_url='https://github.com/greyli/flask-dropzone/tarball/1.4.3',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',
     description='Upload file in Flask with Dropzone.js.',
     long_description=long_description,
-    py_modules=['flask_dropzone'],
+    packages=['flask_dropzone'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',

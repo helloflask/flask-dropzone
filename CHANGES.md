@@ -18,10 +18,11 @@ manage the resouces manually.
 
 1.4.3
 ------
-released date: --
+released date: 2018/3/23
 
 * Add support to use custom resources with `js_url` and `css_url` param in `load()`.
 * Fix built-in static bug ([#11]).
+* Use package instead of module.
 
 [#11]:https://github.com/greyli/flask-dropzone/issues/11
 
