@@ -116,13 +116,107 @@ Dropzone.options.myDropzone = {
                server_error, max_files_exceeded))
 
     @staticmethod
+    def load_css(version='5.2.0', css_url=None):
+        css_filename = 'dropzone.min.css'
+        serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
+
+        if serve_local:
+            css = '<link rel="stylesheet" href="%s" type="text/css">\n' % \
+                  url_for('dropzone.static', filename=css_filename)
+        else:
+            css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
+                  ' type="text/css">\n' % (version, css_filename)
+
+        if css_url:
+            css = '<link rel="stylesheet" href="%s" type="text/css">\n' % css_url
+        return Markup(css)
+
+    @staticmethod
+    def load_js(version='5.2.0', js_url=None):
+        js_filename = 'dropzone.min.js'
+        serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
+
+        if serve_local:
+            js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
+        else:
+            js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
+                 '</script>\n' % (version, js_filename)
+
+        if js_url:
+            js = '<script src="%s"></script>\n' % js_url
+        return Markup(js)
+
+    @staticmethod
+    def config(redirect_url=None):
+        upload_multiple = current_app.config['DROPZONE_UPLOAD_MULTIPLE']
+        parallel_uploads = current_app.config['DROPZONE_PARALLEL_UPLOADS']
+
+        if upload_multiple in [True, 'true', 'True', 1]:
+            upload_multiple = 'true'
+        else:
+            upload_multiple = 'false'
+
+        size = current_app.config['DROPZONE_MAX_FILE_SIZE']
+        param = current_app.config['DROPZONE_INPUT_NAME']
+        redirect_view = current_app.config['DROPZONE_REDIRECT_VIEW']
+
+        if redirect_view is not None or redirect_url is not None:
+            redirect_url = redirect_url or url_for(redirect_view)
+            redirect_js = '''
+            this.on("queuecomplete", function(file) { 
+            // Called when all files in the queue finish uploading.
+            window.location = "%s";
+            });''' % redirect_url
+        else:
+            redirect_js = ''
+
+        if not current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']:
+            allowed_type = allowed_file_type[
+                current_app.config['DROPZONE_ALLOWED_FILE_TYPE']]
+        else:
+            allowed_type = current_app.config['DROPZONE_ALLOWED_FILE_TYPE']
+
+        max_files = current_app.config['DROPZONE_MAX_FILES']
+        default_message = current_app.config['DROPZONE_DEFAULT_MESSAGE']
+        invalid_file_type = current_app.config['DROPZONE_INVALID_FILE_TYPE']
+        file_too_big = current_app.config['DROPZONE_FILE_TOO_BIG']
+        server_error = current_app.config['DROPZONE_SERVER_ERROR']
+        browser_unsupported = current_app.config['DROPZONE_BROWSER_UNSUPPORTED']
+        max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
+
+        return Markup('''<script>
+        // var cleanFilename = function (name) {
+        //    return name.toLowerCase().replace(/[^\w]/gi, '');
+        // };
+        Dropzone.options.myDropzone = {
+          init: function() {%s},
+          uploadMultiple: %s,
+          parallelUploads: %d,
+          paramName: "%s", // The name that will be used to transfer the file
+          maxFilesize: %d, // MB
+          acceptedFiles: "%s",
+          maxFiles: %s,
+          dictDefaultMessage: "%s", // message display on drop area
+          dictFallbackMessage: "%s",
+          dictInvalidFileType: "%s",
+          dictFileTooBig: "%s",
+          dictResponseError: "%s",
+          dictMaxFilesExceeded: "%s",
+          // renameFilename: cleanFilename,
+        };
+                </script>
+                ''' % (redirect_js, upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
+                       default_message, browser_unsupported, invalid_file_type, file_too_big,
+                       server_error, max_files_exceeded))
+
+    @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
         """Create a Dropzone form with given action.
 
         .. versionchanged:: 1.4.2
         Added `csrf` parameter to enable CSRF protect.
 
-        :param action: The action attribute in <form>.
+        :param action: The action attribute in <form>, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
