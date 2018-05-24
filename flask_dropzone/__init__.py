@@ -31,6 +31,12 @@ class _Dropzone(object):
         .. versionchanged:: 1.4.3
         Added `js_url` and `css_url` parameters to pass custom resource URL.
 
+        .. versionchanged:: 1.4.4
+        This method was deprecated due to inflexible. Now it's divided into three methods:
+        1. Use `load_css()` to load css resources.
+        2. Use `load_js()` to load js resources.
+        3. Use `config()` to configure Dropzone.
+
         :param js_url: The JavaScript url for Dropzone.js.
         :param css_url: The CSS url for Dropzone.js.
         :param version: The version of Dropzone.js.
@@ -116,7 +122,14 @@ Dropzone.options.myDropzone = {
                server_error, max_files_exceeded))
 
     @staticmethod
-    def load_css(version='5.2.0', css_url=None):
+    def load_css(css_url=None, version='5.2.0'):
+        """Load Dropzone's css resources with given version.
+
+        .. versionadded:: 1.4.4
+
+        :param css_url: The CSS url for Dropzone.js.
+        :param version: The version of Dropzone.js.
+        """
         css_filename = 'dropzone.min.css'
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
 
@@ -132,7 +145,14 @@ Dropzone.options.myDropzone = {
         return Markup(css)
 
     @staticmethod
-    def load_js(version='5.2.0', js_url=None):
+    def load_js(js_url=None, version='5.2.0'):
+        """Load Dropzone's js resources with given version.
+
+        .. versionadded:: 1.4.4
+
+        :param js_url: The JS url for Dropzone.js.
+        :param version: The version of Dropzone.js.
+        """
         js_filename = 'dropzone.min.js'
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
 
@@ -148,6 +168,12 @@ Dropzone.options.myDropzone = {
 
     @staticmethod
     def config(redirect_url=None):
+        """Initialize dropzone configuration.
+
+        .. versionadded:: 1.4.4
+
+        :param redirect_url: The URL to redirect when upload complete.
+        """
         upload_multiple = current_app.config['DROPZONE_UPLOAD_MULTIPLE']
         parallel_uploads = current_app.config['DROPZONE_PARALLEL_UPLOADS']
 
@@ -215,6 +241,9 @@ Dropzone.options.myDropzone = {
 
         .. versionchanged:: 1.4.2
         Added `csrf` parameter to enable CSRF protect.
+
+        .. versionchanged:: 1.4.3
+        Added `action` parameter to replace `action_view`, `action_view` was deprecated now.
 
         :param action: The action attribute in <form>, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
