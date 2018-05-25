@@ -10,17 +10,27 @@ released date: --
 
 WARNING: **New major upstream release (backwards incompatible!).**
 
-* Use `dropzone.config()` method to config Dropzone, the `dropzone.load()` method
-now only used to load JavaScript and CSS resource. Besides, we recommend user to
-manage the resouces manually.
-* Add i18n support.
-* Add test.
+* Remove `dropzone.load()` method.
+
+
+1.4.4
+-----
+released date: --
+
+* `dropzone.load()` method was deprecated due to inflexible.
+Now it's divided into three methods:
+  * Use `load_css()` to load css resources.
+  * Use `load_js()` to load js resources.
+  * Use `config()` to configure Dropzone.
+  * Besides, we recommend user to manage the resouces manually.
+* Add basic unit tests.
 
 1.4.3
 ------
 released date: 2018/3/23
 
-* Add support to use custom resources with `js_url` and `css_url` param in `load()`.
+* Add support to use custom resources with `js_url` and `css_url` param
+ in `load()`.
 * Fix built-in static bug ([#11]).
 * Use package instead of module.
 

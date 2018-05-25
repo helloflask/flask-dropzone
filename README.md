@@ -1,8 +1,6 @@
 Flask-Dropzone
 ================
-Upload file in Flask with [Dropzone.js](http://www.dropzonejs.com/).
-
-[中文文档](http://greyli.com/flask-dropzone-add-file-upload-capabilities-for-your-project/)
+Upload files in Flask application with [Dropzone.js](http://www.dropzonejs.com/).
 
 Installation
 ------------
@@ -33,22 +31,34 @@ def create_app(config):
     return app
 ```
 
-Step 2: In your `<head>` section of your template add the following code:
+Step 2: In addition to manage and load resources by yourself (recommend),
+you can also use this methods to load resources:
 
 ```jinja    
-{{ dropzone.load() }}
+<head>
+{{ dropzone.load_css() }}
+</head>
+<body>
+...
+{{ dropzone.load_js() }}
+</body>
+
 ```
 
 You can assign the version of Dropzone.js through `version` argument, the default value is `5.2.0`.
+And, you can pass `css_url` and `js_url` separately to customize resources URL.
 
-Step 3: Creating a Drop Zone with `create()`:
+Step 3: Creating a Drop Zone with `create()` and use `config()` to make the configuration
+come into effect:
 
 ```jinja 
-{{ dropzone.create(action_view='your_upload_view') }}
+{{ dropzone.create(action='the_url_which_handle_uploads') }}
+...
+{{ dropzone.config() }}
+</body>
 ```
 
-Also remember to edit the action view to your view endpoint (usually the name of view function) that handles
-the uploads.
+Also remember to edit the `action` to the URL which handles the uploads.
 
 Beautify Dropzone
 -----------------
@@ -56,6 +66,7 @@ Beautify Dropzone
 Style it according to your preferences through `style()` method:
 
 ```jinja
+{{ dropzone.load_css() }}
 {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
 ```
 
@@ -209,6 +220,5 @@ Try the demo application in `examples/csrf` and see
 Todo
 -----
 
-* A Proper Documentation
-* Test
-* i18n
+* Documentation
+* i18n support
