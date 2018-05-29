@@ -59,7 +59,7 @@ class _Dropzone(object):
 
         if redirect_view is not None:
             redirect_js = '''
-    this.on("queuecomplete", function(file) { 
+    this.on("queuecomplete", function(file) {
     // Called when all files in the queue finish uploading.
     window.location = "%s";
     });''' % url_for(redirect_view)
@@ -189,7 +189,7 @@ Dropzone.options.myDropzone = {
         if redirect_view is not None or redirect_url is not None:
             redirect_url = redirect_url or url_for(redirect_view)
             redirect_js = '''
-            this.on("queuecomplete", function(file) { 
+            this.on("queuecomplete", function(file) {
             // Called when all files in the queue finish uploading.
             window.location = "%s";
             });''' % redirect_url
@@ -261,7 +261,7 @@ Dropzone.options.myDropzone = {
             csrf_field = render_template_string('<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>')
         else:
             csrf_field = ''
-        return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone" 
+        return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone"
         enctype="multipart/form-data">%s</form>''' % (action_url, csrf_field))
 
     @staticmethod
@@ -304,7 +304,7 @@ class Dropzone(object):
 
         # Whether to send multiple files in one request.
         # In default, each file will send with a request.
-        # Then you can use ``request.files.getlist('paramName')`` to 
+        # Then you can use ``request.files.getlist('paramName')`` to
         # get a list of uploads.
         # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_UPLOAD_MULTIPLE', False)
