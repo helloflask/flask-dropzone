@@ -7,7 +7,6 @@ from flask_wtf.csrf import CSRFProtect, CSRFError
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
 app = Flask(__name__)
 
 app.config.update(
@@ -31,10 +30,12 @@ def upload():
         f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
     return render_template('index.html')
 
+
 # handle CSRF error
 @app.errorhandler(CSRFError)
 def csrf_error(e):
     return e.description, 400
+
 
 if __name__ == '__main__':
     app.run(debug=True)

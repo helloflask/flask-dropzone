@@ -75,4 +75,4 @@ docs
 examples/basic/uploads/*
 examples/csrf/uploads/*
 examples/parallel-upload/uploads/*
-examples/complete-reidrect/uploads/*
+examples/complete-redirect/uploads/*
