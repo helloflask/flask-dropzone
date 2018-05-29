@@ -217,6 +217,28 @@ Try the demo application in `examples/csrf` and see
 [CSRFProtect's documentation](http://flask-wtf.readthedocs.io/en/latest/csrf.html) for more details.
 
 
+Server Side Validation
+----------------------
+Although Dropzone.js can handle client side validation for uploads, but you still need to setup
+server side validation for security conern. Just do what you normally do (extension check,
+size check etc.), the only thing you should remember is to return plain text error message as
+response body when something was wrong. Fox example, if we only want user to upload file with
+ `.png` extension, we can do the validation like this:
+
+```python
+@app.route('/', methods=['POST', 'GET'])
+def upload():
+    if request.method == 'POST':
+        f = request.files.get('file')
+        if f.filename.split('.')[1] != 'png':
+            return 'PNG only!', 400  # return the error message, with a proper 4XX code
+        f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+    return render_template('index.html')
+```
+The error message will be displayed when you hover the thumbnail for upload file:
+
+![error message](resources/validation.png)
+
 Todo
 -----
 
