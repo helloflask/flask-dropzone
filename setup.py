@@ -14,9 +14,8 @@ with open('README.rst') as f:
 
 setup(
     name='Flask-Dropzone',
-    version='1.4.3',
+    version='1.4.4',
     url='https://github.com/greyli/flask-dropzone',
-    download_url='https://github.com/greyli/flask-dropzone/tarball/1.4.3',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',
@@ -39,7 +38,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
