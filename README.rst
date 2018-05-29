@@ -20,12 +20,20 @@ Step 1: Initialize the extension:
 
 Step 2: In your `<head>` section of your base template add the following code::
 
-    {{ dropzone.load() }}
+    <head>
+    {{ dropzone.load_css() }}
+    </head>
+    <body>
+    ...
+    {{ dropzone.load_js() }}
+    </body>
 
-You can assign the version of Dropzone.js through `version` argument, the default value is `5.1.1`.
-Step 3: Creating a Drop Zone with `create()`::
+You can assign the version of Dropzone.js through `version` argument, the default value is `5.2.0`.
+Step 3: Creating a Drop Zone with `create()`, and configure it with `config()`::
 
-    {{ dropzone.create(action_view='upload_view') }}
+    {{ dropzone.create(action='the_url_which_handle_uploads') }}
+    ...
+    {{ dropzone.config() }}
 
 Also to edit the action view to yours.
 
