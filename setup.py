@@ -8,19 +8,20 @@
 """
 from setuptools import setup
 
-with open('README.rst') as f:
+with open('README.md') as f:
     long_description = f.read()
 
 
 setup(
     name='Flask-Dropzone',
-    version='1.4.4',
+    version='1.4.5',
     url='https://github.com/greyli/flask-dropzone',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',
     description='Upload file in Flask with Dropzone.js.',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     packages=['flask_dropzone'],
     zip_safe=False,
     include_package_data=True,
