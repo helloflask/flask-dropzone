@@ -1,9 +1,6 @@
 Flask-Dropzone Changelog
 =========================
 
-The following changes are not backwards compatible or major new features
-(bugfixes or new upstream releases are not explicitly listed):
-
 1.5.0
 -----
 released date: --
@@ -13,9 +10,15 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Remove `dropzone.load()` method.
 
 
+1.4.5
+-----
+released date: 2018/6/8
+
+* Change built-in resource's url path to `ckeditor/static/...` to prevent conflict with user's static path.
+
 1.4.4
 -----
-released date: --
+released date: 2018/5/28
 
 * `dropzone.load()` method was deprecated due to inflexible.
 Now it's divided into three methods:
