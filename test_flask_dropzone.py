@@ -12,8 +12,8 @@ class ShareTestCase(unittest.TestCase):
         self.app = Flask(__name__)
         self.app.testing = True
         self.app.secret_key = 'for test'
-        dropzone = Dropzone(self.app)
-        csrf = CSRFProtect(self.app)
+        dropzone = Dropzone(self.app)  # noqa
+        csrf = CSRFProtect(self.app)  # noqa
 
         self.dropzone = _Dropzone
 
