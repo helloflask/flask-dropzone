@@ -68,15 +68,15 @@ class ShareTestCase(unittest.TestCase):
     def test_local_resources(self):
         current_app.config['DROPZONE_SERVE_LOCAL'] = True
 
-        css_response = self.client.get('/static/dropzone/dropzone.min.css')
-        js_response = self.client.get('/static/dropzone/dropzone.min.js')
+        css_response = self.client.get('/dropzone/static/dropzone.min.css')
+        js_response = self.client.get('/dropzone/static/dropzone.min.js')
         self.assertNotEqual(css_response.status_code, 404)
         self.assertNotEqual(js_response.status_code, 404)
 
         css_rv = self.dropzone.load_css()
         js_rv = self.dropzone.load_js()
-        self.assertIn('/static/dropzone/dropzone.min.css', css_rv)
-        self.assertIn('/static/dropzone/dropzone.min.js', js_rv)
+        self.assertIn('/dropzone/static/dropzone.min.css', css_rv)
+        self.assertIn('/dropzone/static/dropzone.min.js', js_rv)
         self.assertNotIn('//cdn.bootcss.com', css_rv)
         self.assertNotIn('//cdn.bootcss.com', js_rv)
 
