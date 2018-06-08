@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+# command to install dependencies
+install:
+  - pip install .
+  - pip install coverage coveralls flake8
+
+# command to run tests
+script: 
+  - coverage run --source=flask_dropzone setup.py test
+  - flake8 flask_dropzone test_flask_dropzone.py
+
+after_success: coveralls
