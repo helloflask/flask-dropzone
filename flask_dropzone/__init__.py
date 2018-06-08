@@ -282,7 +282,7 @@ class Dropzone(object):
 
         blueprint = Blueprint('dropzone', __name__,
                               static_folder='static',
-                              static_url_path=app.static_url_path + '/dropzone')
+                              static_url_path='/dropzone' + app.static_url_path)
         app.register_blueprint(blueprint)
 
         if not hasattr(app, 'extensions'):
