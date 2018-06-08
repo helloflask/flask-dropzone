@@ -10,11 +10,11 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Remove `dropzone.load()` method.
 
 
-1.4.5
+1.4.6
 -----
 released date: 2018/6/8
 
-* Change built-in resource's url path to `ckeditor/static/...` to prevent conflict with user's static path.
+* Change built-in resource's url path to `dropzone/static/...` to prevent conflict with user's static path.
 
 1.4.4
 -----

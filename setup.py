@@ -14,7 +14,7 @@ with open('README.md') as f:
 
 setup(
     name='Flask-Dropzone',
-    version='1.4.5',
+    version='1.4.6',
     url='https://github.com/greyli/flask-dropzone',
     license='MIT',
     author='Grey Li',
