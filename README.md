@@ -1,4 +1,4 @@
-Flask-Dropzone
+﻿Flask-Dropzone
 ================
 Upload files in Flask application with [Dropzone.js](http://www.dropzonejs.com/).
 
@@ -105,10 +105,17 @@ allowed_file_type = {
     'app': 'application/*'
     }
 ```
+
+Just set `DROPZONE_ALLOWED_FILE_TYPE` to one of `default`, `image`, `audio`, `video`, `text`, `app`,
+for example:
+```py
+app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image'
+```
 If you want to set the allowed file type by yourself, you need to set 
 `DROPZONE_ALLOWED_FILE_CUSTOM` to `True`, then add mime type or file extensions to
 `DROPZONE_ALLOWED_FILE_TYPE`, such as:
 ```python
+app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
 app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*, .pdf, .txt'
 ```
 
