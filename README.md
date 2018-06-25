@@ -11,7 +11,7 @@ $ pip install flask-dropzone
 Quick Start
 -----------
 
-Step 1: Initialize the extension:
+**Step 1**: Initialize the extension:
 
 ```python
 from flask_dropzone import Dropzone
@@ -31,7 +31,7 @@ def create_app(config):
     return app
 ```
 
-Step 2: In addition to manage and load resources by yourself (recommend),
+**Step 2**: In addition to manage and load resources by yourself (recommend),
 you can also use this methods to load resources:
 
 ```jinja    
@@ -45,10 +45,13 @@ you can also use this methods to load resources:
 
 ```
 
+*There is a `dropzone.load()` method that was a combination of `dropzone.load_css()` and `dropzone.load_js()`, 
+but we recommend not to use this method for page load performance consideration.*
+
 You can assign the version of Dropzone.js through `version` argument, the default value is `5.2.0`.
 And, you can pass `css_url` and `js_url` separately to customize resources URL.
 
-Step 3: Creating a Drop Zone with `create()` and use `config()` to make the configuration
+**Step 3**: Creating a Drop Zone with `create()` and use `config()` to make the configuration
 come into effect:
 
 ```jinja 
@@ -57,8 +60,8 @@ come into effect:
 {{ dropzone.config() }}
 </body>
 ```
+Remember to edit the `action` to the URL which handles the uploads, for example `dropzone.create(action=url_for('upload_view')')`.
 
-Also remember to edit the `action` to the URL which handles the uploads.
 
 Beautify Dropzone
 -----------------
@@ -66,8 +69,10 @@ Beautify Dropzone
 Style it according to your preferences through `style()` method:
 
 ```jinja
+<head>
 {{ dropzone.load_css() }}
 {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+</head>
 ```
 
 Configuration 
