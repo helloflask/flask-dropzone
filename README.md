@@ -140,7 +140,7 @@ def upload():
 
     if request.method == 'POST':
         f = request.files.get('file')
-        f.save(os.path.join(the_path_to_save, f.filename))
+        f.save(os.path.join('the/path/to/save', f.filename))
 
     return 'upload template'
 ```
@@ -159,7 +159,7 @@ enable parallel upload, Dropzone.js will append a index number after each files,
 ```python
     for key, f in request.files.iteritems():
         if key.startswith('file'):
-            f.save(os.path.join(the_path_to_save, f.filename)) 
+            f.save(os.path.join('the/path/to/save', f.filename)) 
 ```
 Here is the full example:
 ```python
@@ -172,7 +172,7 @@ def upload():
     if request.method == 'POST':
         for key, f in request.files.iteritems():  # use request.files.items() in Python3
             if key.startswith('file'):
-                f.save(os.path.join(the_path_to_save, f.filename))
+                f.save(os.path.join('the/path/to/save', f.filename))
 
     return 'upload template'
 ```
@@ -239,7 +239,7 @@ def upload():
         f = request.files.get('file')
         if f.filename.split('.')[1] != 'png':
             return 'PNG only!', 400  # return the error message, with a proper 4XX code
-        f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+        f.save(os.path.join('the/path/to/save', f.filename))
     return render_template('index.html')
 ```
 The error message will be displayed when you hover the thumbnail for upload file:
