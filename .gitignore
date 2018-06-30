@@ -72,7 +72,19 @@ pip-log.txt
 .idea
 .coverage
 docs
+
+# uploads
 examples/basic/uploads/*
 examples/csrf/uploads/*
 examples/parallel-upload/uploads/*
 examples/complete-redirect/uploads/*
+examples/click-upload/uploads/*
+examples/in-form/uploads/*
+
+!examples/basic/uploads/.gitkeep
+!examples/csrf/uploads/.gitkeep
+!examples/parallel-upload/uploads/.gitkeep
+!examples/complete-redirect/uploads/.gitkeep
+!examples/click-upload/uploads/.gitkeep
+!examples/in-form/uploads/.gitkeep
+
