@@ -188,13 +188,31 @@ Dropzone.options.myDropzone = {
         else:
             redirect_js = ''
 
+        max_files = current_app.config['DROPZONE_MAX_FILES']
+
+        click_upload = current_app.config['DROPZONE_UPLOAD_ON_CLICK']
+        button_id = current_app.config['DROPZONE_UPLOAD_BTN_ID']
+        if click_upload:
+            click_listener = '''
+            dz = this;
+            document.getElementById("%s").addEventListener("click", function handler(e) {dz.processQueue();});
+            ''' % button_id
+            click_option = '''
+            autoProcessQueue: false,
+            // addRemoveLinks: true,
+            '''
+            upload_multiple = 'true'
+            parallel_uploads = max_files
+        else:
+            click_listener = ''
+            click_option = ''
+
         if not current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']:
             allowed_type = allowed_file_type[
                 current_app.config['DROPZONE_ALLOWED_FILE_TYPE']]
         else:
             allowed_type = current_app.config['DROPZONE_ALLOWED_FILE_TYPE']
 
-        max_files = current_app.config['DROPZONE_MAX_FILES']
         default_message = current_app.config['DROPZONE_DEFAULT_MESSAGE']
         invalid_file_type = current_app.config['DROPZONE_INVALID_FILE_TYPE']
         file_too_big = current_app.config['DROPZONE_FILE_TOO_BIG']
@@ -207,7 +225,11 @@ Dropzone.options.myDropzone = {
         //    return name.toLowerCase().replace(/[^\w]/gi, '');
         // };
         Dropzone.options.myDropzone = {
-          init: function() {%s},
+          init: function() {
+              %s  // redirect after queue complete
+              %s  // upload queue when button click
+          },
+          %s  // click upload options
           uploadMultiple: %s,
           parallelUploads: %d,
           paramName: "%s", // The name that will be used to transfer the file
@@ -223,9 +245,9 @@ Dropzone.options.myDropzone = {
           // renameFilename: cleanFilename,
         };
                 </script>
-                ''' % (redirect_js, upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
-                       default_message, browser_unsupported, invalid_file_type, file_too_big,
-                       server_error, max_files_exceeded))
+                ''' % (redirect_js, click_listener, click_option, upload_multiple, parallel_uploads,
+                       param, size, allowed_type, max_files, default_message, browser_unsupported,
+                       invalid_file_type, file_too_big, server_error, max_files_exceeded))
 
     @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
@@ -311,9 +333,11 @@ class Dropzone(object):
         # .. versionadded:: 1.4.2
         app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
 
-        # Add support to upload files when submit button was clicked.
+        # Add support to upload files when button was clicked.
         # .. versionadded:: 1.4.7
-        app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
+        app.config.setdefault('DROPZONE_UPLOAD_ACTION', '')
+        app.config.setdefault('DROPZONE_UPLOAD_ON_CLICK', False)
+        app.config.setdefault('DROPZONE_UPLOAD_BTN_ID', 'upload')
 
         # messages
         app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here or click to upload.")
