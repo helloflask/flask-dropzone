@@ -6,7 +6,7 @@ from flask_dropzone import Dropzone, allowed_file_type, _Dropzone, get_url
 from flask_wtf import CSRFProtect
 
 
-class ShareTestCase(unittest.TestCase):
+class DropzoneTestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = Flask(__name__)
