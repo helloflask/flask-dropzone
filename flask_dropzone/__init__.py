@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
-from .utils import random_filename
+from .utils import random_filename, get_url
 
 #: defined normal file type
 allowed_file_type = {
@@ -242,7 +242,7 @@ Dropzone.options.myDropzone = {
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
         if action:
-            action_url = action
+            action_url = get_url(action)
         else:
             action_url = url_for(action_view, **kwargs)
 
