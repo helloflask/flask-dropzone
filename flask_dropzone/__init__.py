@@ -200,7 +200,7 @@ Dropzone.options.myDropzone = {
                 click_listener = '''
                 dz = this; // Makes sure that 'this' is understood inside the functions below.
 
-                document.getElementById("submit").addEventListener("click", function handler(e) {
+                document.getElementById("%s").addEventListener("click", function handler(e) {
                     e.currentTarget.removeEventListener(e.type, handler);
                     e.preventDefault();
                     e.stopPropagation();
@@ -208,9 +208,9 @@ Dropzone.options.myDropzone = {
                 });
                 this.on("queuecomplete", function(file) {
                     // Called when all files in the queue finish uploading.
-                    document.getElementById("submit").click();
+                    document.getElementById("%s").click();
                 });
-                '''
+                ''' % (button_id, button_id)
                 click_option = '''
                 url: "%s",
                 autoProcessQueue: false,
@@ -227,7 +227,7 @@ Dropzone.options.myDropzone = {
                 // addRemoveLinks: true,
                 '''
             upload_multiple = 'true'
-            parallel_uploads = max_files
+            parallel_uploads = max_files if isinstance(max_files, int) else parallel_uploads
         else:
             click_listener = ''
             click_option = ''
