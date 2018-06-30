@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
-import uuid
-
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
+
+from .utils import random_filename
 
 #: defined normal file type
 allowed_file_type = {
@@ -13,13 +12,6 @@ allowed_file_type = {
     'text': 'text/*',
     'app': 'application/*'
 }
-
-
-#: generate a random filename, replacement for werkzeug.secure_filename
-def random_filename(old_filename):
-    ext = os.path.splitext(old_filename)[1]
-    new_filename = uuid.uuid4().hex + ext
-    return new_filename
 
 
 class _Dropzone(object):
@@ -317,6 +309,10 @@ class Dropzone(object):
         # When set to ``True``, it will add a csrf_token hidden field in upload form.
         # You have to install Flask-WTF to make it work properly, see details in docs.
         # .. versionadded:: 1.4.2
+        app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
+
+        # Add support to upload files when submit button was clicked.
+        # .. versionadded:: 1.4.7
         app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
 
         # messages
