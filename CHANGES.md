@@ -16,7 +16,7 @@ released date: --
 * `action` in `dropzone.create()` can be URL or endpoint, `action_view` was deprecated.
 * Add support to upload all dropped files when specific button (`name="upload"`) was clicked.
 * Add configuration variable `DROPZONE_UPLOAD_ON_CLICK`, `DROPZONE_UPLOAD_ACTION`, `DROPZONE_UPLOAD_BTN_ID`.
-* Add configuration variable `DROPZONE_UPLOAD_IN_FORM`, `DROPZONE_UPLOAD_ACTION` to support create
+* Add configuration variable `DROPZONE_IN_FORM`, `DROPZONE_UPLOAD_ACTION` to support create
 dropzone inside `<form>`.
 
 1.4.6

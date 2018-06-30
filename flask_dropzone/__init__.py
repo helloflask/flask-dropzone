@@ -192,10 +192,11 @@ Dropzone.options.myDropzone = {
 
         click_upload = current_app.config['DROPZONE_UPLOAD_ON_CLICK']
         button_id = current_app.config['DROPZONE_UPLOAD_BTN_ID']
-        in_form = current_app.config['DROPZONE_UPLOAD_IN_FORM']
-        action = get_url(current_app.config['DROPZONE_UPLOAD_ACTION'])
+        in_form = current_app.config['DROPZONE_IN_FORM']
         if click_upload:
             if in_form:
+                action = get_url(current_app.config['DROPZONE_UPLOAD_ACTION'])
+
                 click_listener = '''
                 dz = this; // Makes sure that 'this' is understood inside the functions below.
 
@@ -284,13 +285,13 @@ Dropzone.options.myDropzone = {
         Added `action` parameter to replace `action_view`, `action_view` was deprecated now.
 
         .. versionchanged:: 1.4.7
-        If `DROPZONE_UPLOAD_IN_FORM` set to `True, create <div> instead of <form>.
+        If `DROPZONE_IN_FORM` set to `True, create <div> instead of <form>.
 
         :param action: The action attribute in <form>, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
-        if current_app.config['DROPZONE_UPLOAD_IN_FORM']:
+        if current_app.config['DROPZONE_IN_FORM']:
             return Markup('<div class="dropzone" id="myDropzone"></div>')
 
         if action:
@@ -368,6 +369,10 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_UPLOAD_ACTION', '')
         app.config.setdefault('DROPZONE_UPLOAD_ON_CLICK', False)
         app.config.setdefault('DROPZONE_UPLOAD_BTN_ID', 'upload')
+
+        # Add support to create dropzone inside <form>.
+        # .. versionadded:: 1.4.7
+        app.config.setdefault('DROPZONE_IN_FORM', False)
 
         # messages
         app.config.setdefault('DROPZONE_DEFAULT_MESSAGE', "Drop files here or click to upload.")
