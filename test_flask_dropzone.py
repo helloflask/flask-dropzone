@@ -143,3 +143,25 @@ class DropzoneTestCase(unittest.TestCase):
         url1 = get_url('upload')
         url2 = get_url('/upload')
         self.assertEqual(url1, url2)
+        self.assertEqual(get_url(''), None)
+
+    def test_click_upload(self):
+        current_app.config['DROPZONE_UPLOAD_ON_CLICK'] = True
+
+        rv = self.dropzone.config()
+        self.assertIn('dz.processQueue();', rv)
+        self.assertIn('autoProcessQueue: false,', rv)
+
+    def test_in_form(self):
+        current_app.config['DROPZONE_IN_FORM'] = True
+        current_app.config['DROPZONE_UPLOAD_ON_CLICK'] = True
+        current_app.config['DROPZONE_UPLOAD_BTN_ID'] = 'submit'
+        rv = self.dropzone.create(action=url_for('upload'))
+        self.assertEqual(rv, '<div class="dropzone" id="myDropzone"></div>')
+
+        rv = self.dropzone.config()
+        self.assertIn('dz.processQueue();', rv)
+        self.assertIn('e.preventDefault();', rv)
+        self.assertIn('autoProcessQueue: false,', rv)
+        self.assertIn('document.getElementById("submit").click();', rv)
+
