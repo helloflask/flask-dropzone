@@ -2,7 +2,7 @@ import unittest
 
 from flask import Flask, render_template_string, current_app, url_for
 
-from flask_dropzone import Dropzone, allowed_file_type, _Dropzone
+from flask_dropzone import Dropzone, allowed_file_type, _Dropzone, get_url
 from flask_wtf import CSRFProtect
 
 
@@ -138,3 +138,8 @@ class ShareTestCase(unittest.TestCase):
         self.assertIn('dropzone.min.css', data)
         self.assertIn('Dropzone.options.myDropzone', data)
         self.assertIn('<form action="/upload" method="post" class="dropzone" id="myDropzone"', data)
+
+    def test_get_url(self):
+        url1 = get_url('upload')
+        url2 = get_url('/upload')
+        self.assertEqual(url1, url2)
