@@ -192,15 +192,39 @@ Dropzone.options.myDropzone = {
 
         click_upload = current_app.config['DROPZONE_UPLOAD_ON_CLICK']
         button_id = current_app.config['DROPZONE_UPLOAD_BTN_ID']
+        in_form = current_app.config['DROPZONE_UPLOAD_IN_FORM']
+        action = get_url(current_app.config['DROPZONE_UPLOAD_ACTION'])
         if click_upload:
-            click_listener = '''
-            dz = this;
-            document.getElementById("%s").addEventListener("click", function handler(e) {dz.processQueue();});
-            ''' % button_id
-            click_option = '''
-            autoProcessQueue: false,
-            // addRemoveLinks: true,
-            '''
+            if in_form:
+                click_listener = '''
+                dz = this; // Makes sure that 'this' is understood inside the functions below.
+
+                document.getElementById("submit").addEventListener("click", function handler(e) {
+                    e.currentTarget.removeEventListener(e.type, handler);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dz.processQueue();
+                });
+                this.on("queuecomplete", function(file) {
+                    // Called when all files in the queue finish uploading.
+                    document.getElementById("submit").click();
+                });
+                '''
+                click_option = '''
+                url: "%s",
+                autoProcessQueue: false,
+                // addRemoveLinks: true,
+                ''' % action
+            else:
+                click_listener = '''
+                dz = this;
+                document.getElementById("%s").addEventListener("click", function handler(e) {dz.processQueue();});
+                ''' % button_id
+
+                click_option = '''
+                autoProcessQueue: false,
+                // addRemoveLinks: true,
+                '''
             upload_multiple = 'true'
             parallel_uploads = max_files
         else:
@@ -259,10 +283,16 @@ Dropzone.options.myDropzone = {
         .. versionchanged:: 1.4.3
         Added `action` parameter to replace `action_view`, `action_view` was deprecated now.
 
+        .. versionchanged:: 1.4.7
+        If `DROPZONE_UPLOAD_IN_FORM` set to `True, create <div> instead of <form>.
+
         :param action: The action attribute in <form>, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
+        if current_app.config['DROPZONE_UPLOAD_IN_FORM']:
+            return Markup('<div class="dropzone" id="myDropzone"></div>')
+
         if action:
             action_url = get_url(action)
         else:
