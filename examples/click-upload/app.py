@@ -24,7 +24,7 @@ dropzone = Dropzone(app)
 @app.route('/', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-        for key, f in request.files.iteritems():
+        for key, f in request.files.iteritems():  # use request.files.items() in Python3
             if key.startswith('file'):
                 f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
     return render_template('index.html')
