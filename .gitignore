@@ -80,6 +80,8 @@ examples/parallel-upload/uploads/*
 examples/complete-redirect/uploads/*
 examples/click-upload/uploads/*
 examples/in-form/uploads/*
+examples/large-file/uploads/*
+examples/custom-options/uploads/*
 
 !examples/basic/uploads/.gitkeep
 !examples/csrf/uploads/.gitkeep
@@ -87,4 +89,6 @@ examples/in-form/uploads/*
 !examples/complete-redirect/uploads/.gitkeep
 !examples/click-upload/uploads/.gitkeep
 !examples/in-form/uploads/.gitkeep
+!examples/large-file/uploads/.gitkeep
+!examples/custom-options/uploads/.gitkeep
 

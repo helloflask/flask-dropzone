@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flask-Dropzone Demo</title>
+  {{ dropzone.load_css() }}
+  {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+</head>
+<body>
+  {{ dropzone.create(action='upload') }}
+  <button id="upload-btn">Upload</button>
+  {{ dropzone.load_js() }}
+  {{ dropzone.config(custom_init='dz = this;document.getElementById("upload-btn").addEventListener("click", function handler(e) {dz.processQueue();});',
+                     custom_options='autoProcessQueue: false, addRemoveLinks: true, parallelUploads: 20,') }}
+</body>
+</html>
