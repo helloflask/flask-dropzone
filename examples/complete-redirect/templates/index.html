@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Flask-Dropzone Demo</title>
-  {{ dropzone.load() }}
+  {{ dropzone.load_css() }}
   {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
 </head>
 <body>
-  {{ dropzone.create(action_view='upload') }}
+  {{ dropzone.create('upload') }}
+  {{ dropzone.load_js() }}
+  {{ dropzone.config() }}
 </body>
 </html>
