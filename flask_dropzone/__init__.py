@@ -83,9 +83,8 @@ class _Dropzone(object):
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' % \
                   url_for('dropzone.static', filename=css_filename)
         else:
-            js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
-                 '</script>\n' % (version, js_filename)
-            css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
+            js = '<script src="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/%s"></script>\n' % (version, js_filename)
+            css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
 
         if js_url:
@@ -136,7 +135,7 @@ Dropzone.options.myDropzone = {
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' % \
                   url_for('dropzone.static', filename=css_filename)
         else:
-            css = '<link rel="stylesheet" href="//cdn.bootcss.com/dropzone/%s/min/%s"' \
+            css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/min/%s"' \
                   ' type="text/css">\n' % (version, css_filename)
 
         if css_url:
@@ -158,8 +157,7 @@ Dropzone.options.myDropzone = {
         if serve_local:
             js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
         else:
-            js = '<script src="//cdn.bootcss.com/dropzone/%s/min/%s">' \
-                 '</script>\n' % (version, js_filename)
+            js = '<script src="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/%s"></script>\n' % (version, js_filename)
 
         if js_url:
             js = '<script src="%s"></script>\n' % js_url

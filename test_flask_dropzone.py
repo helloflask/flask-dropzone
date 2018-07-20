@@ -44,7 +44,7 @@ class DropzoneTestCase(unittest.TestCase):
 
     def test_load(self):
         rv = self.dropzone.load()
-        self.assertIn('//cdn.bootcss.com', rv)
+        self.assertIn('https://cdn.jsdelivr.net/npm/dropzone@', rv)
         self.assertIn('dropzone.min.js', rv)
         self.assertIn('dropzone.min.css', rv)
         self.assertIn('Dropzone.options.myDropzone', rv)
@@ -77,8 +77,8 @@ class DropzoneTestCase(unittest.TestCase):
         js_rv = self.dropzone.load_js()
         self.assertIn('/dropzone/static/dropzone.min.css', css_rv)
         self.assertIn('/dropzone/static/dropzone.min.js', js_rv)
-        self.assertNotIn('//cdn.bootcss.com', css_rv)
-        self.assertNotIn('//cdn.bootcss.com', js_rv)
+        self.assertNotIn('https://cdn.jsdelivr.net/npm/dropzone@', css_rv)
+        self.assertNotIn('https://cdn.jsdelivr.net/npm/dropzone@', js_rv)
 
     def test_config_dropzone(self):
         current_app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image'
@@ -96,7 +96,7 @@ class DropzoneTestCase(unittest.TestCase):
         self.assertIn('maxFilesize: 5', rv)
         self.assertIn('maxFiles: 40,', rv)
         self.assertIn('acceptedFiles: "%s"' % allowed_file_type['image'], rv)
-        self.assertIn('dictDefaultMessage: "Drop file here"', rv)
+        self.assertIn('dictDefaultMessage: `Drop file here`', rv)
         self.assertIn('this.on("queuecomplete", function(file) {', rv)
         self.assertIn('window.location = "/";', rv)
         self.assertIn('timeout: 10000,', rv)
@@ -108,7 +108,6 @@ class DropzoneTestCase(unittest.TestCase):
         current_app.config['DROPZONE_TIMEOUT'] = None
         rv = self.dropzone.config()
         self.assertNotIn('timeout:', rv)
-
 
     def test_create_dropzone(self):
         rv = self.dropzone.create(action=url_for('upload'))
@@ -132,7 +131,7 @@ class DropzoneTestCase(unittest.TestCase):
     def test_render_template(self):
         response = self.client.get('/')
         data = response.get_data(as_text=True)
-        self.assertIn('//cdn.bootcss.com', data)
+        self.assertIn('https://cdn.jsdelivr.net/npm/dropzone@', data)
         self.assertIn('dropzone.min.js', data)
         self.assertIn('dropzone.min.css', data)
         self.assertIn('Dropzone.options.myDropzone', data)
@@ -140,7 +139,7 @@ class DropzoneTestCase(unittest.TestCase):
 
         response = self.client.get('/load')
         data = response.get_data(as_text=True)
-        self.assertIn('//cdn.bootcss.com', data)
+        self.assertIn('https://cdn.jsdelivr.net/npm/dropzone@', data)
         self.assertIn('dropzone.min.js', data)
         self.assertIn('dropzone.min.css', data)
         self.assertIn('Dropzone.options.myDropzone', data)
