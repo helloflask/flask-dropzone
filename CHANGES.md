@@ -18,6 +18,7 @@ released date: --
 * Add configuration variable `DROPZONE_UPLOAD_ON_CLICK`, `DROPZONE_UPLOAD_ACTION`, `DROPZONE_UPLOAD_BTN_ID`.
 * Add configuration variable `DROPZONE_IN_FORM`, `DROPZONE_UPLOAD_ACTION` to support create
 dropzone inside `<form>`.
+* Add configuration variable `DROPZONE_TIMEOUT`.
 
 1.4.6
 -----

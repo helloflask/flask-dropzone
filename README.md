@@ -55,12 +55,12 @@ And, you can pass `css_url` and `js_url` separately to customize resources URL.
 come into effect:
 
 ```jinja 
-{{ dropzone.create(action='the_url_which_handle_uploads') }}
+{{ dropzone.create(action='the_url_or_endpoint_which_handle_uploads') }}
 ...
 {{ dropzone.config() }}
 </body>
 ```
-Remember to edit the `action` to the URL which handles the uploads, for example `dropzone.create(action=url_for('upload_view')')`.
+Remember to edit the `action` to the URL or endpoint which handles the uploads, for example `dropzone.create(action=url_for('upload_view')')`.
 
 
 Beautify Dropzone
@@ -84,7 +84,7 @@ The supported list of config options is shown below:
 | ------------------------ | ------------- | ---- |
 | `DROPZONE_SERVE_LOCAL`   | `False`       | default to retrieve `dropzone.js` from CDN |
 | `DROPZONE_MAX_FILE_SIZE` | 3             | max allowed file size. unit: MB   |
-| `DROPZONE_INPUT_NAME`    | `file`        | the `name` attr in <input>: `<input type="file" name="file">` |
+| `DROPZONE_INPUT_NAME`    | `file`        | the `name` attr in `<input>` (i.e. `<input type="file" name="file">`) |
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | `False` | see detail below |
 | `DROPZONE_ALLOWED_FILE_TYPE` | `'default'` | see detail below |
 | `DROPZONE_MAX_FILES` | 'null' | the max files user can upload once |
@@ -98,6 +98,7 @@ The supported list of config options is shown below:
 | `DROPZONE_PARALLEL_UPLOADS` | 2 | how many uploads will handled in per request when `DROPZONE_UPLOAD_MULTIPLE` set to True. |
 | `DROPZONE_REDIRECT_VIEW` | `None` | the view to redierct when upload was completed. |
 | `DROPZONE_ENABLE_CSRF` | `False` | enable CSRF protect, see detail below |
+| `DROPZONE_TIMEOUT` | `None` | The timeout to cancel upload request in millisecond, default to 30000 (30 second). Set a large number if you need to upload large file. |
 
 You can use these file type: 
 ```python
