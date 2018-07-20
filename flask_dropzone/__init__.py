@@ -284,7 +284,7 @@ Dropzone.options.myDropzone = {
           maxFilesize: %d, // MB
           acceptedFiles: "%s",
           maxFiles: %s,
-          dictDefaultMessage: "%s", // message display on drop area
+          dictDefaultMessage: `%s`, // message display on drop area
           dictFallbackMessage: "%s",
           dictInvalidFileType: "%s",
           dictFileTooBig: "%s",
