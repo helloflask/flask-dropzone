@@ -88,7 +88,7 @@ The supported list of config options is shown below:
 | `DROPZONE_ALLOWED_FILE_CUSTOM` | `False` | see detail below |
 | `DROPZONE_ALLOWED_FILE_TYPE` | `'default'` | see detail below |
 | `DROPZONE_MAX_FILES` | 'null' | the max files user can upload once |
-| `DROPZONE_DEFAULT_MESSAGE` | "Drop files here to upload" | message displayed on drop area |
+| `DROPZONE_DEFAULT_MESSAGE` | "Drop files here to upload" | message displayed on drop area, you can write HTML here (e.g. `Drop files here<br>Or<br><button type="button">Click to Upload</button>`) |
 | `DROPZONE_INVALID_FILE_TYPE` |  "You can't upload files of this type." | error message |
 | `DROPZONE_FILE_TOO_BIG` | "File is too big {{filesize}}. Max filesize: {{maxFilesize}}MiB." | error message |
 | `DROPZONE_SERVER_ERROR` | "Server error: {{statusCode}}" | error message |
