@@ -166,13 +166,21 @@ Dropzone.options.myDropzone = {
         return Markup(js)
 
     @staticmethod
-    def config(redirect_url=None):
+    def config(redirect_url=None, custom_init='', custom_options=''):
         """Initialize dropzone configuration.
 
         .. versionadded:: 1.4.4
 
         :param redirect_url: The URL to redirect when upload complete.
+        :param custom_init: Custom javascript code in ``init: function() {}``.
+        :param custom_options: Custom javascript code in ``Dropzone.options.myDropzone = {}``.
         """
+        if custom_init and not custom_init.strip().endswith(';'):
+            custom_init += ';'
+
+        if custom_options and not custom_options.strip().endswith(','):
+            custom_options += ','
+
         upload_multiple = current_app.config['DROPZONE_UPLOAD_MULTIPLE']
         parallel_uploads = current_app.config['DROPZONE_PARALLEL_UPLOADS']
 
@@ -263,7 +271,9 @@ Dropzone.options.myDropzone = {
         //    return name.toLowerCase().replace(/[^\w]/gi, '');
         // };
         Dropzone.options.myDropzone = {
+          %s  // custom options code
           init: function() {
+              %s  // custom init code
               %s  // redirect after queue complete
               %s  // upload queue when button click
           },
@@ -284,7 +294,7 @@ Dropzone.options.myDropzone = {
           %s  // timeout
         };
                 </script>
-                ''' % (redirect_js, click_listener, click_option, upload_multiple, parallel_uploads,
+                ''' % (custom_options, custom_init, redirect_js, click_listener, click_option, upload_multiple, parallel_uploads,
                        param, size, allowed_type, max_files, default_message, browser_unsupported,
                        invalid_file_type, file_too_big, server_error, max_files_exceeded, timeout_js))
 
