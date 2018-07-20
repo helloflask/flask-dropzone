@@ -2,9 +2,10 @@
 """
     Flask-Dropzone
     --------------
+    Upload file in Flask with Dropzone.js.
+
     :copyright: (c) 2017 by Grey Li.
     :license: MIT, see LICENSE for more details.
-    Upload file in Flask with Dropzone.js.
 """
 from setuptools import setup
 

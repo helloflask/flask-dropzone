@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+    flask_dropzone
+    --------------
+    Upload file in Flask with Dropzone.js.
+
+    :copyright: (c) 2017 by Grey Li.
+    :license: MIT, see LICENSE for more details.
+"""
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
 from .utils import random_filename, get_url

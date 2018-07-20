@@ -1,3 +1,11 @@
+"""
+    flask_dropzone.utils
+    --------------
+    Upload file in Flask with Dropzone.js.
+
+    :copyright: (c) 2017 by Grey Li.
+    :license: MIT, see LICENSE for more details.
+"""
 import os
 import uuid
 
