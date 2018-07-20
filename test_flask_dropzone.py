@@ -88,6 +88,7 @@ class DropzoneTestCase(unittest.TestCase):
         current_app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image'
         current_app.config['DROPZONE_DEFAULT_MESSAGE'] = 'Drop file here'
         current_app.config['DROPZONE_REDIRECT_VIEW'] = 'index'
+        current_app.config['DROPZONE_TIMEOUT'] = 10000
 
         rv = self.dropzone.config()
         self.assertIn('Dropzone.options.myDropzone', rv)
@@ -98,10 +99,16 @@ class DropzoneTestCase(unittest.TestCase):
         self.assertIn('dictDefaultMessage: "Drop file here"', rv)
         self.assertIn('this.on("queuecomplete", function(file) {', rv)
         self.assertIn('window.location = "/";', rv)
+        self.assertIn('timeout: 10000,', rv)
 
         rv = self.dropzone.config(redirect_url='/redirect')
         self.assertIn('this.on("queuecomplete", function(file) {', rv)
         self.assertIn('window.location = "/redirect";', rv)
+
+        current_app.config['DROPZONE_TIMEOUT'] = None
+        rv = self.dropzone.config()
+        self.assertNotIn('timeout:', rv)
+
 
     def test_create_dropzone(self):
         rv = self.dropzone.create(action=url_for('upload'))
