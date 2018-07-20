@@ -19,6 +19,7 @@ released date: --
 * Add configuration variable `DROPZONE_IN_FORM`, `DROPZONE_UPLOAD_ACTION` to support create
 dropzone inside `<form>`.
 * Add configuration variable `DROPZONE_TIMEOUT`.
+* Add `custom_init` and `custom_options` parameters in `dropzone.config()` to support pass custom JavaScript.
 
 1.4.6
 -----

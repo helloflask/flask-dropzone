@@ -172,3 +172,15 @@ class DropzoneTestCase(unittest.TestCase):
         self.assertIn('autoProcessQueue: false,', rv)
         self.assertIn('document.getElementById("submit").click();', rv)
 
+    def test_custom_js(self):
+        rv = self.dropzone.config(custom_init='dz = this;')
+        self.assertIn('dz = this;', rv)
+
+        rv = self.dropzone.config(custom_init='dz = this')
+        self.assertIn('dz = this;', rv)
+
+        rv = self.dropzone.config(custom_options='foo = true,')
+        self.assertIn('foo = true,', rv)
+
+        rv = self.dropzone.config(custom_options='foo = true')
+        self.assertIn('foo = true,', rv)
