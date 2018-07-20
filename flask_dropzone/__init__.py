@@ -72,6 +72,12 @@ class _Dropzone(object):
         browser_unsupported = current_app.config['DROPZONE_BROWSER_UNSUPPORTED']
         max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
 
+        timeout = current_app.config['DROPZONE_TIMEOUT']
+        if timeout:
+            timeout_js = 'timeout: %d,' % timeout
+        else:
+            timeout_js = ''
+
         if serve_local:
             js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' % \
@@ -107,11 +113,12 @@ Dropzone.options.myDropzone = {
   dictResponseError: "%s",
   dictMaxFilesExceeded: "%s",
   // renameFilename: cleanFilename,
+  %s // timeout
 };
         </script>
         ''' % (css, js, redirect_js, upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                default_message, browser_unsupported, invalid_file_type, file_too_big,
-               server_error, max_files_exceeded))
+               server_error, max_files_exceeded, timeout_js))
 
     @staticmethod
     def load_css(css_url=None, version='5.2.0'):
@@ -245,6 +252,12 @@ Dropzone.options.myDropzone = {
         browser_unsupported = current_app.config['DROPZONE_BROWSER_UNSUPPORTED']
         max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
 
+        timeout = current_app.config['DROPZONE_TIMEOUT']
+        if timeout:
+            timeout_js = 'timeout: %d,' % timeout
+        else:
+            timeout_js = ''
+
         return Markup('''<script>
         // var cleanFilename = function (name) {
         //    return name.toLowerCase().replace(/[^\w]/gi, '');
@@ -268,11 +281,12 @@ Dropzone.options.myDropzone = {
           dictResponseError: "%s",
           dictMaxFilesExceeded: "%s",
           // renameFilename: cleanFilename,
+          %s  // timeout
         };
                 </script>
                 ''' % (redirect_js, click_listener, click_option, upload_multiple, parallel_uploads,
                        param, size, allowed_type, max_files, default_message, browser_unsupported,
-                       invalid_file_type, file_too_big, server_error, max_files_exceeded))
+                       invalid_file_type, file_too_big, server_error, max_files_exceeded, timeout_js))
 
     @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
@@ -342,6 +356,10 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_ALLOWED_FILE_CUSTOM', False)
         app.config.setdefault('DROPZONE_ALLOWED_FILE_TYPE', 'default')
         app.config.setdefault('DROPZONE_MAX_FILES', 'null')
+        # The timeout to cancel upload request in millisecond, default to 30000 (30 second).
+        # Set a large number if you need to upload large file.
+        # .. versionadded: 1.4.7
+        app.config.setdefault('DROPZONE_TIMEOUT', None)  # millisecond, default to 30000 (30 second)
 
         # The view to redierct when upload was completed.
         # .. versionadded:: 1.4.1
