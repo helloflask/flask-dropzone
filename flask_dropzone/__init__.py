@@ -306,7 +306,7 @@ Dropzone.options.myDropzone = {
         .. versionchanged:: 1.4.3
         Added `action` parameter to replace `action_view`, `action_view` was deprecated now.
 
-        .. versionchanged:: 1.4.7
+        .. versionchanged:: 1.5.0
         If `DROPZONE_IN_FORM` set to `True, create <div> instead of <form>.
 
         :param action: The action attribute in <form>, pass the url which handle uploads.
@@ -366,7 +366,7 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_MAX_FILES', 'null')
         # The timeout to cancel upload request in millisecond, default to 30000 (30 second).
         # Set a large number if you need to upload large file.
-        # .. versionadded: 1.4.7
+        # .. versionadded: 1.5.0
         app.config.setdefault('DROPZONE_TIMEOUT', None)  # millisecond, default to 30000 (30 second)
 
         # The view to redierct when upload was completed.
@@ -391,13 +391,13 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
 
         # Add support to upload files when button was clicked.
-        # .. versionadded:: 1.4.7
+        # .. versionadded:: 1.5.0
         app.config.setdefault('DROPZONE_UPLOAD_ACTION', '')
         app.config.setdefault('DROPZONE_UPLOAD_ON_CLICK', False)
         app.config.setdefault('DROPZONE_UPLOAD_BTN_ID', 'upload')
 
         # Add support to create dropzone inside <form>.
-        # .. versionadded:: 1.4.7
+        # .. versionadded:: 1.5.0
         app.config.setdefault('DROPZONE_IN_FORM', False)
 
         # messages

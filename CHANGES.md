@@ -1,7 +1,7 @@
 Flask-Dropzone Changelog
 =========================
 
-1.5.0
+2.0.0
 -----
 released date: --
 
@@ -9,7 +9,7 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove `dropzone.load()` method.
 
-1.4.7
+1.5.0
 -----
 released date: --
 
