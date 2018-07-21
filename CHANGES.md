@@ -9,9 +9,18 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove `dropzone.load()` method.
 
+
+1.5.1
+-----
+released date: 2018/7/21
+
+* Change CDN provider to jsDelivr.
+* Built-in resources will be used when `FLASK_ENV` set to `development`.
+
+
 1.5.0
 -----
-released date: --
+released date: 2018/7/20
 
 * `action` in `dropzone.create()` can be URL or endpoint, `action_view` was deprecated.
 * Add support to upload all dropped files when specific button (`name="upload"`) was clicked.
