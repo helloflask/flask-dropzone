@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 from flask_dropzone import Dropzone
 
 basedir = os.path.abspath(os.path.dirname(__file__))

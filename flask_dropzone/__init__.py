@@ -9,7 +9,7 @@
 """
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
-from .utils import random_filename, get_url
+from .utils import random_filename, get_url  # noqa
 
 #: defined normal file type
 allowed_file_type = {
@@ -300,9 +300,10 @@ Dropzone.options.myDropzone = {
           %s  // timeout
         };
                 </script>
-                ''' % (custom_options, custom_init, redirect_js, click_listener, click_option, upload_multiple, parallel_uploads,
-                       param, size, allowed_type, max_files, default_message, browser_unsupported,
-                       invalid_file_type, file_too_big, server_error, max_files_exceeded, timeout_js))
+                ''' % (custom_options, custom_init, redirect_js, click_listener, click_option,
+                       upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
+                       default_message, browser_unsupported, invalid_file_type, file_too_big,
+                       server_error, max_files_exceeded, timeout_js))
 
     @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
