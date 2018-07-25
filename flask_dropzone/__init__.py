@@ -29,13 +29,13 @@ class _Dropzone(object):
         """Load Dropzone resources with given version and init dropzone configuration.
 
         .. versionchanged:: 1.4.3
-        Added `js_url` and `css_url` parameters to pass custom resource URL.
+            Added ``js_url`` and ``css_url`` parameters to pass custom resource URL.
 
         .. versionchanged:: 1.4.4
-        This method was deprecated due to inflexible. Now it's divided into three methods:
-        1. Use `load_css()` to load css resources.
-        2. Use `load_js()` to load js resources.
-        3. Use `config()` to configure Dropzone.
+            This method was deprecated due to inflexible. Now it's divided into three methods:
+            1. Use ``load_css()`` to load css resources.
+            2. Use ``load_js()`` to load js resources.
+            3. Use ``config()`` to configure Dropzone.
 
         :param js_url: The JavaScript url for Dropzone.js.
         :param css_url: The CSS url for Dropzone.js.
@@ -312,16 +312,16 @@ Dropzone.options.myDropzone = {
         """Create a Dropzone form with given action.
 
         .. versionchanged:: 1.4.2
-        Added `csrf` parameter to enable CSRF protect.
+            Added ``csrf`` parameter to enable CSRF protect.
 
         .. versionchanged:: 1.4.3
-        Added `action` parameter to replace `action_view`, `action_view` was deprecated now.
+            Added ``action`` parameter to replace ``action_view``, ``action_view`` was deprecated now.
 
         .. versionchanged:: 1.5.0
-        If `DROPZONE_IN_FORM` set to `True, create <div> instead of <form>.
+            If ``DROPZONE_IN_FORM`` set to ``True``, create ``<div>`` instead of ``<form>``.
 
-        :param action: The action attribute in <form>, pass the url which handle uploads.
-        :param csrf: Enable CSRF protect or not, same with `DROPZONE_ENABLE_CSRF`.
+        :param action: The action attribute in ``<form>``, pass the url which handle uploads.
+        :param csrf: Enable CSRF protect or not, same with ``DROPZONE_ENABLE_CSRF``.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
         if current_app.config['DROPZONE_IN_FORM']:
@@ -380,7 +380,7 @@ class Dropzone(object):
         # .. versionadded: 1.5.0
         app.config.setdefault('DROPZONE_TIMEOUT', None)  # millisecond, default to 30000 (30 second)
 
-        # The view to redierct when upload was completed.
+        # The view to redirect when upload was completed.
         # .. versionadded:: 1.4.1
         app.config.setdefault('DROPZONE_REDIRECT_VIEW', None)
 
@@ -407,7 +407,7 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_UPLOAD_ON_CLICK', False)
         app.config.setdefault('DROPZONE_UPLOAD_BTN_ID', 'upload')
 
-        # Add support to create dropzone inside <form>.
+        # Add support to create dropzone inside ``<form>``.
         # .. versionadded:: 1.5.0
         app.config.setdefault('DROPZONE_IN_FORM', False)
 
