@@ -71,7 +71,7 @@ pip-log.txt
 # dev
 .idea
 .coverage
-docs
+docs/_build/
 
 # uploads
 examples/basic/uploads/*
