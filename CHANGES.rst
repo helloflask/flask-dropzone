@@ -9,6 +9,11 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove ``dropzone.load()`` method.
 
+1.5.2
+-----
+released date: --
+
+* Add a proper documentation.
 
 1.5.1
 -----
