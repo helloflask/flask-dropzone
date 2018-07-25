@@ -11,7 +11,7 @@ Basic Usage
 
 Step 1: Initialize the extension:
 
-.. code:: python
+.. code-block:: python
 
     from flask_dropzone import Dropzone
 
@@ -47,6 +47,6 @@ Style it according to your preferences through `style()` method::
 More Detail
 -----------
 
-Go to `Github page
-<https://github.com/greyli/flask-dropzone>`_ , which you can check for more
+Go to `Documentation
+<https://flask-dropzone.readthedocs.io/en/latest/>`_ , which you can check for more
 details.
