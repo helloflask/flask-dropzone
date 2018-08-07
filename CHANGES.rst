@@ -11,9 +11,10 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 1.5.2
 -----
-released date: --
+released date: 2018/8/7
 
 * Add a proper documentation.
+* Fix KeyError Exception if ENV isn't defined.
 
 1.5.1
 -----
