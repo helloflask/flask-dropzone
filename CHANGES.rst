@@ -9,6 +9,14 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove ``dropzone.load()`` method.
 
+1.5.3
+-----
+released date: --
+
+* Built-in resources behaviour will not based on ``FLASK_ENV``.
+
+
+
 1.5.2
 -----
 released date: 2018/8/7
