@@ -138,9 +138,8 @@ Dropzone.options.myDropzone = {
         """
         css_filename = 'dropzone.min.css'
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
-        dev = current_app.config.get('ENV') == 'development'
 
-        if serve_local or dev:
+        if serve_local:
             css = '<link rel="stylesheet" href="%s" type="text/css">\n' % \
                   url_for('dropzone.static', filename=css_filename)
         else:
@@ -162,9 +161,8 @@ Dropzone.options.myDropzone = {
         """
         js_filename = 'dropzone.min.js'
         serve_local = current_app.config['DROPZONE_SERVE_LOCAL']
-        dev = current_app.config.get('ENV') == 'development'
 
-        if serve_local or dev:
+        if serve_local:
             js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
         else:
             js = '<script src="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/%s"></script>\n' % (version, js_filename)

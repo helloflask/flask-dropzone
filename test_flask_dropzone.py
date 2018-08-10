@@ -89,21 +89,6 @@ class DropzoneTestCase(unittest.TestCase):
         self.assertNotIn('https://cdn.jsdelivr.net/npm/dropzone@', css_rv)
         self.assertNotIn('https://cdn.jsdelivr.net/npm/dropzone@', js_rv)
 
-    def test_local_resources_on_dev(self):
-        current_app.config['ENV'] = 'development'
-
-        css_response = self.client.get('/dropzone/static/dropzone.min.css')
-        js_response = self.client.get('/dropzone/static/dropzone.min.js')
-        self.assertNotEqual(css_response.status_code, 404)
-        self.assertNotEqual(js_response.status_code, 404)
-
-        css_rv = self.dropzone.load_css()
-        js_rv = self.dropzone.load_js()
-        self.assertIn('/dropzone/static/dropzone.min.css', css_rv)
-        self.assertIn('/dropzone/static/dropzone.min.js', js_rv)
-        self.assertNotIn('https://cdn.jsdelivr.net/npm/dropzone@', css_rv)
-        self.assertNotIn('https://cdn.jsdelivr.net/npm/dropzone@', js_rv)
-
     def test_config_dropzone(self):
         current_app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image'
         current_app.config['DROPZONE_MAX_FILE_SIZE'] = 5
