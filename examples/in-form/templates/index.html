@@ -13,6 +13,7 @@
     <input type="text" id="title" name="title"/><br>
     <label for="description">Description</label>
     <input type="text" id="description" name="description"/><br>
+    <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     {{ dropzone.create() }}
     <input type="submit" id="submit" value="Submit and Upload">
 </form>
