@@ -277,11 +277,10 @@ Dropzone.options.myDropzone = {
         //    return name.toLowerCase().replace(/[^\w]/gi, '');
         // };
         Dropzone.options.myDropzone = {
-          %s  // custom options code
           init: function() {
-              %s  // custom init code
               %s  // redirect after queue complete
               %s  // upload queue when button click
+              %s  // custom init code
           },
           %s  // click upload options
           uploadMultiple: %s,
@@ -298,12 +297,13 @@ Dropzone.options.myDropzone = {
           dictMaxFilesExceeded: "%s",
           // renameFilename: cleanFilename,
           %s  // timeout
+          %s  // custom options code
         };
                 </script>
-                ''' % (custom_options, custom_init, redirect_js, click_listener, click_option,
+                ''' % (redirect_js, click_listener, custom_init, click_option,
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
-                       server_error, max_files_exceeded, timeout_js))
+                       server_error, max_files_exceeded, timeout_js, custom_options))
 
     @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
