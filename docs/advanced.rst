@@ -15,7 +15,7 @@ this:
 
 .. code-block:: python
 
-    for key, f in request.files.iteritems():
+    for key, f in request.files.items():
         if key.startswith('file'):
             f.save(os.path.join('the/path/to/save', f.filename))
 
@@ -30,7 +30,7 @@ Here is the full example:
     @app.route('/upload', methods=['GET', 'POST'])
     def upload():
         if request.method == 'POST':
-            for key, f in request.files.iteritems():  # use request.files.items() in Python3
+            for key, f in request.files.items():
                 if key.startswith('file'):
                     f.save(os.path.join('the/path/to/save', f.filename))
 

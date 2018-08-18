@@ -35,7 +35,7 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def handle_upload():
-    for key, f in request.files.iteritems():  # use request.files.items() in Python3
+    for key, f in request.files.items():
         if key.startswith('file'):
             f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
     return '', 204
