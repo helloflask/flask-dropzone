@@ -118,6 +118,19 @@ class DropzoneTestCase(unittest.TestCase):
         rv = self.dropzone.config()
         self.assertNotIn('timeout:', rv)
 
+    def test_config_overwrite(self):
+        rv = self.dropzone.config(input_name='test', max_file_size=12, max_files=60, allowed_file_type='image',
+                                  default_message='Drop file here', redirect_view='index', timeout=10000)
+        self.assertIn('Dropzone.options.myDropzone', rv)
+        self.assertIn('paramName: "test"', rv)
+        self.assertIn('maxFilesize: 12', rv)
+        self.assertIn('maxFiles: 60,', rv)
+        self.assertIn('acceptedFiles: "%s"' % allowed_file_extensions['image'], rv)
+        self.assertIn('dictDefaultMessage: `Drop file here`', rv)
+        self.assertIn('this.on("queuecomplete", function(file) {', rv)
+        self.assertIn('window.location = "/";', rv)
+        self.assertIn('timeout: 10000,', rv)
+
     def test_create_dropzone(self):
         rv = self.dropzone.create(action=url_for('upload'))
         self.assertIn('<form action="/upload" method="post" class="dropzone" id="myDropzone"', rv)
