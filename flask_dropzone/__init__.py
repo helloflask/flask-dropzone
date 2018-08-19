@@ -222,6 +222,13 @@ Dropzone.options.myDropzone = {
                 click_listener = '''
                 dz = this; // Makes sure that 'this' is understood inside the functions below.
 
+                this.on("sending", function(file, xhr, formData) {
+                    var elements = document.getElementById("%s").form.elements
+                    for (var i = 0, element; element = elements[i++];) {
+                        formData.append(element.name, element.value); // Append all the additional input data
+                        }
+                });
+
                 document.getElementById("%s").addEventListener("click", function handler(e) {
                     e.currentTarget.removeEventListener(e.type, handler);
                     e.preventDefault();
@@ -232,7 +239,7 @@ Dropzone.options.myDropzone = {
                     // Called when all files in the queue finish uploading.
                     document.getElementById("%s").click();
                 });
-                ''' % (button_id, button_id)
+                ''' % (button_id, button_id, button_id)
                 click_option = '''
                 url: "%s",
                 autoProcessQueue: false,
