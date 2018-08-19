@@ -7,6 +7,7 @@
     :copyright: (c) 2017 by Grey Li.
     :license: MIT, see LICENSE for more details.
 """
+import warnings
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
 from .utils import random_filename, get_url  # noqa
@@ -41,6 +42,7 @@ class _Dropzone(object):
         :param css_url: The CSS url for Dropzone.js.
         :param version: The version of Dropzone.js.
         """
+        warnings.warn('The method will be removed in 2.0, see docs for more details.')
         js_filename = 'dropzone.min.js'
         css_filename = 'dropzone.min.css'
 
