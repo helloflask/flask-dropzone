@@ -80,3 +80,24 @@ to pass custom JavaScript code:
 The code pass with ``custom_init`` will into ``init: function() {}``, the code pass with ``custom_options`` will into
 ``Dropzone.options.myDropzone = {}``. See the full list of available configuration settings on
 `Dropzone documentation <https://www.dropzonejs.com/#configuration>`__.
+
+Overwrite Global Configuration
+-------------------------------
+
+Sometimes you may want to use different configuration for multiple drop area on different pages, in this case, you can
+pass the specific keyword arguments into ``dropzone.config()`` directly.
+
+The keyword arguments should mapping the corresponding configration variable in this way:
+
+- DROPZONE_DEFAULT_MESSAGE --> default_message
+- DROPZONE_TIMEOUT --> timeout
+- DROPZONE_ALLOWED_FILE_TYPE --> allowed_file_type
+- etc
+
+example:
+
+.. code-block:: jinja
+
+    {{ dropzone.config(max_files=10, timeout=10000, default_message='Drop here!') }}
+
+In the end, the keyword argument you pass will overwrite the corresponding configurations.
