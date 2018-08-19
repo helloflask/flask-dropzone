@@ -174,7 +174,7 @@ Dropzone.options.myDropzone = {
         return Markup(js)
 
     @staticmethod
-    def config(redirect_url=None, custom_init='', custom_options=''):
+    def config(redirect_url=None, custom_init='', custom_options='', **kwargs):
         """Initialize dropzone configuration.
 
         .. versionadded:: 1.4.4
@@ -182,6 +182,8 @@ Dropzone.options.myDropzone = {
         :param redirect_url: The URL to redirect when upload complete.
         :param custom_init: Custom javascript code in ``init: function() {}``.
         :param custom_options: Custom javascript code in ``Dropzone.options.myDropzone = {}``.
+        :param **kwargs: Mirror configuration variable, lowercase and without prefix.
+                         For example, ``DROPZONE_UPLOAD_MULTIPLE`` becomes ``upload_multiple`` here.
         """
         if custom_init and not custom_init.strip().endswith(';'):
             custom_init += ';'
@@ -189,17 +191,17 @@ Dropzone.options.myDropzone = {
         if custom_options and not custom_options.strip().endswith(','):
             custom_options += ','
 
-        upload_multiple = current_app.config['DROPZONE_UPLOAD_MULTIPLE']
-        parallel_uploads = current_app.config['DROPZONE_PARALLEL_UPLOADS']
+        upload_multiple = kwargs.get('upload_multiple', current_app.config['DROPZONE_UPLOAD_MULTIPLE'])
+        parallel_uploads = kwargs.get('parallel_uploads', current_app.config['DROPZONE_PARALLEL_UPLOADS'])
 
         if upload_multiple in [True, 'true', 'True', 1]:
             upload_multiple = 'true'
         else:
             upload_multiple = 'false'
 
-        size = current_app.config['DROPZONE_MAX_FILE_SIZE']
-        param = current_app.config['DROPZONE_INPUT_NAME']
-        redirect_view = current_app.config['DROPZONE_REDIRECT_VIEW']
+        size = kwargs.get('max_file_size', current_app.config['DROPZONE_MAX_FILE_SIZE'])
+        param = kwargs.get('input_name', current_app.config['DROPZONE_INPUT_NAME'])
+        redirect_view = kwargs.get('redirect_view', current_app.config['DROPZONE_REDIRECT_VIEW'])
 
         if redirect_view is not None or redirect_url is not None:
             redirect_url = redirect_url or url_for(redirect_view)
@@ -211,14 +213,14 @@ Dropzone.options.myDropzone = {
         else:
             redirect_js = ''
 
-        max_files = current_app.config['DROPZONE_MAX_FILES']
+        max_files = kwargs.get('max_files', current_app.config['DROPZONE_MAX_FILES'])
 
-        click_upload = current_app.config['DROPZONE_UPLOAD_ON_CLICK']
-        button_id = current_app.config['DROPZONE_UPLOAD_BTN_ID']
-        in_form = current_app.config['DROPZONE_IN_FORM']
+        click_upload = kwargs.get('upload_on_click', current_app.config['DROPZONE_UPLOAD_ON_CLICK'])
+        button_id = kwargs.get('upload_btn_id', current_app.config['DROPZONE_UPLOAD_BTN_ID'])
+        in_form = kwargs.get('in_form', current_app.config['DROPZONE_IN_FORM'])
         if click_upload:
             if in_form:
-                action = get_url(current_app.config['DROPZONE_UPLOAD_ACTION'])
+                action = get_url(kwargs.get('upload_action', current_app.config['DROPZONE_UPLOAD_ACTION']))
 
                 click_listener = '''
                 dz = this; // Makes sure that 'this' is understood inside the functions below.
@@ -255,20 +257,19 @@ Dropzone.options.myDropzone = {
             click_listener = ''
             click_option = ''
 
-        if not current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']:
-            allowed_type = allowed_file_type[
-                current_app.config['DROPZONE_ALLOWED_FILE_TYPE']]
+        if not kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']):
+            allowed_type = allowed_file_type[kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])]
         else:
-            allowed_type = current_app.config['DROPZONE_ALLOWED_FILE_TYPE']
+            allowed_type = kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])
 
-        default_message = current_app.config['DROPZONE_DEFAULT_MESSAGE']
-        invalid_file_type = current_app.config['DROPZONE_INVALID_FILE_TYPE']
-        file_too_big = current_app.config['DROPZONE_FILE_TOO_BIG']
-        server_error = current_app.config['DROPZONE_SERVER_ERROR']
-        browser_unsupported = current_app.config['DROPZONE_BROWSER_UNSUPPORTED']
-        max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
+        default_message = kwargs.get('default_message', current_app.config['DROPZONE_DEFAULT_MESSAGE'])
+        invalid_file_type = kwargs.get('invalid_file_type', current_app.config['DROPZONE_INVALID_FILE_TYPE'])
+        file_too_big = kwargs.get('file_too_big', current_app.config['DROPZONE_FILE_TOO_BIG'])
+        server_error = kwargs.get('server_error', current_app.config['DROPZONE_SERVER_ERROR'])
+        browser_unsupported = kwargs.get('browser_unsupported', current_app.config['DROPZONE_BROWSER_UNSUPPORTED'])
+        max_files_exceeded = kwargs.get('max_files_exceeded', current_app.config['DROPZONE_MAX_FILE_EXCEED'])
 
-        timeout = current_app.config['DROPZONE_TIMEOUT']
+        timeout = kwargs.get('timeout', current_app.config['DROPZONE_TIMEOUT'])
         if timeout:
             timeout_js = 'timeout: %d,' % timeout
         else:
