@@ -104,9 +104,6 @@ class _Dropzone(object):
 
         return Markup('''
   %s%s<script>
-// var cleanFilename = function (name) {
-//    return name.toLowerCase().replace(/[^\w]/gi, '');
-// };
 Dropzone.options.myDropzone = {
   init: function() {%s},
   uploadMultiple: %s,
@@ -121,7 +118,6 @@ Dropzone.options.myDropzone = {
   dictFileTooBig: "%s",
   dictResponseError: "%s",
   dictMaxFilesExceeded: "%s",
-  // renameFilename: cleanFilename,
   %s // timeout
 };
         </script>
@@ -280,9 +276,6 @@ Dropzone.options.myDropzone = {
             timeout_js = ''
 
         return Markup('''<script>
-        // var cleanFilename = function (name) {
-        //    return name.toLowerCase().replace(/[^\w]/gi, '');
-        // };
         Dropzone.options.myDropzone = {
           init: function() {
               %s  // redirect after queue complete
@@ -302,7 +295,6 @@ Dropzone.options.myDropzone = {
           dictFileTooBig: "%s",
           dictResponseError: "%s",
           dictMaxFilesExceeded: "%s",
-          // renameFilename: cleanFilename,
           %s  // timeout
           %s  // custom options code
         };
