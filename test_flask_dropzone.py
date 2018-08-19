@@ -11,7 +11,7 @@ import unittest
 
 from flask import Flask, render_template_string, current_app, url_for
 
-from flask_dropzone import Dropzone, allowed_file_type, _Dropzone, get_url
+from flask_dropzone import Dropzone, allowed_file_extensions, _Dropzone, get_url
 from flask_wtf import CSRFProtect
 
 
@@ -104,7 +104,7 @@ class DropzoneTestCase(unittest.TestCase):
         self.assertIn('paramName: "test"', rv)
         self.assertIn('maxFilesize: 5', rv)
         self.assertIn('maxFiles: 40,', rv)
-        self.assertIn('acceptedFiles: "%s"' % allowed_file_type['image'], rv)
+        self.assertIn('acceptedFiles: "%s"' % allowed_file_extensions['image'], rv)
         self.assertIn('dictDefaultMessage: `Drop file here`', rv)
         self.assertIn('this.on("queuecomplete", function(file) {', rv)
         self.assertIn('window.location = "/";', rv)

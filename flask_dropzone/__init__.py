@@ -13,7 +13,7 @@ from flask import Blueprint, current_app, url_for, Markup, render_template_strin
 from .utils import random_filename, get_url  # noqa
 
 #: defined normal file type
-allowed_file_type = {
+allowed_file_extensions = {
     'default': 'image/*, audio/*, video/*, text/*, application/*',
     'image': 'image/*',
     'audio': 'audio/*',
@@ -69,7 +69,7 @@ class _Dropzone(object):
             redirect_js = ''
 
         if not current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']:
-            allowed_type = allowed_file_type[
+            allowed_type = allowed_file_extensions[
                 current_app.config['DROPZONE_ALLOWED_FILE_TYPE']]
         else:
             allowed_type = current_app.config['DROPZONE_ALLOWED_FILE_TYPE']
@@ -218,6 +218,7 @@ Dropzone.options.myDropzone = {
         click_upload = kwargs.get('upload_on_click', current_app.config['DROPZONE_UPLOAD_ON_CLICK'])
         button_id = kwargs.get('upload_btn_id', current_app.config['DROPZONE_UPLOAD_BTN_ID'])
         in_form = kwargs.get('in_form', current_app.config['DROPZONE_IN_FORM'])
+
         if click_upload:
             if in_form:
                 action = get_url(kwargs.get('upload_action', current_app.config['DROPZONE_UPLOAD_ACTION']))
@@ -257,10 +258,13 @@ Dropzone.options.myDropzone = {
             click_listener = ''
             click_option = ''
 
-        if not kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM']):
-            allowed_type = allowed_file_type[kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])]
+        allowed_file_type = kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])
+        allowed_file_custom = kwargs.get('allowed_file_custom', current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM'])
+
+        if allowed_file_custom:
+            allowed_type = allowed_file_type
         else:
-            allowed_type = kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])
+            allowed_type = allowed_file_extensions[allowed_file_type]
 
         default_message = kwargs.get('default_message', current_app.config['DROPZONE_DEFAULT_MESSAGE'])
         invalid_file_type = kwargs.get('invalid_file_type', current_app.config['DROPZONE_INVALID_FILE_TYPE'])
