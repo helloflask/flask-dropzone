@@ -11,7 +11,7 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 1.5.3
 -----
-released date: --
+released date: 2018/8/24
 
 * Built-in resources behaviour will not based on ``FLASK_ENV``.
 * Add support to pass configuration variable directly with ``dropzone.config()``, see documentation for more details.
