@@ -8,7 +8,7 @@ released date: --
 WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove ``dropzone.load()`` method.
-
+* Added more options to customize messages.
 1.5.3
 -----
 released date: 2018/8/24
