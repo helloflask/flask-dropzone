@@ -81,6 +81,10 @@ class _Dropzone(object):
         server_error = current_app.config['DROPZONE_SERVER_ERROR']
         browser_unsupported = current_app.config['DROPZONE_BROWSER_UNSUPPORTED']
         max_files_exceeded = current_app.config['DROPZONE_MAX_FILE_EXCEED']
+        cancelUpload = current_app.config['DROPZONE_CANCEL_UPLOAD']
+        removeFile = current_app.config['DROPZONE_REMOVE_FILE']
+        cancelConfirmation = current_app.config['DROPZONE_CANCEL_CONFIRMATION']
+        uploadCanceled = current_app.config['DROPZONE_UPLOAD_CANCELED']
 
         timeout = current_app.config['DROPZONE_TIMEOUT']
         if timeout:
@@ -118,12 +122,16 @@ Dropzone.options.myDropzone = {
   dictFileTooBig: "%s",
   dictResponseError: "%s",
   dictMaxFilesExceeded: "%s",
+  dictCancelUpload: "%s",
+  dictRemoveFile: "%s",
+  dictCancelUploadConfirmation: "%s",
+  dictUploadCanceled: "%s",
   %s // timeout
 };
         </script>
         ''' % (css, js, redirect_js, upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
-               default_message, browser_unsupported, invalid_file_type, file_too_big,
-               server_error, max_files_exceeded, timeout_js))
+               default_message, browser_unsupported, invalid_file_type, file_too_big, server_error, 
+               max_files_exceeded, cancelUpload, removeFile, cancelConfirmation, uploadCanceled, timeout_js))
 
     @staticmethod
     def load_css(css_url=None, version='5.2.0'):
@@ -214,6 +222,10 @@ Dropzone.options.myDropzone = {
         click_upload = kwargs.get('upload_on_click', current_app.config['DROPZONE_UPLOAD_ON_CLICK'])
         button_id = kwargs.get('upload_btn_id', current_app.config['DROPZONE_UPLOAD_BTN_ID'])
         in_form = kwargs.get('in_form', current_app.config['DROPZONE_IN_FORM'])
+        cancelUpload = kwargs.get('cancel_upload', current_app.config['DROPZONE_CANCEL_UPLOAD'])
+        removeFile = kwargs.get('remove_file', current_app.config['DROPZONE_REMOVE_FILE'])
+        cancelConfirmation = kwargs.get('cancel_confirmation', current_app.config['DROPZONE_CANCEL_CONFIRMATION'])
+        uploadCanceled = kwargs.get('upload_canceled', current_app.config['DROPZONE_UPLOAD_CANCELED'])
 
         if click_upload:
             if in_form:
@@ -295,6 +307,10 @@ Dropzone.options.myDropzone = {
           dictFileTooBig: "%s",
           dictResponseError: "%s",
           dictMaxFilesExceeded: "%s",
+          dictCancelUpload: "%s",
+          dictRemoveFile: "%s",
+          dictCancelUploadConfirmation: "%s",
+          dictUploadCanceled: "%s",
           %s  // timeout
           %s  // custom options code
         };
@@ -302,7 +318,8 @@ Dropzone.options.myDropzone = {
                 ''' % (redirect_js, click_listener, custom_init, click_option,
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
-                       server_error, max_files_exceeded, timeout_js, custom_options))
+                       server_error, max_files_exceeded, cancelUpload, removeFile, cancelConfirmation, 
+                       uploadCanceled, timeout_js, custom_options))
 
     @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
@@ -417,6 +434,10 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_BROWSER_UNSUPPORTED',
                               "Your browser does not support drag'n'drop file uploads.")
         app.config.setdefault('DROPZONE_MAX_FILE_EXCEED', "Your can't upload any more files.")
+        app.config.setdefault('DROPZONE_CANCEL_UPLOAD', "Cancel upload")
+        app.config.setdefault('DROPZONE_REMOVE_FILE', "Remove file")
+        app.config.setdefault('DROPZONE_CANCEL_CONFIRMATION', "You really want to delete this file?")
+        app.config.setdefault('DROPZONE_UPLOAD_CANCELED', "Upload canceled")
 
     @staticmethod
     def context_processor():
