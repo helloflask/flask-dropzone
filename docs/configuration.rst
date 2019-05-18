@@ -38,7 +38,7 @@ DROPZONE_BROWSER_UNSUPPORTED  ``"Your browser does not support drag'n'drop file 
 DROPZONE_MAX_FILE_EXCEED 	  ``"Your can't upload any more files."`` 	                             Error message
 DROPZONE_UPLOAD_MULTIPLE 	  ``False`` 	                                                         Whether to send multiple files in one request.
 DROPZONE_PARALLEL_UPLOADS 	  ``2`` 	                                                             How many uploads will handled in per request when ``DROPZONE_UPLOAD_MULTIPLE set`` to ``True``.
-DROPZONE_REDIRECT_VIEW 	      ``None`` 	                                                             The view to redirect when upload was completed.
+DROPZONE_REDIRECT_VIEW 	      ``None`` 	                                                             The view to redirect when upload was completed. If you want pass an URL, usually when your view accepts variable, you can pass it with ``redirect_url`` keyword in template: ``{{ dropzone.config(redirect_url=url_for('endpoint', foo=bar)) }}``.
 DROPZONE_ENABLE_CSRF 	      ``False`` 	                                                         Enable CSRF protect, see detail below
 DROPZONE_TIMEOUT 	          ``None`` 	                                                             The timeout to cancel upload request in millisecond, default to ``30000`` (30 second). Set a large number if you need to upload large file.
 ============================= ====================================================================== ============================================================================================================================================
@@ -81,8 +81,8 @@ The code pass with ``custom_init`` will into ``init: function() {}``, the code p
 ``Dropzone.options.myDropzone = {}``. See the full list of available configuration settings on
 `Dropzone documentation <https://www.dropzonejs.com/#configuration>`__.
 
-Overwrite Global Configuration
--------------------------------
+Overwriting Global Configuration
+----------------------------------
 
 Sometimes you may want to use different configuration for multiple drop area on different pages, in this case, you can
 pass the specific keyword arguments into ``dropzone.config()`` directly.
