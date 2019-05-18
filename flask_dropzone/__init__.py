@@ -130,7 +130,7 @@ Dropzone.options.myDropzone = {
 };
         </script>
         ''' % (css, js, redirect_js, upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
-               default_message, browser_unsupported, invalid_file_type, file_too_big, server_error, 
+               default_message, browser_unsupported, invalid_file_type, file_too_big, server_error,
                max_files_exceeded, cancelUpload, removeFile, cancelConfirmation, uploadCanceled, timeout_js))
 
     @staticmethod
@@ -318,7 +318,7 @@ Dropzone.options.myDropzone = {
                 ''' % (redirect_js, click_listener, custom_init, click_option,
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
-                       server_error, max_files_exceeded, cancelUpload, removeFile, cancelConfirmation, 
+                       server_error, max_files_exceeded, cancelUpload, removeFile, cancelConfirmation,
                        uploadCanceled, timeout_js, custom_options))
 
     @staticmethod
