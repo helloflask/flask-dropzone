@@ -433,7 +433,7 @@ class Dropzone(object):
         app.config.setdefault('DROPZONE_SERVER_ERROR', "Server error: {{statusCode}}")
         app.config.setdefault('DROPZONE_BROWSER_UNSUPPORTED',
                               "Your browser does not support drag'n'drop file uploads.")
-        app.config.setdefault('DROPZONE_MAX_FILE_EXCEED', "Your can't upload any more files.")
+        app.config.setdefault('DROPZONE_MAX_FILE_EXCEED', "You can't upload any more files.")
         app.config.setdefault('DROPZONE_CANCEL_UPLOAD', "Cancel upload")
         app.config.setdefault('DROPZONE_REMOVE_FILE', "Remove file")
         app.config.setdefault('DROPZONE_CANCEL_CONFIRMATION', "You really want to delete this file?")
