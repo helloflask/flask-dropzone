@@ -279,7 +279,7 @@ Dropzone.options.myDropzone = {
         file_too_big = kwargs.get('file_too_big', current_app.config['DROPZONE_FILE_TOO_BIG'])
         server_error = kwargs.get('server_error', current_app.config['DROPZONE_SERVER_ERROR'])
         browser_unsupported = kwargs.get('browser_unsupported', current_app.config['DROPZONE_BROWSER_UNSUPPORTED'])
-        max_files_exceeded = kwargs.get('max_files_exceeded', current_app.config['DROPZONE_MAX_FILE_EXCEED'])
+        max_files_exceeded = kwargs.get('max_file_exceeded', current_app.config['DROPZONE_MAX_FILE_EXCEED'])
 
         timeout = kwargs.get('timeout', current_app.config['DROPZONE_TIMEOUT'])
         if timeout:
