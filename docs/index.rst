@@ -3,6 +3,7 @@ Flask-Dropzone
 
 Upload files in Flask application with `Dropzone.js <http://www.dropzonejs.com/>`_.
 
+NOTICE: This extension is built for simple usage, if you need more flexibility, please use Dropzone.js directly.
 
 Contents
 ---------

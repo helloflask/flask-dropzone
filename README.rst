@@ -6,6 +6,8 @@ Flask-Dropzone packages `Dropzone.js
 <http://dropzonejs.com>`_ into an extension to add file upload support for Flask.
 It can create links to serve Dropzone from a CDN and works with no JavaScript code in your application.
 
+NOTICE: This extension is built for simple usage, if you need more flexibility, please use Dropzone.js directly.
+
 Basic Usage
 -----------
 
