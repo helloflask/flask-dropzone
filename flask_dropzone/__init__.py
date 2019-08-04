@@ -283,9 +283,7 @@ Dropzone.options.myDropzone = {
 
         timeout = kwargs.get('timeout', current_app.config['DROPZONE_TIMEOUT'])
         if timeout:
-            timeout_js = 'timeout: %d,' % timeout
-        else:
-            timeout_js = ''
+            custom_options += 'timeout: %d,' % timeout
 
         enable_csrf = kwargs.get('enable_csrf', current_app.config['DROPZONE_ENABLE_CSRF'])
         if enable_csrf:
@@ -319,7 +317,6 @@ Dropzone.options.myDropzone = {
           dictRemoveFile: "%s",
           dictCancelUploadConfirmation: "%s",
           dictUploadCanceled: "%s",
-          %s  // timeout
           %s  // custom options code
         };
         </script>
@@ -327,7 +324,7 @@ Dropzone.options.myDropzone = {
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
                        server_error, max_files_exceeded, cancelUpload, removeFile, cancelConfirmation,
-                       uploadCanceled, timeout_js, custom_options))
+                       uploadCanceled, custom_options))
 
     @staticmethod
     def create(action='', csrf=False, action_view='', **kwargs):
@@ -342,6 +339,9 @@ Dropzone.options.myDropzone = {
         .. versionchanged:: 1.5.0
             If ``DROPZONE_IN_FORM`` set to ``True``, create ``<div>`` instead of ``<form>``.
 
+        .. versionchanged:: 1.5.4
+            ``csrf`` was deprecated now.
+
         :param action: The action attribute in ``<form>``, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with ``DROPZONE_ENABLE_CSRF``, deprecated since 1.5.4.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
@@ -349,20 +349,18 @@ Dropzone.options.myDropzone = {
         if current_app.config['DROPZONE_IN_FORM']:
             return Markup('<div class="dropzone" id="myDropzone"></div>')
 
+
         if action:
             action_url = get_url(action)
         else:
+            warnings.warn('The argument was renamed to "action" and will be removed in 2.0.')
             action_url = url_for(action_view, **kwargs)
 
-        if csrf or current_app.config['DROPZONE_ENABLE_CSRF']:
-            if 'csrf' not in current_app.extensions:
-                raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
-                    see docs for more details.")
-            csrf_field = render_template_string('<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>')
-        else:
-            csrf_field = ''
+        if csrf:
+            warnings.warn('The argument was deprecated and will be removed in 2.0, please set DROPZONE_ENABLE_CSRF instead.')
+
         return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone"
-        enctype="multipart/form-data">%s</form>''' % (action_url, csrf_field))
+        enctype="multipart/form-data"></form>''' % action_url)
 
     @staticmethod
     def style(css):
