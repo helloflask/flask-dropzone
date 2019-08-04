@@ -349,7 +349,6 @@ Dropzone.options.myDropzone = {
         if current_app.config['DROPZONE_IN_FORM']:
             return Markup('<div class="dropzone" id="myDropzone"></div>')
 
-
         if action:
             action_url = get_url(action)
         else:
@@ -357,7 +356,7 @@ Dropzone.options.myDropzone = {
             action_url = url_for(action_view, **kwargs)
 
         if csrf:
-            warnings.warn('The argument was deprecated and will be removed in 2.0, please set DROPZONE_ENABLE_CSRF instead.')
+            warnings.warn('The argument was deprecated and will be removed in 2.0, use DROPZONE_ENABLE_CSRF instead.')
 
         return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone"
         enctype="multipart/form-data"></form>''' % action_url)
