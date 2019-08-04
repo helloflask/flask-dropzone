@@ -287,6 +287,14 @@ Dropzone.options.myDropzone = {
         else:
             timeout_js = ''
 
+        enable_csrf = kwargs.get('enable_csrf', current_app.config['DROPZONE_ENABLE_CSRF'])
+        if enable_csrf:
+            if 'csrf' not in current_app.extensions:
+                raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
+                    see docs for more details.")
+            csrf_token = render_template_string('{{ csrf_token() }}')
+            custom_options += 'headers: {"X-CSRF-Token": "%s"},' % csrf_token
+
         return Markup('''<script>
         Dropzone.options.myDropzone = {
           init: function() {
@@ -314,7 +322,7 @@ Dropzone.options.myDropzone = {
           %s  // timeout
           %s  // custom options code
         };
-                </script>
+        </script>
                 ''' % (redirect_js, click_listener, custom_init, click_option,
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
@@ -335,7 +343,7 @@ Dropzone.options.myDropzone = {
             If ``DROPZONE_IN_FORM`` set to ``True``, create ``<div>`` instead of ``<form>``.
 
         :param action: The action attribute in ``<form>``, pass the url which handle uploads.
-        :param csrf: Enable CSRF protect or not, same with ``DROPZONE_ENABLE_CSRF``.
+        :param csrf: Enable CSRF protect or not, same with ``DROPZONE_ENABLE_CSRF``, deprecated since 1.5.4.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
         """
         if current_app.config['DROPZONE_IN_FORM']:
