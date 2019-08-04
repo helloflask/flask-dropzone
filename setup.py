@@ -24,7 +24,6 @@ setup(
     author_email='withlihui@gmail.com',
     description='Upload file in Flask with Dropzone.js.',
     long_description=long_description,
-    long_description_content_type='text/markdown',
     packages=['flask_dropzone'],
     zip_safe=False,
     include_package_data=True,
