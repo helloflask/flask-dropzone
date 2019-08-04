@@ -8,9 +8,10 @@
     :copyright: (c) 2017 by Grey Li.
     :license: MIT, see LICENSE for more details.
 """
+import io
 from setuptools import setup
 
-with open('README.md') as f:
+with io.open("README.rst", "rt", encoding="utf8") as f:
     long_description = f.read()
 
 
