@@ -9,6 +9,13 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove ``dropzone.load()`` method.
 * Added more options to customize messages.
+
+1.5.4
+-----
+released date: 2019/8/4
+
+* Fix CSRF protect bug when in form (`#29 <https://github.com/greyli/flask-dropzone/issues/29>`_)
+
 1.5.3
 -----
 released date: 2018/8/24

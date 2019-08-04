@@ -55,6 +55,7 @@ venv/
 dist
 build
 eggs
+.eggs
 parts
 bin
 var
