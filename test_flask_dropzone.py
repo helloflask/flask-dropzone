@@ -136,15 +136,15 @@ class DropzoneTestCase(unittest.TestCase):
         self.assertIn('<form action="/upload" method="post" class="dropzone" id="myDropzone"', rv)
 
     def test_csrf_field(self):
-        rv = self.dropzone.create(action=url_for('upload'))
-        self.assertNotIn('<input type="hidden" name="csrf_token"', rv)
+        rv = self.dropzone.config()
+        self.assertNotIn('X-CSRF-Token', rv)
 
-        rv = self.dropzone.create(action=url_for('upload'), csrf=True)
-        self.assertIn('<input type="hidden" name="csrf_token"', rv)
+        rv = self.dropzone.config(enable_csrf=True)
+        self.assertIn('X-CSRF-Token', rv)
 
         current_app.config['DROPZONE_ENABLE_CSRF'] = True
-        rv = self.dropzone.create(action=url_for('upload'))
-        self.assertIn('<input type="hidden" name="csrf_token"', rv)
+        rv = self.dropzone.config()
+        self.assertIn('X-CSRF-Token', rv)
 
     def test_style_dropzone(self):
         rv = self.dropzone.style('width: 500px')
