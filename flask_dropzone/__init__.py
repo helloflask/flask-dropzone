@@ -350,7 +350,7 @@ Dropzone.options.myDropzone = {
             return Markup('<div class="dropzone" id="myDropzone"></div>')
 
         if action:
-            action_url = get_url(action)
+            action_url = get_url(action, **kwargs)
         else:
             warnings.warn('The argument was renamed to "action" and will be removed in 2.0.')
             action_url = url_for(action_view, **kwargs)
