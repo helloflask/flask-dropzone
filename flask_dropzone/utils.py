@@ -12,13 +12,13 @@ import uuid
 from flask import url_for
 
 
-def get_url(endpoint_or_url):
+def get_url(endpoint_or_url, **kwargs):
     if endpoint_or_url == '':
         return
     if endpoint_or_url.startswith(('https://', 'http://', '/')):
         return endpoint_or_url
     else:
-        return url_for(endpoint_or_url)
+        return url_for(endpoint_or_url, **kwargs)
 
 
 #: generate a random filename, replacement for werkzeug.secure_filename
