@@ -101,7 +101,7 @@ If you like to use your web application under a strict `Content Security Policy 
     default_http_header = {'Content-Security-Policy' :
       f"default-src 'self'; script-src 'self' 'nonce-{nonce}'"
     
-    nonce = str(base64.b64encode(os.urandom(64)))
+    nonce = base64.b64encode(os.urandom(64)).decode('utf8')
     render_template('template.tmpl', nonce = nonce), 200, default_http_header
 
 		
