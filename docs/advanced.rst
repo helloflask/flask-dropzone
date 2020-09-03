@@ -88,6 +88,27 @@ Try the demo application in ``examples/csrf`` and see `CSRFProtect's
 documentation <http://flask-wtf.readthedocs.io/en/latest/csrf.html>`__
 for more details.
 
+Content Security Policy
+-----------------------
+
+If you like to use your web application under a strict `Content Security Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`__ (CSP), just embedding JavaScript code via ``{{ dropzone.config() }}`` into a template will not work. You could move the configuration code into a separate JavaScript file and reference this resource from your HTML page. However, when you like to enable a CSRF protection as well, you need to handle the CSRF token and the CSP nonce value. The simple solution is to embedd the configuration code into the HTML page and pass a ``nonce`` value for CSP as shown below:
+
+.. code-block:: python
+
+    import base64
+    import os
+    
+    default_http_header = {'Content-Security-Policy' :
+      f"default-src 'self'; script-src 'self' 'nonce-{nonce}'"
+    
+    nonce = base64.b64encode(os.urandom(64)).decode('utf8')
+    render_template('template.tmpl', nonce = nonce), 200, default_http_header
+
+		
+.. code-block:: jinja
+
+    {{ dropzone.config(nonce=nonce) }}
+		
 Server Side Validation
 ----------------------
 

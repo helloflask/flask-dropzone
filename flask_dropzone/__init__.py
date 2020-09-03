@@ -178,7 +178,7 @@ Dropzone.options.myDropzone = {
         return Markup(js)
 
     @staticmethod
-    def config(redirect_url=None, custom_init='', custom_options='', **kwargs):
+    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, **kwargs):
         """Initialize dropzone configuration.
 
         .. versionadded:: 1.4.4
@@ -186,6 +186,7 @@ Dropzone.options.myDropzone = {
         :param redirect_url: The URL to redirect when upload complete.
         :param custom_init: Custom javascript code in ``init: function() {}``.
         :param custom_options: Custom javascript code in ``Dropzone.options.myDropzone = {}``.
+        :param nonce: Pass a nonce value that is newhen embedding the JavaScript code into a Content Security Policy protected web page.
         :param **kwargs: Mirror configuration variable, lowercase and without prefix.
                          For example, ``DROPZONE_UPLOAD_MULTIPLE`` becomes ``upload_multiple`` here.
         """
@@ -293,7 +294,12 @@ Dropzone.options.myDropzone = {
             csrf_token = render_template_string('{{ csrf_token() }}')
             custom_options += 'headers: {"X-CSRF-Token": "%s"},' % csrf_token
 
-        return Markup('''<script>
+        if nonce:
+            nonce_html = " nonce=\"%s\"" % nonce
+        else:
+            nonce_html = ""
+            
+        return Markup('''<script%s>
         Dropzone.options.myDropzone = {
           init: function() {
               %s  // redirect after queue complete
@@ -320,7 +326,7 @@ Dropzone.options.myDropzone = {
           %s  // custom options code
         };
         </script>
-                ''' % (redirect_js, click_listener, custom_init, click_option,
+                ''' % (nonce_html, redirect_js, click_listener, custom_init, click_option,
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
                        server_error, max_files_exceeded, cancelUpload, removeFile, cancelConfirmation,
