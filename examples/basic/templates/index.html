@@ -10,5 +10,7 @@
   {{ dropzone.create(action='upload') }}
   {{ dropzone.load_js() }}
   {{ dropzone.config() }}
+  {# You can get the success response from server like this: #}
+  {#{ dropzone.config(custom_options="success: function(file, response){console.log(response);}") }#}
 </body>
 </html>

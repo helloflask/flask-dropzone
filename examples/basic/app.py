@@ -6,7 +6,7 @@
 """
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_dropzone import Dropzone
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -28,7 +28,11 @@ dropzone = Dropzone(app)
 def upload():
     if request.method == 'POST':
         f = request.files.get('file')
-        f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+        file_path = os.path.join(app.config['UPLOADED_PATH'], f.filename)
+        f.save(file_path)
+        # You can return a JSON response then get it on client side:
+        # (see template index.html for client implementation)
+        # return jsonify(uploaded_path=file_path)
     return render_template('index.html')
 
 
