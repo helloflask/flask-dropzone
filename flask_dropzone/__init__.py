@@ -181,12 +181,17 @@ Dropzone.options.myDropzone = {
     def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id=None, **kwargs):
         """Initialize dropzone configuration.
 
+        .. versionchanged:: 1.5.4
+            Added ``id`` parameter.
+
         .. versionadded:: 1.4.4
 
         :param redirect_url: The URL to redirect when upload complete.
         :param custom_init: Custom javascript code in ``init: function() {}``.
         :param custom_options: Custom javascript code in ``Dropzone.options.myDropzone = {}``.
         :param nonce: Pass a nonce value that is newhen embedding the JavaScript code into a Content Security Policy protected web page.
+        :param id: The id of the dropzone element, it must matches the ``id`` argument passed to
+            ``dropzone.create()`` if provided.
         :param **kwargs: Mirror configuration variable, lowercase and without prefix.
                          For example, ``DROPZONE_UPLOAD_MULTIPLE`` becomes ``upload_multiple`` here.
         """
@@ -347,9 +352,14 @@ Dropzone.options.myDropzone = {
         .. versionchanged:: 1.5.4
             ``csrf`` was deprecated now.
 
+        .. versionchanged:: 1.5.4
+            Added ``id`` parameter.
+
         :param action: The action attribute in ``<form>``, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with ``DROPZONE_ENABLE_CSRF``, deprecated since 1.5.4.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
+        :param id: The id of the dropzone element, it must matches the ``id`` argument passed to
+            ``dropzone.config()`` if provided.
         """
         if current_app.config['DROPZONE_IN_FORM']:
             return Markup('<div class="dropzone" id="myDropzone"></div>')
