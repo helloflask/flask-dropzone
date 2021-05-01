@@ -79,6 +79,21 @@ Remember to edit the ``action`` to the URL or endpoint which handles the
 uploads, for example ``dropzone.create(action='upload_view')`` or
 ``dropzone.create(action=url_for('upload_view')')``.
 
+The default ID of the dropzone form element is `myDropzone`, usually you don't
+need to change it. If you have specific need, for example, you want to have multiple
+dropzones on one page, you can use the ``id`` parameter to assign the id:
+
+.. code-block:: jinja
+
+    {{ dropzone.create(id='foo') }}
+    {{ dropzone.create(id='bar') }}
+    ...
+    {{ dropzone.config(id='foo') }}
+    {{ dropzone.config(id='bar') }}
+    </body>
+
+Notice that the same id must passed both in ``dropzone.create()`` and ``dropzone.config()``.
+
 Beautify Dropzone
 -----------------
 

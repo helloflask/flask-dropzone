@@ -19,3 +19,4 @@ Aside from the basic example, there are a couple of additional examples:
 - examples/in-form
 - examples/large-file
 - examples/parallel-upload
+- examples/multiple-dropzone

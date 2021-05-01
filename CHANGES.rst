@@ -9,6 +9,14 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 * Remove ``dropzone.load()`` method.
 * Added more options to customize messages.
+* Drop Python 2 support.
+
+1.6.0
+-----
+released date: --
+
+* Add a ``id`` parameter for ``dropzone.create()`` and ``dropzone.config()`` to support
+customize element id and putting multiple dropzones in one page.
 
 1.5.4
 -----

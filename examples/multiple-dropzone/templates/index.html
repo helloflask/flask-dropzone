@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flask-Dropzone Demo: Multiple Dropzone</title>
+  {{ dropzone.load_css() }}
+  {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+</head>
+<body>
+  {{ dropzone.create(action='upload', id='foo') }}
+  {{ dropzone.create(action='upload', id='bar') }}
+  {{ dropzone.load_js() }}
+  {{ dropzone.config(id='foo', default_message='Dropzone Foo') }}
+  {{ dropzone.config(id='bar', default_message='Dropzone Bar') }}
+</body>
+</html>

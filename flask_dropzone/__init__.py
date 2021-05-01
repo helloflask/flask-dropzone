@@ -178,8 +178,11 @@ Dropzone.options.myDropzone = {
         return Markup(js)
 
     @staticmethod
-    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, **kwargs):
+    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id=None, **kwargs):
         """Initialize dropzone configuration.
+
+        .. versionchanged:: 1.5.4
+            Added ``id`` parameter.
 
         .. versionadded:: 1.4.4
 
@@ -187,6 +190,8 @@ Dropzone.options.myDropzone = {
         :param custom_init: Custom javascript code in ``init: function() {}``.
         :param custom_options: Custom javascript code in ``Dropzone.options.myDropzone = {}``.
         :param nonce: Pass a nonce value that is newhen embedding the JavaScript code into a Content Security Policy protected web page.
+        :param id: The id of the dropzone element, it must matches the ``id`` argument passed to
+            ``dropzone.create()`` if provided.
         :param **kwargs: Mirror configuration variable, lowercase and without prefix.
                          For example, ``DROPZONE_UPLOAD_MULTIPLE`` becomes ``upload_multiple`` here.
         """
@@ -294,13 +299,12 @@ Dropzone.options.myDropzone = {
             csrf_token = render_template_string('{{ csrf_token() }}')
             custom_options += 'headers: {"X-CSRF-Token": "%s"},' % csrf_token
 
-        if nonce:
-            nonce_html = " nonce=\"%s\"" % nonce
-        else:
-            nonce_html = ""
-            
+        nonce_html = ' nonce="%s"' % nonce if nonce else ''
+        if id is None:
+            id = 'myDropzone'
+
         return Markup('''<script%s>
-        Dropzone.options.myDropzone = {
+        Dropzone.options.%s = {
           init: function() {
               %s  // redirect after queue complete
               %s  // upload queue when button click
@@ -326,14 +330,14 @@ Dropzone.options.myDropzone = {
           %s  // custom options code
         };
         </script>
-                ''' % (nonce_html, redirect_js, click_listener, custom_init, click_option,
+                ''' % (nonce_html, id, redirect_js, click_listener, custom_init, click_option,
                        upload_multiple, parallel_uploads, param, size, allowed_type, max_files,
                        default_message, browser_unsupported, invalid_file_type, file_too_big,
                        server_error, max_files_exceeded, cancelUpload, removeFile, cancelConfirmation,
                        uploadCanceled, custom_options))
 
     @staticmethod
-    def create(action='', csrf=False, action_view='', **kwargs):
+    def create(action='', csrf=False, action_view='', id=None, **kwargs):
         """Create a Dropzone form with given action.
 
         .. versionchanged:: 1.4.2
@@ -348,9 +352,14 @@ Dropzone.options.myDropzone = {
         .. versionchanged:: 1.5.4
             ``csrf`` was deprecated now.
 
+        .. versionchanged:: 1.5.4
+            Added ``id`` parameter.
+
         :param action: The action attribute in ``<form>``, pass the url which handle uploads.
         :param csrf: Enable CSRF protect or not, same with ``DROPZONE_ENABLE_CSRF``, deprecated since 1.5.4.
         :param action_view: The view which handle the post data, deprecated since 1.4.2.
+        :param id: The id of the dropzone element, it must matches the ``id`` argument passed to
+            ``dropzone.config()`` if provided.
         """
         if current_app.config['DROPZONE_IN_FORM']:
             return Markup('<div class="dropzone" id="myDropzone"></div>')
@@ -364,8 +373,10 @@ Dropzone.options.myDropzone = {
         if csrf:
             warnings.warn('The argument was deprecated and will be removed in 2.0, use DROPZONE_ENABLE_CSRF instead.')
 
-        return Markup('''<form action="%s" method="post" class="dropzone" id="myDropzone"
-        enctype="multipart/form-data"></form>''' % action_url)
+        if id is None:
+            id = 'myDropzone'
+        return Markup('''<form action="%s" method="post" class="dropzone" id="%s"
+        enctype="multipart/form-data"></form>''' % (action_url, id))
 
     @staticmethod
     def style(css):

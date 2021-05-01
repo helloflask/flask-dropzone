@@ -205,3 +205,14 @@ class DropzoneTestCase(unittest.TestCase):
 
         rv = self.dropzone.config(custom_options='foo = true')
         self.assertIn('foo = true,', rv)
+
+    def test_custom_id(self):
+        rv = self.dropzone.create(action=url_for('upload'))
+        self.assertIn('id="myDropzone"', rv)
+        rv = self.dropzone.config()
+        self.assertIn('Dropzone.options.myDropzone', rv)
+
+        rv = self.dropzone.create(action=url_for('upload'), id='hello')
+        self.assertIn('id="hello"', rv)
+        rv = self.dropzone.config(id='hello')
+        self.assertIn('Dropzone.options.hello', rv)
