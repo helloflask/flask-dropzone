@@ -17,12 +17,12 @@ with io.open("README.rst", "rt", encoding="utf8") as f:
 
 setup(
     name='Flask-Dropzone',
-    version='1.5.4',
+    version='1.6.0',
     url='https://github.com/greyli/flask-dropzone',
     license='MIT',
     author='Grey Li',
     author_email='withlihui@gmail.com',
-    description='Upload file in Flask with Dropzone.js.',
+    description='Upload files in Flask with Dropzone.js.',
     long_description=long_description,
     packages=['flask_dropzone'],
     zip_safe=False,
@@ -33,7 +33,7 @@ setup(
     ],
     keywords='flask extension development upload',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',

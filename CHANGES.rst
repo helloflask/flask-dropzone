@@ -13,7 +13,7 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 1.6.0
 -----
-released date: --
+released date: 2021/5/1
 
 * Add a ``id`` parameter for ``dropzone.create()`` and ``dropzone.config()`` to support
 customize element id and putting multiple dropzones in one page.
