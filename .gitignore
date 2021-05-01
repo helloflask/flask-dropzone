@@ -83,6 +83,7 @@ examples/click-upload/uploads/*
 examples/in-form/uploads/*
 examples/large-file/uploads/*
 examples/custom-options/uploads/*
+examples/multiple-dropzone/uploads/*
 
 !examples/basic/uploads/.gitkeep
 !examples/csrf/uploads/.gitkeep
@@ -92,4 +93,4 @@ examples/custom-options/uploads/*
 !examples/in-form/uploads/.gitkeep
 !examples/large-file/uploads/.gitkeep
 !examples/custom-options/uploads/.gitkeep
-
+!examples/multiple-dropzone/uploads/.gitkeep
