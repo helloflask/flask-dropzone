@@ -178,7 +178,7 @@ Dropzone.options.myDropzone = {
         return Markup(js)
 
     @staticmethod
-    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id=None, **kwargs):
+    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id='myDropzone', **kwargs):
         """Initialize dropzone configuration.
 
         .. versionchanged:: 1.5.4
@@ -300,8 +300,6 @@ Dropzone.options.myDropzone = {
             custom_options += 'headers: {"X-CSRF-Token": "%s"},' % csrf_token
 
         nonce_html = ' nonce="%s"' % nonce if nonce else ''
-        if id is None:
-            id = 'myDropzone'
 
         return Markup('''<script%s>
         Dropzone.options.%s = {
@@ -337,7 +335,7 @@ Dropzone.options.myDropzone = {
                        uploadCanceled, custom_options))
 
     @staticmethod
-    def create(action='', csrf=False, action_view='', id=None, **kwargs):
+    def create(action='', csrf=False, action_view='', id='myDropzone', **kwargs):
         """Create a Dropzone form with given action.
 
         .. versionchanged:: 1.4.2
@@ -373,8 +371,6 @@ Dropzone.options.myDropzone = {
         if csrf:
             warnings.warn('The argument was deprecated and will be removed in 2.0, use DROPZONE_ENABLE_CSRF instead.')
 
-        if id is None:
-            id = 'myDropzone'
         return Markup('''<form action="%s" method="post" class="dropzone" id="%s"
         enctype="multipart/form-data"></form>''' % (action_url, id))
 
