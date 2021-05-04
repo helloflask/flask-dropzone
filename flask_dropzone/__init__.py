@@ -178,7 +178,7 @@ Dropzone.options.myDropzone = {
         return Markup(js)
 
     @staticmethod
-    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id=None, **kwargs):
+    def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id='myDropzone', **kwargs):
         """Initialize dropzone configuration.
 
         .. versionchanged:: 1.5.4
@@ -204,10 +204,7 @@ Dropzone.options.myDropzone = {
         upload_multiple = kwargs.get('upload_multiple', current_app.config['DROPZONE_UPLOAD_MULTIPLE'])
         parallel_uploads = kwargs.get('parallel_uploads', current_app.config['DROPZONE_PARALLEL_UPLOADS'])
 
-        if upload_multiple in [True, 'true', 'True', 1]:
-            upload_multiple = 'true'
-        else:
-            upload_multiple = 'false'
+        upload_multiple = 'true' if upload_multiple in [True, 'true', 'True', 1] else 'false'
 
         size = kwargs.get('max_file_size', current_app.config['DROPZONE_MAX_FILE_SIZE'])
         param = kwargs.get('input_name', current_app.config['DROPZONE_INPUT_NAME'])
@@ -274,12 +271,8 @@ Dropzone.options.myDropzone = {
 
         allowed_file_type = kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])
         allowed_file_custom = kwargs.get('allowed_file_custom', current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM'])
-
-        if allowed_file_custom:
-            allowed_type = allowed_file_type
-        else:
-            allowed_type = allowed_file_extensions[allowed_file_type]
-
+        allowed_type = allowed_file_type if allowed_file_custom else allowed_file_extensions[allowed_file_type]
+              
         default_message = kwargs.get('default_message', current_app.config['DROPZONE_DEFAULT_MESSAGE'])
         invalid_file_type = kwargs.get('invalid_file_type', current_app.config['DROPZONE_INVALID_FILE_TYPE'])
         file_too_big = kwargs.get('file_too_big', current_app.config['DROPZONE_FILE_TOO_BIG'])
@@ -300,8 +293,6 @@ Dropzone.options.myDropzone = {
             custom_options += 'headers: {"X-CSRF-Token": "%s"},' % csrf_token
 
         nonce_html = ' nonce="%s"' % nonce if nonce else ''
-        if id is None:
-            id = 'myDropzone'
 
         return Markup('''<script%s>
         Dropzone.options.%s = {
@@ -337,7 +328,7 @@ Dropzone.options.myDropzone = {
                        uploadCanceled, custom_options))
 
     @staticmethod
-    def create(action='', csrf=False, action_view='', id=None, **kwargs):
+    def create(action='', csrf=False, action_view='', id='myDropzone', **kwargs):
         """Create a Dropzone form with given action.
 
         .. versionchanged:: 1.4.2
@@ -373,8 +364,6 @@ Dropzone.options.myDropzone = {
         if csrf:
             warnings.warn('The argument was deprecated and will be removed in 2.0, use DROPZONE_ENABLE_CSRF instead.')
 
-        if id is None:
-            id = 'myDropzone'
         return Markup('''<form action="%s" method="post" class="dropzone" id="%s"
         enctype="multipart/form-data"></form>''' % (action_url, id))
 
