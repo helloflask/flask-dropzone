@@ -134,7 +134,7 @@ Dropzone.options.myDropzone = {
                max_files_exceeded, cancelUpload, removeFile, cancelConfirmation, uploadCanceled, timeout_js))
 
     @staticmethod
-    def load_css(css_url=None, version='5.2.0'):
+    def load_css(css_url=None, version='latest'):
         """Load Dropzone's css resources with given version.
 
         .. versionadded:: 1.4.4
@@ -157,7 +157,7 @@ Dropzone.options.myDropzone = {
         return Markup(css)
 
     @staticmethod
-    def load_js(js_url=None, version='5.2.0'):
+    def load_js(js_url=None, version='latest'):
         """Load Dropzone's js resources with given version.
 
         .. versionadded:: 1.4.4
@@ -171,7 +171,7 @@ Dropzone.options.myDropzone = {
         if serve_local:
             js = '<script src="%s"></script>\n' % url_for('dropzone.static', filename=js_filename)
         else:
-            js = '<script src="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/%s"></script>\n' % (version, js_filename)
+            js = '<script src="https://cdn.jsdelivr.net/npm/dropzone@%s/dist/min/%s"></script>\n' % (version, js_filename)
 
         if js_url:
             js = '<script src="%s"></script>\n' % js_url
