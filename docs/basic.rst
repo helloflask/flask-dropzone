@@ -40,7 +40,7 @@ Include Dropzone.js Resources
 -------------------------------
 
 In addition to manage and load resources by yourself
-(recommended), you can also use this methods to load resources:
+(recommended), you can also use these methods to load resources:
 
 .. code-block:: jinja
 
