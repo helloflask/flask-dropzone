@@ -12,7 +12,7 @@ from flask import Blueprint, current_app, url_for, Markup, render_template_strin
 
 from .utils import random_filename, get_url  # noqa
 
-#: defined normal file type
+# defined normal file type
 allowed_file_extensions = {
     'default': 'image/*, audio/*, video/*, text/*, application/*',
     'image': 'image/*',
