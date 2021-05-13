@@ -204,10 +204,7 @@ Dropzone.options.myDropzone = {
         upload_multiple = kwargs.get('upload_multiple', current_app.config['DROPZONE_UPLOAD_MULTIPLE'])
         parallel_uploads = kwargs.get('parallel_uploads', current_app.config['DROPZONE_PARALLEL_UPLOADS'])
 
-        if upload_multiple in [True, 'true', 'True', 1]:
-            upload_multiple = 'true'
-        else:
-            upload_multiple = 'false'
+        upload_multiple = 'true' if upload_multiple in [True, 'true', 'True', 1] else 'false'
 
         size = kwargs.get('max_file_size', current_app.config['DROPZONE_MAX_FILE_SIZE'])
         param = kwargs.get('input_name', current_app.config['DROPZONE_INPUT_NAME'])
@@ -275,10 +272,7 @@ Dropzone.options.myDropzone = {
         allowed_file_type = kwargs.get('allowed_file_type', current_app.config['DROPZONE_ALLOWED_FILE_TYPE'])
         allowed_file_custom = kwargs.get('allowed_file_custom', current_app.config['DROPZONE_ALLOWED_FILE_CUSTOM'])
 
-        if allowed_file_custom:
-            allowed_type = allowed_file_type
-        else:
-            allowed_type = allowed_file_extensions[allowed_file_type]
+        allowed_type = allowed_file_type if allowed_file_custom else allowed_file_extensions[allowed_file_type]
 
         default_message = kwargs.get('default_message', current_app.config['DROPZONE_DEFAULT_MESSAGE'])
         invalid_file_type = kwargs.get('invalid_file_type', current_app.config['DROPZONE_INVALID_FILE_TYPE'])
