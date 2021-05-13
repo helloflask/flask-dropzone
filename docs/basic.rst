@@ -108,6 +108,7 @@ Style it according to your preferences through ``dropzone.style()`` method:
     {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
     </head>
 
+Notice that you could use manual ``<style>`` entry for more flexibility.
 
 Save Uploads with Flask
 -----------------------
