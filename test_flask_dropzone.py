@@ -150,6 +150,9 @@ class DropzoneTestCase(unittest.TestCase):
         rv = self.dropzone.style('width: 500px')
         self.assertIn('.dropzone{width: 500px}', rv)
 
+        rv = self.dropzone.style('width: 500px', id='myDropzone')
+        self.assertIn('.dropzone#myDropzone{width: 500px}', rv)
+
     def test_render_template(self):
         response = self.client.get('/')
         data = response.get_data(as_text=True)

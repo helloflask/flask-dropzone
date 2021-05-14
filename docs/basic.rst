@@ -108,6 +108,17 @@ Style it according to your preferences through ``dropzone.style()`` method:
     {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
     </head>
 
+This would apply CSS code to all the dropzones on the page. If you have specific need, for example,
+you want to have unique styles for multiple dropzones on one page, you can use the ``id`` parameter to
+assign the id:
+
+.. code-block:: jinja
+
+    <head>
+    {{ dropzone.load_css() }}
+    {{ dropzone.style(id='foo', css='border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+    {{ dropzone.style(id='bar', css='border: 4px dashed #0087F7; margin: 20%; min-height: 600px;') }}
+    </head>
 
 Save Uploads with Flask
 -----------------------
