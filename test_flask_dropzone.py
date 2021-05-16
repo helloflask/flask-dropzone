@@ -206,6 +206,20 @@ class DropzoneTestCase(unittest.TestCase):
         rv = self.dropzone.config(custom_options='foo = true')
         self.assertIn('foo = true,', rv)
 
+    def test_external_js_path(self):
+        rv = self.dropzone.config(custom_init='dz_init.js')
+        self.assertIn('Added file.', rv)
+        
+        rv = self.dropzone.config(custom_init='js/dz_init.js')
+        self.assertIn('Success.', rv)
+        
+    def test_external_js_path_with_slash(self):
+        rv = self.dropzone.config(custom_init='/dz_init.js/')
+        self.assertIn('Added file.', rv)
+        
+        rv = self.dropzone.config(custom_init='/js/dz_init.js/')
+        self.assertIn('Success.', rv)
+
     def test_custom_id(self):
         rv = self.dropzone.create(action=url_for('upload'))
         self.assertIn('id="myDropzone"', rv)
