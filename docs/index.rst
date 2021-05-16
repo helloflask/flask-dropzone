@@ -50,11 +50,13 @@ We welcome all kinds of contributions. You can run test like this:
 Authors
 -------
 
-Maintainer: `Grey Li <http://greyli.com>`_
+Maintainers:
+
+- `Grey Li <https://github.com/greyli>`_
+- `yuxiaoy <https://github.com/Yuxiaoy1>`_
 
 See also the list of
-`contributors <https://github.com/greyli/flask-dropzone/contributors>`_
-who participated in this project.
+`contributors <https://github.com/greyli/flask-dropzone/contributors>`_ on GitHub.
 
 License
 -------
