@@ -7,10 +7,13 @@
   {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
 </head>
 <body>
-  {{ dropzone.create(action='upload') }}
-  <button id="upload-btn">Upload</button>
+  {{ dropzone.create(id='foo', action='upload') }}
+  <button id="upload-btn-foo">Upload</button>
+  {{ dropzone.create(id='bar', action='upload') }}
+  <button id="upload-btn-bar">Upload</button>
   {{ dropzone.load_js() }}
-  {{ dropzone.config(custom_init='dz = this;document.getElementById("upload-btn").addEventListener("click", function handler(e) {dz.processQueue();});',
+  {{ dropzone.config(id='foo', custom_init='dz = this;document.getElementById("upload-btn-foo").addEventListener("click", function handler(e) {dz.processQueue();});',
                      custom_options='autoProcessQueue: false, addRemoveLinks: true, parallelUploads: 20,') }}
+  {{ dropzone.config(id='bar', custom_init='js/dz_init.js')}}
 </body>
 </html>

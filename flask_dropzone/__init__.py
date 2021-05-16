@@ -7,6 +7,7 @@
     :copyright: (c) 2017 by Grey Li.
     :license: MIT, see LICENSE for more details.
 """
+import os
 import warnings
 from flask import Blueprint, current_app, url_for, Markup, render_template_string
 
@@ -181,6 +182,11 @@ Dropzone.options.myDropzone = {
     def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id='myDropzone', **kwargs):
         """Initialize dropzone configuration.
 
+        .. versionchanged:: 1.6.0
+            Support to pass external JavaScript file path into ``custom_init`` parameter,
+            notice the file need to be under the application static folder.
+            For example: ``custom_init='js/dz_init.js'``.
+
         .. versionchanged:: 1.5.4
             Added ``id`` parameter.
 
@@ -195,8 +201,15 @@ Dropzone.options.myDropzone = {
         :param **kwargs: Mirror configuration variable, lowercase and without prefix.
                          For example, ``DROPZONE_UPLOAD_MULTIPLE`` becomes ``upload_multiple`` here.
         """
-        if custom_init and not custom_init.strip().endswith(';'):
-            custom_init += ';'
+        custom_init = custom_init.strip().strip('/')
+        if custom_init:
+            if custom_init.endswith('.js'):
+                path = os.path.split(custom_init)
+                final_path = os.path.join(current_app.static_folder, *path)
+                with open(final_path, 'r') as f:
+                    custom_init = f.read()
+            elif not custom_init.endswith(';'):
+                custom_init += ';'
 
         if custom_options and not custom_options.strip().endswith(','):
             custom_options += ','

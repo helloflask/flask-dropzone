@@ -69,7 +69,7 @@ details on these options.
 Custom Configuration String
 ----------------------------
 
-Sometimes you may need more flexible, you can use ``custom_init``and ``custom_options``
+Sometimes you may need more flexibility, you can use ``custom_init`` and ``custom_options``
 to pass custom JavaScript code:
 
 .. code-block:: jinja
@@ -80,6 +80,16 @@ to pass custom JavaScript code:
 The code pass with ``custom_init`` will into ``init: function() {}``, the code pass with ``custom_options`` will into
 ``Dropzone.options.myDropzone = {}``. See the full list of available configuration settings on
 `Dropzone documentation <https://www.dropzonejs.com/#configuration>`__.
+
+More recommended, you can move the ``custom_init`` code into a external JavaScript file
+and pass the file path into ``custom_init`` parameter for a better code readability and maintainability.:
+
+.. code-block:: jinja
+
+    {{ dropzone.config(custom_init='js/dz_init.js',
+                     custom_options='autoProcessQueue: false, addRemoveLinks: true, parallelUploads: 20,') }}
+
+Notice that you need put the JavaScript file under your application static folder.
 
 Overwriting Global Configuration
 ----------------------------------
