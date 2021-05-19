@@ -26,7 +26,7 @@ allowed_file_extensions = {
 class _Dropzone(object):
 
     @staticmethod
-    def load(js_url='', css_url='', version='latest'):
+    def load(js_url='', css_url='', version='5.2.0'):
         """Load Dropzone resources with given version and init dropzone configuration.
 
         .. versionchanged:: 1.4.3
@@ -134,7 +134,7 @@ Dropzone.options.myDropzone = {
                max_files_exceeded, cancelUpload, removeFile, cancelConfirmation, uploadCanceled, timeout_js))
 
     @staticmethod
-    def load_css(css_url=None, version='latest'):
+    def load_css(css_url=None, version='5.2.0'):
         """Load Dropzone's css resources with given version.
 
         .. versionadded:: 1.4.4
@@ -157,7 +157,7 @@ Dropzone.options.myDropzone = {
         return Markup(css)
 
     @staticmethod
-    def load_js(js_url=None, version='latest'):
+    def load_js(js_url=None, version='5.2.0'):
         """Load Dropzone's js resources with given version.
 
         .. versionadded:: 1.4.4
