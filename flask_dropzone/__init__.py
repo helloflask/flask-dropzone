@@ -375,17 +375,17 @@ Dropzone.options.myDropzone = {
         enctype="multipart/form-data"></form>''' % (action_url, id))
 
     @staticmethod
-    def style(css='', id=''):
+    def style(css, id=None):
         """Add css to dropzone.
 
-        .. versionchanged:: 1.6.0
+        .. versionchanged:: 1.7.0
             Added ``id`` parameter.
 
         :param css: style sheet code.
         :param id: The id of the dropzone element, it must matches the ``id`` argument passed to
             ``dropzone.create()``.
         """
-        if id:
+        if id is not None:
             return Markup('<style>\n.dropzone#%s{%s}\n</style>' % (id, css))
         return Markup('<style>\n.dropzone{%s}\n</style>' % css)
 

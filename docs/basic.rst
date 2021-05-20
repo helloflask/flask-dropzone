@@ -116,8 +116,8 @@ assign the id:
 
     <head>
     {{ dropzone.load_css() }}
-    {{ dropzone.style(id='foo', css='border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
-    {{ dropzone.style(id='bar', css='border: 4px dashed #0087F7; margin: 20%; min-height: 600px;') }}
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;', id='foo') }}
+    {{ dropzone.style('border: 4px dashed #0087F7; margin: 20%; min-height: 600px;', id='bar') }}
     </head>
 
 Save Uploads with Flask

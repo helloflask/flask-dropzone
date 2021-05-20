@@ -11,7 +11,7 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Added more options to customize messages.
 * Drop Python 2 support.
 * Add a ``id`` parameter for ``dropzone.style()`` to support
-customize unique styles for multiple dropzones in one page. :issue:`50`
+customize unique styles for multiple dropzones in one page. :issue:`50`, :pr:`53` 
 
 1.6.0
 -----
