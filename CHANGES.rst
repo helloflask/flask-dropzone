@@ -10,21 +10,21 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Remove ``dropzone.load()`` method.
 * Added more options to customize messages.
 * Drop Python 2 support.
-* Add a ``id`` parameter for ``dropzone.style()`` to support
-customize unique styles for multiple dropzones in one page. :issue:`50`, :pr:`53` 
+* Add an ``id`` parameter for ``dropzone.style()`` to support
+  customize unique styles for multiple dropzones in one page (`#53 <https://github.com/greyli/flask-dropzone/pull/53>`_).
 
 1.6.0
 -----
 released date: 2021/5/1
 
 * Add a ``id`` parameter for ``dropzone.create()`` and ``dropzone.config()`` to support
-customize element id and putting multiple dropzones in one page.
+  customize element id and putting multiple dropzones in one page.
 
 1.5.4
 -----
 released date: 2019/8/4
 
-* Fix CSRF protect bug when in form (`#29 <https://github.com/greyli/flask-dropzone/issues/29>`_)
+* Fix CSRF protect bug when in form (`#29 <https://github.com/greyli/flask-dropzone/issues/29>`_).
 
 1.5.3
 -----
@@ -129,4 +129,4 @@ WARNING: **New major upstream release (backwards incompatible!).**
 
 1.0
 ---
-* Init release.
+* Initial release.
