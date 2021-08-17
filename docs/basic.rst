@@ -123,6 +123,18 @@ Notice that you could use manual ``<style>`` entry for more flexibility:
     </style>
     </head>
 
+This would apply CSS code to all the dropzones on the page. If you have specific need, for example,
+you want to have unique styles for multiple dropzones on one page, you can use the ``id`` parameter to
+assign the id:
+
+.. code-block:: jinja
+
+    <head>
+    {{ dropzone.load_css() }}
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;', id='foo') }}
+    {{ dropzone.style('border: 4px dashed #0087F7; margin: 20%; min-height: 600px;', id='bar') }}
+    </head>
+
 Save Uploads with Flask
 -----------------------
 
