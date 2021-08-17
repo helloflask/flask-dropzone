@@ -31,6 +31,7 @@ setup(
     install_requires=[
         'Flask'
     ],
+    test_suite='tests',
     keywords='flask extension development upload',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
