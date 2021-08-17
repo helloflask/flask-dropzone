@@ -10,7 +10,7 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Remove ``dropzone.load()`` method.
 * Added more options to customize messages.
 * Drop Python 2 support.
-* Add support to pass external JavaScript file path into ``custom_init`` parameter in ``dropzone.config()``, see documentation for more details.
+* Add support to pass external JavaScript file path into ``custom_init`` parameter in ``dropzone.config()``.
 
 1.6.0
 -----

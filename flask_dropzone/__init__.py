@@ -182,7 +182,7 @@ Dropzone.options.myDropzone = {
     def config(redirect_url=None, custom_init='', custom_options='', nonce=None, id='myDropzone', **kwargs):
         """Initialize dropzone configuration.
 
-        .. versionchanged:: 1.6.0
+        .. versionchanged:: 2.0.0
             Support to pass external JavaScript file path into ``custom_init`` parameter,
             notice the file need to be under the application static folder.
             For example: ``custom_init='js/dz_init.js'``.
