@@ -35,7 +35,7 @@ DROPZONE_INVALID_FILE_TYPE 	  ``"You can't upload files of this type."`` 	      
 DROPZONE_FILE_TOO_BIG         ``"File is too big {{filesize}}. Max filesize: {{maxFilesize}}MiB."``  Error message
 DROPZONE_SERVER_ERROR 	      ``'"Server error: {{statusCode}}"'`` 	                                 Error message
 DROPZONE_BROWSER_UNSUPPORTED  ``"Your browser does not support drag'n'drop file uploads."`` 	     Error message
-DROPZONE_MAX_FILE_EXCEED 	  ``"Your can't upload any more files."`` 	                             Error message
+DROPZONE_MAX_FILE_EXCEED 	  ``"You can't upload any more files."`` 	                             Error message
 DROPZONE_UPLOAD_MULTIPLE 	  ``False`` 	                                                         Whether to send multiple files in one request.
 DROPZONE_PARALLEL_UPLOADS 	  ``2`` 	                                                             How many uploads will handled in per request when ``DROPZONE_UPLOAD_MULTIPLE set`` to ``True``.
 DROPZONE_REDIRECT_VIEW 	      ``None`` 	                                                             The view to redirect when upload was completed. If you want pass an URL, usually when your view accepts variable, you can pass it with ``redirect_url`` keyword in template: ``{{ dropzone.config(redirect_url=url_for('endpoint', foo=bar)) }}``.
@@ -87,7 +87,7 @@ Overwriting Global Configuration
 Sometimes you may want to use different configuration for multiple drop area on different pages, in this case, you can
 pass the specific keyword arguments into ``dropzone.config()`` directly.
 
-The keyword arguments should mapping the corresponding configration variable in this way:
+The keyword arguments should mapping the corresponding configuration variable in this way:
 
 - DROPZONE_DEFAULT_MESSAGE --> default_message
 - DROPZONE_TIMEOUT --> timeout
