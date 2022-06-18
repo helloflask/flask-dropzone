@@ -73,7 +73,7 @@ released date: 2018/5/28
   * Use ``load_css()`` to load css resources.
   * Use ``load_js()`` to load js resources.
   * Use ``config()`` to configure Dropzone.
-  * Besides, we recommend user to manage the resouces manually.
+  * Besides, we recommend user to manage the resources manually.
 * Add basic unit tests.
 
 1.4.3
