@@ -91,7 +91,7 @@ for more details.
 Content Security Policy
 -----------------------
 
-If you like to use your web application under a strict `Content Security Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`__ (CSP), just embedding JavaScript code via ``{{ dropzone.config() }}`` into a template will not work. You could move the configuration code into a separate JavaScript file and reference this resource from your HTML page. However, when you like to enable a CSRF protection as well, you need to handle the CSRF token and the CSP nonce value. The simple solution is to embedd the configuration code into the HTML page and pass a ``nonce`` value for CSP as shown below:
+If you like to use your web application under a strict `Content Security Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`__ (CSP), just embedding JavaScript code via ``{{ dropzone.config() }}`` into a template will not work. You could move the configuration code into a separate JavaScript file and reference this resource from your HTML page. However, when you like to enable a CSRF protection as well, you need to handle the CSRF token and the CSP nonce value. The simple solution is to embed the configuration code into the HTML page and pass a ``nonce`` value for CSP as shown below:
 
 .. code-block:: python
 
@@ -113,7 +113,7 @@ Server Side Validation
 ----------------------
 
 Although Dropzone.js can handle client side validation for uploads, but
-you still need to setup server side validation for security conern. Just
+you still need to setup server side validation for security concern. Just
 do what you normally do (extension check, size check etc.), the only
 thing you should remember is to return plain text error message as
 response body when something was wrong. Fox example, if we only want

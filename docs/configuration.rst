@@ -87,7 +87,7 @@ Overwriting Global Configuration
 Sometimes you may want to use different configuration for multiple drop area on different pages, in this case, you can
 pass the specific keyword arguments into ``dropzone.config()`` directly.
 
-The keyword arguments should mapping the corresponding configration variable in this way:
+The keyword arguments should mapping the corresponding configuration variable in this way:
 
 - DROPZONE_DEFAULT_MESSAGE --> default_message
 - DROPZONE_TIMEOUT --> timeout
