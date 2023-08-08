@@ -29,7 +29,8 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask'
+        'Flask', 
+        'MarkupSafe'
     ],
     keywords='flask extension development upload',
     classifiers=[

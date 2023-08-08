@@ -8,7 +8,8 @@
     :license: MIT, see LICENSE for more details.
 """
 import warnings
-from flask import Blueprint, current_app, url_for, Markup, render_template_string
+from flask import Blueprint, current_app, url_for, render_template_string
+from markupsafe import Markup
 
 from .utils import random_filename, get_url  # noqa
 
