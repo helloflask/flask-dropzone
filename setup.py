@@ -7,7 +7,7 @@ with io.open("README.rst", "rt", encoding="utf8") as f:
 
 setup(
     name='Flask-Dropzone',
-    version='1.6.0',
+    version='2.0.0',
     url='https://github.com/helloflask/flask-dropzone',
     license='MIT',
     author='Grey Li',
