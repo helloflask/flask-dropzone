@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    test_flask_dropzone
-    ~~~~~~~~~~~~~~~~~~~
-
-    :author: Grey Li <withlihui@gmail.com>
-    :copyright: (c) 2017 by Grey Li.
-    :license: MIT, see LICENSE for more details.
-"""
 import unittest
 
 from flask import Flask, render_template_string, current_app, url_for

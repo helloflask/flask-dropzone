@@ -86,7 +86,7 @@ html_theme = 'flask'
 html_theme_options = {
     # 'github_user': 'greyli',
     'index_logo': 'flask-dropzone.png',
-    # 'github_fork': 'greyli/flask-ckeditor',
+    # 'github_fork': 'helloflask/flask-ckeditor',
     # 'description': 'Create social share component in Jinja2 template based on share.js.',
 }
 

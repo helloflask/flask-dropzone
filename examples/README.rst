@@ -3,7 +3,7 @@ Try Examples
 
 Open a terminal, type the commands below one by one::
 
-    $ git clone https://github.com/greyli/flask-dropzone
+    $ git clone https://github.com/helloflask/flask-dropzone
     $ cd flask-dropzone/examples
     $ pip install -r requirements.txt
     $ python basic/app.py

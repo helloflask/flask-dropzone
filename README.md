@@ -7,7 +7,7 @@ NOTICE: This extension is built for simple usage, if you need more flexibility, 
 
 * [Documentation](https://flask-dropzone.readthedocs.io/en/latest/)
 * [PyPI](https://pypi.org/project/Flask-Dropzone/)
-* [Examples](https://github.com/greyli/flask-dropzone/tree/master/examples)
+* [Examples](https://github.com/helloflask/flask-dropzone/tree/master/examples)
 
 ## License
 

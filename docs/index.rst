@@ -56,7 +56,7 @@ Maintainers:
 - `yuxiaoy <https://github.com/Yuxiaoy1>`_
 
 See also the list of
-`contributors <https://github.com/greyli/flask-dropzone/contributors>`_ on GitHub.
+`contributors <https://github.com/helloflask/flask-dropzone/contributors>`_ on GitHub.
 
 License
 -------
