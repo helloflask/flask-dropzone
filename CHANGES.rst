@@ -12,6 +12,7 @@ WARNING: **New major upstream release (backwards incompatible!).**
 * Drop Python 2 support.
 * Add an ``id`` parameter for ``dropzone.style()`` to support
   customize unique styles for multiple dropzones in one page (`#53 <https://github.com/helloflask/flask-dropzone/pull/53>`_).
+* Upgrade Dropzone.js to 5.9.3 version.
 
 1.6.0
 -----
