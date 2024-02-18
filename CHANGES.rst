@@ -7,7 +7,7 @@ released date: --
 
 WARNING: **New major upstream release (backwards incompatible!).**
 
-* Remove ``dropzone.load()`` method.
+* Remove the deprecated ``dropzone.load()`` method.
 * Added more options to customize messages.
 * Drop Python 2 support.
 * Add an ``id`` parameter for ``dropzone.style()`` to support
