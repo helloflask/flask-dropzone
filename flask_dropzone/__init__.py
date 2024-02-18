@@ -89,7 +89,8 @@ class _Dropzone(object):
         :param redirect_url: The URL to redirect when upload complete.
         :param custom_init: Custom javascript code in ``init: function() {}``.
         :param custom_options: Custom javascript code in ``Dropzone.options.myDropzone = {}``.
-        :param nonce: Pass a nonce value that is newhen embedding the JavaScript code into a Content Security Policy protected web page.
+        :param nonce: Pass a nonce value that is newhen embedding the JavaScript code into
+            a Content Security Policy protected web page.
         :param id: The id of the dropzone element, it must matches the ``id`` argument passed to
             ``dropzone.create()`` if provided.
         :param **kwargs: Mirror configuration variable, lowercase and without prefix.
