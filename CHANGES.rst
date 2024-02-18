@@ -3,7 +3,7 @@ Changelog
 
 2.0.0
 -----
-released date: --
+released date: 2024/2/18
 
 WARNING: **New major upstream release (backwards incompatible!).**
 
