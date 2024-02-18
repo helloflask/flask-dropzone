@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    test_flask_dropzone
-    ~~~~~~~~~~~~~~~~~~~
-
-    :author: Grey Li <withlihui@gmail.com>
-    :copyright: (c) 2017 by Grey Li.
-    :license: MIT, see LICENSE for more details.
-"""
 import unittest
 
 from flask import Flask, render_template_string, current_app, url_for
@@ -33,13 +24,8 @@ class DropzoneTestCase(unittest.TestCase):
         @self.app.route('/')
         def index():
             return render_template_string('''
-                    {{ dropzone.load_css() }}\n{{ dropzone.create(action_view='upload') }}
+                    {{ dropzone.load_css() }}\n{{ dropzone.create(action='upload') }}
                     {{ dropzone.load_js() }}\n{{ dropzone.config() }}''')
-
-        @self.app.route('/load')
-        def load():
-            return render_template_string('''
-                            {{ dropzone.load() }}\n{{ dropzone.create(action_view='upload') }}''')
 
         self.context = self.app.test_request_context()
         self.context.push()
@@ -50,13 +36,6 @@ class DropzoneTestCase(unittest.TestCase):
 
     def test_extension_init(self):
         self.assertIn('dropzone', current_app.extensions)
-
-    def test_load(self):
-        rv = self.dropzone.load()
-        self.assertIn('https://cdn.jsdelivr.net/npm/dropzone@', rv)
-        self.assertIn('dropzone.min.js', rv)
-        self.assertIn('dropzone.min.css', rv)
-        self.assertIn('Dropzone.options.myDropzone', rv)
 
     def test_load_css(self):
         rv = self.dropzone.load_css()
@@ -155,14 +134,6 @@ class DropzoneTestCase(unittest.TestCase):
 
     def test_render_template(self):
         response = self.client.get('/')
-        data = response.get_data(as_text=True)
-        self.assertIn('https://cdn.jsdelivr.net/npm/dropzone@', data)
-        self.assertIn('dropzone.min.js', data)
-        self.assertIn('dropzone.min.css', data)
-        self.assertIn('Dropzone.options.myDropzone', data)
-        self.assertIn('<form action="/upload" method="post" class="dropzone" id="myDropzone"', data)
-
-        response = self.client.get('/load')
         data = response.get_data(as_text=True)
         self.assertIn('https://cdn.jsdelivr.net/npm/dropzone@', data)
         self.assertIn('dropzone.min.js', data)

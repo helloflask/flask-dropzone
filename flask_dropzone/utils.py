@@ -1,11 +1,3 @@
-"""
-    flask_dropzone.utils
-    ~~~~~~~~~~~~~~~~~~~~~
-
-    :author: Grey Li <withlihui@gmail.com>
-    :copyright: (c) 2017 by Grey Li.
-    :license: MIT, see LICENSE for more details.
-"""
 import os
 import uuid
 

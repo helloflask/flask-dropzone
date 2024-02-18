@@ -7,11 +7,12 @@ released date: --
 
 WARNING: **New major upstream release (backwards incompatible!).**
 
-* Remove ``dropzone.load()`` method.
+* Remove the deprecated ``dropzone.load()`` method.
 * Added more options to customize messages.
 * Drop Python 2 support.
 * Add an ``id`` parameter for ``dropzone.style()`` to support
-  customize unique styles for multiple dropzones in one page (`#53 <https://github.com/greyli/flask-dropzone/pull/53>`_).
+  customize unique styles for multiple dropzones in one page (`#53 <https://github.com/helloflask/flask-dropzone/pull/53>`_).
+* Upgrade Dropzone.js to 5.9.3 version.
 
 1.6.0
 -----
@@ -24,7 +25,7 @@ released date: 2021/5/1
 -----
 released date: 2019/8/4
 
-* Fix CSRF protect bug when in form (`#29 <https://github.com/greyli/flask-dropzone/issues/29>`_).
+* Fix CSRF protect bug when in form (`#29 <https://github.com/helloflask/flask-dropzone/issues/29>`_).
 
 1.5.3
 -----
@@ -81,7 +82,7 @@ released date: 2018/5/28
 released date: 2018/3/23
 
 * Add support to use custom resources with ``js_url`` and ``css_url`` param in ``load()``.
-* Fix built-in static bug (`#11 <https://github.com/greyli/flask-dropzone/issues/11>`_).
+* Fix built-in static bug (`#11 <https://github.com/helloflask/flask-dropzone/issues/11>`_).
 * Use package instead of module.
 
 1.4.2

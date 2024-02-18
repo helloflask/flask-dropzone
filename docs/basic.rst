@@ -52,12 +52,6 @@ In addition to manage and load resources by yourself
     {{ dropzone.load_js() }}
     </body>
 
-.. tip::
-    There is a ``dropzone.load()`` method that was a combination of
-    ``dropzone.load_css()`` and ``dropzone.load_js()``, but we recommend not
-    to use this method for page load performance consideration. Also,
-    ``dropzone.load()`` will be removed in the near future.
-
 You can assign the version of Dropzone.js through ``version`` argument,
 the default value is ``5.2.0``. And, you can pass ``css_url`` and
 ``js_url`` separately to customize resources URL.

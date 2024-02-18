@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - master
     paths-ignore:
       - 'docs/**'
       - '*.md'
@@ -10,6 +11,7 @@ on:
   pull_request:
     branches:
       - main
+      - master
 jobs:
   tests:
     name: ${{ matrix.name }}
@@ -18,10 +20,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {name: '3.10', python: '3.10', tox: 'py310,py-babelex,py-no-babel'}
+          - {name: '3.12', python: '3.12', tox: 'py312'}
+          - {name: '3.11', python: '3.11', tox: 'py311'}
+          - {name: '3.10', python: '3.10', tox: 'py310'}
           - {name: '3.9', python: '3.9', tox: py39}
           - {name: '3.8', python: '3.8', tox: py38}
           - {name: '3.7', python: '3.7', tox: py37}
+          - {name: 'Lint', python: '3.12', tox: lint}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
